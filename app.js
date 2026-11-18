@@ -15,12 +15,13 @@ $("languageSearch").addEventListener("input",e=>renderLanguageList(e.target.valu
 $("sourceLang").onclick=()=>openLanguage("source");$("targetLang").onclick=()=>openLanguage("target");
 document.querySelectorAll(".quick").forEach(b=>b.onclick=()=>setLanguage(b.closest("#sourceQuick")?"source":"target",b.dataset.code));
 $("swapBtn").onclick=()=>{if(source==="auto"){source=target;target="auto";}else{[source,target]=[target,source];}paintLanguages();scheduleAutoTranslate();};
-let autoTimer=null,autoRequest=0;
+let autoTimer=null,autoRequest=0,stableTranslation="";
 function showTranslationWaiting(){
  const output=$("translatedText");
- output.textContent="";
+ output.textContent=stableTranslation;
  output.classList.remove("placeholder");
- output.setAttribute("aria-label","جارٍ انتظار الترجمة");
+ output.setAttribute("aria-label","تحديث الترجمة جارٍ");
+
  const dots=document.createElement("span");
  dots.className="translation-loading";
  dots.setAttribute("aria-hidden","true");
@@ -32,6 +33,7 @@ function scheduleAutoTranslate(){
  const request=++autoRequest;
  const text=$("sourceText").value.trim();
  if(!text){
+  stableTranslation="";
   $("translatedText").textContent="ستظهر الترجمة هنا";
   $("translatedText").classList.add("placeholder");
   $("translatedText").removeAttribute("aria-label");
@@ -49,8 +51,8 @@ function scheduleAutoTranslate(){
    showResult(result,false);
   }catch(e){
    if(request!==autoRequest)return;
-   $("translatedText").textContent="تعذّرت الترجمة";
-   $("translatedText").classList.remove("placeholder");
+   $("translatedText").textContent=stableTranslation||"تعذّرت الترجمة";
+   $("translatedText").classList.toggle("placeholder",!stableTranslation);
    $("translatedText").removeAttribute("aria-label");
    $("translationStatus").textContent=e.message;
   }
@@ -65,8 +67,8 @@ function makePrompt(text){return `Translate faithfully from ${label(source)} to 
 async function aiTranslate(text){const key=localStorage.getItem("seifOpenAIKey");if(!key)throw new Error("لترجمة اللهجات والتصحيحات الذكية افتح الإعدادات وأضف مفتاح OpenAI API الخاص بك.");const model=localStorage.getItem("seifAIModel")||"gpt-4o-mini";const r=await fetch("https://api.openai.com/v1/chat/completions",{method:"POST",headers:{"Content-Type":"application/json","Authorization":"Bearer "+key},body:JSON.stringify({model,temperature:.2,response_format:{type:"json_object"},messages:[{role:"system",content:"You are an expert translator and dialect editor. Output JSON only. Never invent an error or correction if the translation is already clear."},{role:"user",content:makePrompt(text)}]})});const j=await r.json();if(!r.ok)throw new Error(j.error?.message||"تعذّر الاتصال بخدمة الترجمة الذكية.");const raw=j.choices?.[0]?.message?.content||"";try{const parsed=JSON.parse(raw);return {translation:parsed.translation||"",corrections:Array.isArray(parsed.corrections)?parsed.corrections.slice(0,3):[]};}catch{return {translation:raw,corrections:[]};}}
 async function basicTranslate(text){const sl=source==="auto"?"auto":source.split("-")[0],tl=target.split("-")[0];const url="https://translate.googleapis.com/translate_a/single?client=gtx&sl="+encodeURIComponent(sl)+"&tl="+encodeURIComponent(tl)+"&dt=t&q="+encodeURIComponent(text);const r=await fetch(url);if(!r.ok)throw new Error("خدمة الترجمة غير متاحة حالياً.");const j=await r.json();return (j[0]||[]).map(x=>x[0]||"").join("");}
 async function translate(text){if(!text.trim())throw new Error("اكتب النص الذي تريد ترجمته أولاً.");const dialect=$("dialectMode").checked||getDialect(source)||getDialect(target);const key=localStorage.getItem("seifOpenAIKey");return dialect&&key?aiTranslate(text):{translation:await basicTranslate(text),corrections:[]};}
-function showResult(result,saveToHistory=true){const text=typeof result==="string"?result:result.translation;$("translatedText").textContent=text;$("translatedText").classList.remove("placeholder");$("translatedText").removeAttribute("aria-label");renderCorrections(typeof result==="string"?[]:result.corrections||[]);$("translationStatus").textContent="اكتملت الترجمة";if(saveToHistory){const entry={source,target,input:$("sourceText").value,output:text,date:Date.now()};history.unshift(entry);history=history.slice(0,50);localStorage.setItem("seifHistory",JSON.stringify(history));}}
-function renderCorrections(items){const root=$("correctionSuggestions");root.innerHTML="";if(!items.length){root.hidden=true;return;}root.hidden=false;const title=document.createElement("div");title.className="correction-title";title.textContent="اقتراح تصحيح أو معنى أوضح";root.appendChild(title);items.forEach(item=>{if(!item||!item.translation)return;const b=document.createElement("button");b.type="button";b.className="correction-chip";const colored=document.createElement("span");colored.className="gemini-text";colored.textContent=item.label||"صياغة أوضح";b.appendChild(colored);b.title=item.reason||"اضغط لتطبيق هذا التصحيح";b.addEventListener("click",()=>{$("translatedText").textContent=item.translation;$("translationStatus").textContent="تم تطبيق التصحيح المقترح";$("correctionSuggestions").hidden=true;});root.appendChild(b);});if(!root.querySelector(".correction-chip"))root.hidden=true;}
+function showResult(result,saveToHistory=true){const text=typeof result==="string"?result:result.translation;stableTranslation=text;$("translatedText").textContent=text;$("translatedText").classList.remove("placeholder");$("translatedText").removeAttribute("aria-label");renderCorrections(typeof result==="string"?[]:result.corrections||[]);$("translationStatus").textContent="اكتملت الترجمة";if(saveToHistory){const entry={source,target,input:$("sourceText").value,output:text,date:Date.now()};history.unshift(entry);history=history.slice(0,50);localStorage.setItem("seifHistory",JSON.stringify(history));}}
+function renderCorrections(items){const root=$("correctionSuggestions");root.innerHTML="";if(!items.length){root.hidden=true;return;}root.hidden=false;const title=document.createElement("div");title.className="correction-title";title.textContent="اقتراح تصحيح أو معنى أوضح";root.appendChild(title);items.forEach(item=>{if(!item||!item.translation)return;const b=document.createElement("button");b.type="button";b.className="correction-chip";const colored=document.createElement("span");colored.className="gemini-text";colored.textContent=item.label||"صياغة أوضح";b.appendChild(colored);b.title=item.reason||"اضغط لتطبيق هذا التصحيح";b.addEventListener("click",()=>{stableTranslation=item.translation;$("translatedText").textContent=item.translation;$("translationStatus").textContent="تم تطبيق التصحيح المقترح";$("correctionSuggestions").hidden=true;});root.appendChild(b);});if(!root.querySelector(".correction-chip"))root.hidden=true;}
 $("translateBtn").onclick=async()=>{const text=$("sourceText").value;if(!text.trim()){ $("translationStatus").textContent="اكتب نصاً أولاً";return;}const btn=$("translateBtn");btn.disabled=true;btn.querySelector("span").textContent="جارٍ الترجمة...";$("translationStatus").textContent="نعالج النص الآن";try{const result=await translate(text);showResult(result);}catch(e){$("translatedText").textContent=e.message;$("translationStatus").textContent="تعذّرت الترجمة";}finally{btn.disabled=false;btn.querySelector("span").textContent="ترجمة";}};
 $("saveResult").onclick=()=>{const output=$("translatedText").textContent;if(!output||$("translatedText").classList.contains("placeholder"))return; saved.unshift({source,target,input:$("sourceText").value,output,date:Date.now()});saved=saved.slice(0,100);localStorage.setItem("seifSaved",JSON.stringify(saved));$("translationStatus").textContent="أُضيفت إلى المحفوظات";};
 function renderRecords(which){const arr=which==="history"?history:saved,root=$(which==="history"?"historyList":"savedList");if(which==="history")$("clearHistory").disabled=!arr.length;if(!arr.length){root.innerHTML='<div class="empty">لا توجد عناصر هنا بعد.</div>';return;}root.innerHTML=arr.map((x,i)=>'<article class="record"><div class="muted">'+label(x.source)+' ← '+label(x.target)+' · '+new Date(x.date).toLocaleString()+'</div><p>'+escapeHTML(x.input)+'</p><p><b>'+escapeHTML(x.output)+'</b></p><div class="record-actions"><button data-copy="'+i+'" data-kind="'+which+'">نسخ الترجمة</button><button data-delete="'+i+'" data-kind="'+which+'">حذف</button></div></article>').join("");}
