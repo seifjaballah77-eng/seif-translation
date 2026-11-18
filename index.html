@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101116"><meta name="description" content="SEIF TRANSLATOR — ترجمة النصوص واللغات واللهجات والصور والمستندات.">
+<title>SEIF TRANSLATOR</title><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<aside class="sidebar" id="sidebar">
+ <div class="side-brand"><span class="brand-mark">S</span><span>SEIF <b>TRANSLATOR</b></span><button class="icon-btn close-side" id="closeSide" aria-label="إغلاق القائمة">×</button></div>
+ <nav><button class="side-link active" data-panel="translate"><span>文</span> الترجمة</button><button class="side-link" data-panel="history"><span>◷</span> السجل</button><button class="side-link" data-panel="saved"><span>☆</span> المحفوظات</button></nav>
+ <div class="side-bottom"><button class="side-link" id="settingsOpen"><span>⚙</span> الإعدادات</button><div class="side-note">ترجمة تفهم المعنى، لا الكلمات فقط.</div></div>
+</aside>
+<div class="scrim" id="scrim"></div>
+<main class="main">
+ <header class="topbar"><button class="icon-btn menu-btn" id="menuBtn" aria-label="القائمة">☰</button><div class="mobile-brand">SEIF <b>TRANSLATOR</b></div><div class="top-actions"><button class="icon-btn" id="themeBtn" title="تغيير المظهر" aria-label="تغيير المظهر">☼</button><button class="icon-btn" id="settingsTop" title="الإعدادات" aria-label="الإعدادات">⚙</button></div></header>
+ <section class="workspace" id="translatePanel">
+  <div class="intro"><div class="eyebrow">SEIF LANGUAGE TOOLS</div><h1>كل لغة… <span>بمعناها الحقيقي.</span></h1><p>ترجم بين اللغات واللهجات مع الحفاظ على المعنى والأسلوب.</p></div>
+  <div class="modebar" role="tablist"><button class="mode active" data-mode="text"><span>文</span> نص</button><button class="mode" data-mode="images"><span>▧</span> صور</button><button class="mode" data-mode="documents"><span>▤</span> مستندات</button><button class="mode" data-mode="web"><span>◎</span> مواقع ويب</button></div>
+  <div class="translator">
+   <div class="language-row">
+    <div class="language-side"><button class="lang-select" id="sourceLang">اكتشاف اللغة تلقائياً <span>⌄</span></button><div class="quick-langs" id="sourceQuick"><button class="quick selected" data-code="auto">تلقائي</button><button class="quick" data-code="ar">العربية</button><button class="quick" data-code="en">الإنجليزية</button><button class="quick" data-code="fr">الفرنسية</button></div></div>
+    <button class="swap-btn" id="swapBtn" title="عكس اللغتين" aria-label="عكس اللغتين">⇄</button>
+    <div class="language-side target-side"><button class="lang-select" id="targetLang">العربية <span>⌄</span></button><div class="quick-langs" id="targetQuick"><button class="quick selected" data-code="ar">العربية</button><button class="quick" data-code="en">الإنجليزية</button><button class="quick" data-code="fr">الفرنسية</button><button class="quick" data-code="de">الألمانية</button></div></div>
+   </div>
+   <div class="dialect-row"><label><input type="checkbox" id="dialectMode"><span class="toggle"></span> ترجمة ذكية للهجات</label><span class="dialect-hint">يفهم التعبيرات المحلية والسياق</span></div>
+   <div class="panes" id="textMode">
+    <section class="pane input-pane"><textarea id="sourceText" maxlength="12000" placeholder="اكتب النص أو الصقه هنا..." spellcheck="true"></textarea><div class="pane-footer"><span id="charCount">0 / 12000</span><div class="tools"><button class="mini-btn" id="clearText" title="مسح النص">×</button><button class="mini-btn" id="copySource" title="نسخ النص">▢</button></div></div></section>
+    <section class="pane output-pane"><div class="output-label">الترجمة</div><div id="translatedText" class="translated" aria-live="polite">ستظهر الترجمة هنا</div><div class="pane-footer"><span id="translationStatus">جاهز للترجمة</span><div class="tools"><button class="mini-btn" id="copyResult" title="نسخ الترجمة">▢</button><button class="mini-btn" id="saveResult" title="حفظ الترجمة">☆</button></div></div></section>
+   </div>
+   <div class="file-panel" id="imagesMode" hidden><div class="upload-box"><div class="upload-icon">▧</div><h3>ترجمة النص داخل صورة</h3><p>ارفع صورة وسنستخرج النص منها ثم نترجمه.</p><label class="upload-button" for="imageInput">اختيار صورة من الجهاز</label><input type="file" id="imageInput" accept="image/*" hidden><img id="imagePreview" alt="معاينة الصورة" hidden><textarea id="imageText" placeholder="النص المستخرج من الصورة..." hidden></textarea><button class="primary-btn" id="translateImage" hidden>ترجمة النص المستخرج</button></div></div>
+   <div class="file-panel" id="documentsMode" hidden><div class="upload-box"><div class="upload-icon">▤</div><h3>ترجمة مستند</h3><p>ارفع ملفاً نصياً أو PDF أو Word لاستخراج محتواه وترجمته.</p><label class="upload-button" for="documentInput">اختيار مستند</label><input type="file" id="documentInput" accept=".txt,.pdf,.docx,.md" hidden><div id="documentName"></div><textarea id="documentText" placeholder="محتوى المستند..." hidden></textarea><button class="primary-btn" id="translateDocument" hidden>ترجمة المستند</button></div></div>
+   <div class="file-panel" id="webMode" hidden><div class="upload-box"><div class="upload-icon">◎</div><h3>ترجمة موقع ويب</h3><p>أدخل رابط الصفحة. لترجمة الصفحة مباشرة داخلها استخدم إضافة SEIF TRANSLATOR.</p><input id="websiteUrl" class="url-input" type="url" placeholder="https://example.com" dir="ltr"><button class="primary-btn" id="openWebsite">فتح تعليمات ترجمة الموقع</button><p class="small-note">ترجمة الصفحات المحمية أو التي تعتمد على تسجيل الدخول تحتاج إلى الإضافة داخل المتصفح.</p></div></div>
+   <div class="translate-actions"><button class="primary-btn" id="translateBtn"><span>ترجمة</span><span>→</span></button><span class="engine-note" id="engineNote">الترجمة النصية · اكتشاف تلقائي</span></div>
+  </div>
+  <div class="feature-strip"><div><span>◉</span><b>لغات ولهجات</b><small>من الفصحى إلى اللهجات والعكس</small></div><div><span>⌁</span><b>فهم السياق</b><small>المعنى والتعبير قبل الحرفية</small></div><div><span>⌂</span><b>خصوصيتك</b><small>إعداداتك محفوظة على جهازك</small></div></div>
+ </section>
+ <section class="workspace secondary-panel" id="historyPanel" hidden><div class="intro"><div class="eyebrow">YOUR ACTIVITY</div><h1>سجل <span>الترجمة</span></h1><p>آخر الترجمات التي أجريتها على هذا الجهاز.</p></div><div id="historyList" class="records"></div></section>
+ <section class="workspace secondary-panel" id="savedPanel" hidden><div class="intro"><div class="eyebrow">YOUR COLLECTION</div><h1>الترجمات <span>المحفوظة</span></h1><p>احتفظ بالعبارات التي تريد الرجوع إليها.</p></div><div id="savedList" class="records"></div></section>
+ <footer class="site-footer">SEIF TRANSLATOR <span>•</span> صنع بيد سيف</footer>
+</main>
+<div class="modal-backdrop" id="languageModal" hidden><div class="modal"><div class="modal-head"><h3>اختر اللغة أو اللهجة</h3><button class="icon-btn" data-close="languageModal">×</button></div><input id="languageSearch" placeholder="ابحث عن لغة أو لهجة..."><div class="language-list" id="languageList"></div></div></div>
+<div class="modal-backdrop" id="settingsModal" hidden><div class="modal"><div class="modal-head"><h3>الإعدادات</h3><button class="icon-btn" data-close="settingsModal">×</button></div><label class="setting-label" for="apiKey">مفتاح الذكاء الاصطناعي لترجمة اللهجات</label><input id="apiKey" type="password" placeholder="أدخل مفتاح OpenAI API"><p class="small-note">يُحفظ المفتاح محلياً في هذا المتصفح فقط. لا تضع مفتاحاً مشتركاً أو عاماً على جهاز غير موثوق. استخدام واجهة API قد يترتب عليه تكلفة من مزود الخدمة.</p><label class="setting-label" for="aiModel">النموذج</label><input id="aiModel" value="gpt-4o-mini"><button class="primary-btn full" id="saveSettings">حفظ الإعدادات</button></div></div>
+<script src="app.js"></script>
+</body></html>
