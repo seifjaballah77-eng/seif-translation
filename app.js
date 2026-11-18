@@ -3,13 +3,25 @@ const LANGS=[
 ["auto","اكتشاف اللغة تلقائياً","auto"],["ar","العربية","language"],["en","الإنجليزية","language"],["fr","الفرنسية","language"],["es","الإسبانية","language"],["de","الألمانية","language"],["it","الإيطالية","language"],["tr","التركية","language"],["ru","الروسية","language"],["zh-CN","الصينية المبسطة","language"],["ja","اليابانية","language"],["ko","الكورية","language"],["pt","البرتغالية","language"],["nl","الهولندية","language"],["hi","الهندية","language"],["ur","الأردية","language"],["fa","الفارسية","language"],["el","اليونانية","language"],["pl","البولندية","language"],["sv","السويدية","language"],["uk","الأوكرانية","language"],["id","الإندونيسية","language"],["sw","السواحيلية","language"],
 ["ar-TN","التونسية","dialect"],["ar-EG","المصرية","dialect"],["ar-MA","المغربية","dialect"],["ar-DZ","الجزائرية","dialect"],["ar-LB","اللبنانية","dialect"],["ar-SY","السورية","dialect"],["ar-JO","الأردنية","dialect"],["ar-PS","الفلسطينية","dialect"],["ar-IQ","العراقية","dialect"],["ar-SA","السعودية","dialect"],["ar-AE","الإماراتية","dialect"],["ar-YE","اليمنية","dialect"],["ar-SD","السودانية","dialect"],["ar-OM","العُمانية","dialect"],["ar-KW","الكويتية","dialect"],["ar-QA","القطرية","dialect"],["ar-BH","البحرينية","dialect"],["ar-LY","الليبية","dialect"],["fr-CA","الفرنسية الكندية","dialect"],["en-US","الإنجليزية الأمريكية","dialect"],["en-GB","الإنجليزية البريطانية","dialect"],["es-MX","الإسبانية المكسيكية","dialect"],["pt-BR","البرتغالية البرازيلية","dialect"]
 ];
-let source="auto",target="ar",activeSide="source",history=JSON.parse(localStorage.getItem("seifHistory")||"[]"),saved=JSON.parse(localStorage.getItem("seifSaved")||"[]");
+let source=localStorage.getItem("seifSourceLang")||"auto",target=localStorage.getItem("seifTargetLang")||"ar",activeSide="source",recentLanguages=JSON.parse(localStorage.getItem("seifRecentLanguages")||"[]"),history=JSON.parse(localStorage.getItem("seifHistory")||"[]"),saved=JSON.parse(localStorage.getItem("seifSaved")||"[]");
 const label=code=>LANGS.find(x=>x[0]===code)?.[1]||code;
 function paintLanguages(){ $("sourceLang").innerHTML=label(source)+' <span>⌄</span>'; $("targetLang").innerHTML=label(target)+' <span>⌄</span>'; updateQuick(); }
 function updateQuick(){["source","target"].forEach(side=>{const value=side==="source"?source:target;document.querySelectorAll("#"+side+"Quick .quick").forEach(b=>b.classList.toggle("selected",b.dataset.code===value));});}
-function setLanguage(side,code){if(side==="source")source=code;else target=code;paintLanguages();scheduleAutoTranslate();}
+function setLanguage(side,code){
+ if(side==="source")source=code;else target=code;
+ localStorage.setItem(side==="source"?"seifSourceLang":"seifTargetLang",code);
+ if(code!=="auto"){recentLanguages=[code,...recentLanguages.filter(x=>x!==code)].slice(0,8);localStorage.setItem("seifRecentLanguages",JSON.stringify(recentLanguages));}
+ paintLanguages();scheduleAutoTranslate();
+}
 function openLanguage(side){activeSide=side;$("languageSearch").value="";renderLanguageList("");$("languageModal").hidden=false;$("languageSearch").focus();}
-function renderLanguageList(q){const items=LANGS.filter(x=>(x[1]+" "+x[0]).toLowerCase().includes(q.toLowerCase()));$("languageList").innerHTML=items.map(x=>'<button data-code="'+x[0]+'">'+x[1]+(x[2]==="dialect"?' <small>· لهجة</small>':'')+'</button>').join("");}
+function renderLanguageList(q){
+ const recent=recentLanguages.map(code=>LANGS.find(x=>x[0]===code)).filter(Boolean);
+ const recentRoot=$("recentLanguages");
+ recentRoot.hidden=!!q||!recent.length;
+ recentRoot.innerHTML=recentRoot.hidden?"":'<div class="recent-title">استُعملت مؤخراً</div>'+recent.map(x=>'<button type="button" data-code="'+x[0]+'">'+x[1]+' <small>✓</small></button>').join("");
+ const items=LANGS.filter(x=>(x[1]+" "+x[0]).toLowerCase().includes(q.toLowerCase()));
+ $("languageList").innerHTML=items.map(x=>'<button data-code="'+x[0]+'">'+x[1]+(recentLanguages.includes(x[0])?' <small class="used-mark">✓ استُعملت</small>':"")+(x[2]==="dialect"?' <small>· لهجة</small>':'')+'</button>').join("");
+}
 $("languageList").addEventListener("click",e=>{const b=e.target.closest("button[data-code]");if(!b)return;setLanguage(activeSide,b.dataset.code);$("languageModal").hidden=true;});
 $("languageSearch").addEventListener("input",e=>renderLanguageList(e.target.value));
 $("sourceLang").onclick=()=>openLanguage("source");$("targetLang").onclick=()=>openLanguage("target");
@@ -78,10 +90,39 @@ document.addEventListener("click",e=>{const d=e.target.closest("[data-delete]");
 function showPanel(name){["translate","history","saved"].forEach(n=>{$(n+"Panel").hidden=n!==name;document.querySelectorAll(".side-link[data-panel]").forEach(b=>b.classList.toggle("active",b.dataset.panel===name));});if(name==="history"||name==="saved")renderRecords(name);$("sidebar").classList.remove("open");$("scrim").classList.remove("show");}
 document.querySelectorAll("[data-panel]").forEach(b=>b.onclick=()=>showPanel(b.dataset.panel));
 $("menuBtn").onclick=()=>{$("sidebar").classList.add("open");$("scrim").classList.add("show");};$("closeSide").onclick=$("scrim").onclick=()=>{$("sidebar").classList.remove("open");$("scrim").classList.remove("show");};
-function openSettings(){$("apiKey").value=localStorage.getItem("seifOpenAIKey")||"";$("aiModel").value=localStorage.getItem("seifAIModel")||"gpt-4o-mini";$("settingsModal").hidden=false;}
-$("settingsOpen").onclick=$("settingsTop").onclick=openSettings;$("saveSettings").onclick=()=>{localStorage.setItem("seifOpenAIKey",$("apiKey").value.trim());localStorage.setItem("seifAIModel",$("aiModel").value.trim()||"gpt-4o-mini");$("settingsModal").hidden=true;};
+function openSettings(){$("interfaceLanguage").value=localStorage.getItem("seifInterfaceLanguage")||"ar";$("apiKey").value=localStorage.getItem("seifOpenAIKey")||"";$("aiModel").value=localStorage.getItem("seifAIModel")||"gpt-4o-mini";$("settingsModal").hidden=false;}
+$("settingsOpen").onclick=$("settingsTop").onclick=openSettings;$("saveSettings").onclick=()=>{applyInterfaceLanguage($("interfaceLanguage").value);localStorage.setItem("seifOpenAIKey",$("apiKey").value.trim());localStorage.setItem("seifAIModel",$("aiModel").value.trim()||"gpt-4o-mini");$("settingsModal").hidden=true;};
 document.querySelectorAll("[data-close]").forEach(b=>b.onclick=()=>$ (b.dataset.close).hidden=true);
-$("dialectMode").addEventListener("change",scheduleAutoTranslate);$("themeBtn").onclick=()=>{document.body.classList.toggle("light");localStorage.setItem("seifTheme",document.body.classList.contains("light")?"light":"dark");};if(localStorage.getItem("seifTheme")==="light")document.body.classList.add("light");
+$("dialectMode").addEventListener("change",scheduleAutoTranslate);
+const UI_TEXT={
+ en:{navTranslate:"Translate",navHistory:"History",navSaved:"Saved",settings:"Settings",modeText:"Text",modeImages:"Images",modeDocs:"Documents",modeWeb:"Websites",dialect:"Smart dialect translation",outputLabel:"Translation",sourcePlaceholder:"Type or paste text here...",outputPlaceholder:"Your translation will appear here",translate:"Translate",historyTitle:"Translation history",historyDesc:"Your recent translations on this device.",savedTitle:"Saved translations",savedDesc:"Keep phrases you want to revisit.",languageModal:"Choose a language or dialect",languageSearch:"Search languages or dialects...",clearHistory:"Clear all",footer:"SEIF TRANSLATOR"},
+ ru:{navTranslate:"Перевод",navHistory:"История",navSaved:"Сохранённое",settings:"Настройки",modeText:"Текст",modeImages:"Изображения",modeDocs:"Документы",modeWeb:"Сайты",dialect:"Умный перевод диалектов",outputLabel:"Перевод",sourcePlaceholder:"Введите или вставьте текст...",outputPlaceholder:"Здесь появится перевод",translate:"Перевести",historyTitle:"История переводов",historyDesc:"Ваши последние переводы на этом устройстве.",savedTitle:"Сохранённые переводы",savedDesc:"Сохраните фразы, к которым хотите вернуться.",languageModal:"Выберите язык или диалект",languageSearch:"Поиск языка или диалекта...",clearHistory:"Удалить всё",footer:"SEIF TRANSLATOR"}
+};
+function applyInterfaceLanguage(lang){
+ const dict=UI_TEXT[lang]||{};
+ document.documentElement.lang=lang;document.documentElement.dir=lang==="ar"?"rtl":"ltr";
+ $("sourceText").placeholder=dict.sourcePlaceholder||"اكتب النص أو الصقه هنا...";
+ $("languageSearch").placeholder=dict.languageSearch||"ابحث عن لغة أو لهجة...";
+ $("translatedText").textContent=$("translatedText").classList.contains("placeholder")?(dict.outputPlaceholder||"ستظهر الترجمة هنا"):$("translatedText").textContent;
+ const nav=document.querySelectorAll(".side-link[data-panel]");
+ [dict.navTranslate||"الترجمة",dict.navHistory||"السجل",dict.navSaved||"المحفوظات"].forEach((v,i)=>{if(nav[i])nav[i].lastChild.textContent=" "+v;});
+ const settings=$("settingsOpen");if(settings)settings.lastChild.textContent=" "+(dict.settings||"الإعدادات");
+ const modeKeys=["modeText","modeImages","modeDocs","modeWeb"],modeFallback=["نص","صور","مستندات","مواقع ويب"];
+ document.querySelectorAll(".mode").forEach((b,i)=>{b.lastChild.textContent=" "+(dict[modeKeys[i]]||modeFallback[i]);});
+ const dialect=document.querySelector(".dialect-row label");if(dialect)dialect.lastChild.textContent=" "+(dict.dialect||"ترجمة ذكية للهجات");
+ $("outputLabel").textContent=dict.outputLabel||"الترجمة";
+ $("translateBtn").querySelector("span").textContent=dict.translate||"ترجمة";
+ $("clearHistory").textContent=dict.clearHistory||"حذف الكل";
+ document.querySelector(".site-footer").textContent=dict.footer||"SEIF TRANSLATOR";
+ $("historyPanel").querySelector("h1").textContent=dict.historyTitle||"سجل الترجمة";
+ $("historyPanel").querySelector("p").textContent=dict.historyDesc||"آخر الترجمات التي أجريتها على هذا الجهاز.";
+ $("savedPanel").querySelector("h1").textContent=dict.savedTitle||"الترجمات المحفوظة";
+ $("savedPanel").querySelector("p").textContent=dict.savedDesc||"احتفظ بالعبارات التي تريد الرجوع إليها.";
+ $("languageModal").querySelector("h3").textContent=dict.languageModal||"اختر اللغة أو اللهجة";
+ localStorage.setItem("seifInterfaceLanguage",lang);
+}
+
+$("themeBtn").onclick=()=>{document.body.classList.toggle("light");localStorage.setItem("seifTheme",document.body.classList.contains("light")?"light":"dark");};if(localStorage.getItem("seifTheme")==="light")document.body.classList.add("light");
 document.querySelectorAll(".mode").forEach(b=>b.onclick=()=>{document.querySelectorAll(".mode").forEach(x=>x.classList.toggle("active",x===b));const mode=b.dataset.mode;["text","images","documents","web"].forEach(x=>$(x+"Mode").hidden=x!==mode);$("translateBtn").hidden=mode!=="text";$("engineNote").textContent=mode==="text"?"الترجمة النصية · اكتشاف تلقائي":mode==="images"?"استخراج النص من الصور وترجمته":mode==="documents"?"استخراج محتوى المستند وترجمته":"ترجمة صفحات الويب";});
 $("imageInput").onchange=async e=>{const file=e.target.files[0];if(!file)return;$("imagePreview").src=URL.createObjectURL(file);$("imagePreview").hidden=false;$("imageText").hidden=false;$("translateImage").hidden=false;$("imageText").value="جارٍ استخراج النص...";try{if(!window.Tesseract){await loadScript("https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js");}const result=await Tesseract.recognize(file,"ara+eng+fra");$("imageText").value=result.data.text.trim()||"لم يتم العثور على نص واضح.";}catch{$("imageText").value="تعذّر استخراج النص تلقائياً. اكتب النص هنا يدوياً.";}}; 
 $("translateImage").onclick=async()=>{const text=$("imageText").value.trim();if(!text)return;$("sourceText").value=text;document.querySelector('[data-mode="text"]').click();$("translateBtn").click();};
@@ -89,4 +130,4 @@ $("documentInput").onchange=async e=>{const f=e.target.files[0];if(!f)return;$("
 $("translateDocument").onclick=()=>{$("sourceText").value=$("documentText").value;document.querySelector('[data-mode="text"]').click();$("translateBtn").click();};
 $("openWebsite").onclick=()=>{const u=$("websiteUrl").value.trim();if(!/^https?:\/\//i.test(u)){alert("أدخل رابطاً يبدأ بـ https:// أو http://");return;}alert("لترجمة النصوص داخل الصفحة الحالية دون مغادرتها، ثبّت إضافة SEIF TRANSLATOR وافتح الرابط في المتصفح.");};
 function loadScript(src){return new Promise((resolve,reject)=>{const s=document.createElement("script");s.src=src;s.onload=resolve;s.onerror=()=>reject(new Error("فشل تحميل مكتبة معالجة الملف"));document.head.appendChild(s);});}
-paintLanguages();$("translatedText").classList.add("placeholder");$("translationStatus").textContent="اكتب للترجمة تلقائياً";renderRecords("history");
+paintLanguages();$("translatedText").classList.add("placeholder");applyInterfaceLanguage(localStorage.getItem("seifInterfaceLanguage")||"ar");$("translationStatus").textContent="اكتب للترجمة تلقائياً";renderRecords("history");
