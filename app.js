@@ -189,13 +189,13 @@ async function basicTranslate(text){
  if(missing){
   const tokenPattern=/(QZXSEIF(?:IDIOM|TERM|CODE)\d+XZQ)/g;
   const pieces=working.split(tokenPattern);
-  const lockToken=/^QZXSEIF(?:IDIOM|TERM|CODE)\\d+XZQ$/;const translatedPieces=await Promise.all(pieces.map(piece=>lockToken.test(piece)?Promise.resolve(piece):googleTranslatePlain(piece)));
+  const lockToken=/^QZXSEIF(?:IDIOM|TERM|CODE)\d+XZQ$/;const translatedPieces=await Promise.all(pieces.map(piece=>lockToken.test(piece)?Promise.resolve(piece):googleTranslatePlain(piece)));
   tokenPattern.lastIndex=0;
   translated=translatedPieces.join("");
  }
  for(const [token,value] of replacements)translated=translated.split(token).join(value);
  const question=window.SEIF_CONTEXT.analyzeIntent(text).kind==="intentQuestion";
- if(question&&!/[؟?]\s*$/.test(translated))translated=translated.replace(/[.!،,؛:]+\s*$/,"")+"؟";
+ const questionMark=target==="ar"||target.startsWith("ar-")?"؟":"?";if(question&&!/[؟?]\s*$/.test(translated))translated=translated.replace(/[.!،,؛:]+\s*$/,"")+questionMark;
  return translated;
 }
 async function translate(text){
