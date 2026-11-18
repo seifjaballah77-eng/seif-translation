@@ -104,7 +104,7 @@ function makePrompt(text){
 }
 async function aiTranslate(text){
  const key=localStorage.getItem("seifOpenAIKey");
- if(!key)throw new Error("ترجمة اللهجات تحتاج إلى مفتاح OpenAI API. افتح الإعدادات وأضف المفتاح؛ لن أستبدل اللهجة بترجمة عربية عامة.");
+ if(!key)throw new Error(ui("dialectNeedsKey"));
  const model=localStorage.getItem("seifAIModel")||"gpt-4o-mini";
  const r=await fetch("https://api.openai.com/v1/chat/completions",{
   method:"POST",headers:{"Content-Type":"application/json","Authorization":"Bearer "+key},
@@ -114,26 +114,26 @@ async function aiTranslate(text){
   ]})
  });
  const j=await r.json();
- if(!r.ok)throw new Error(j.error?.message||"تعذّر الاتصال بمحرك ترجمة اللهجات.");
+ if(!r.ok)throw new Error(j.error?.message||ui("dialectServiceError"));
  const raw=j.choices?.[0]?.message?.content||"";
  let parsed;
  try{parsed=JSON.parse(raw);}catch{throw new Error("وصل رد غير صالح من محرك اللهجات. حاول مجدداً.");}
- if(typeof parsed.translation!=="string"||!parsed.translation.trim())throw new Error("لم يُرجع محرك اللهجات ترجمة صالحة. حاول مجدداً.");
+ if(typeof parsed.translation!=="string"||!parsed.translation.trim())throw new Error(ui("emptyTranslation"));
  return {translation:parsed.translation.trim(),corrections:Array.isArray(parsed.corrections)?parsed.corrections.slice(0,3):[]};
 }
 async function basicTranslate(text){
- if(getDialect(source)||getDialect(target))throw new Error("تم إيقاف الترجمة العامة لهذه اللهجة. يجب استخدام محرك اللهجات المتخصص.");
+ if(getDialect(source)||getDialect(target))throw new Error(ui("genericDialectFallback"));
  const sl=source==="auto"?"auto":source.split("-")[0],tl=target.split("-")[0];
  const url="https://translate.googleapis.com/translate_a/single?client=gtx&sl="+encodeURIComponent(sl)+"&tl="+encodeURIComponent(tl)+"&dt=t&q="+encodeURIComponent(text);
- const r=await fetch(url);if(!r.ok)throw new Error("خدمة الترجمة غير متاحة حالياً.");
+ const r=await fetch(url);if(!r.ok)throw new Error(ui("serviceUnavailable"));
  const j=await r.json();return (j[0]||[]).map(x=>x[0]||"").join("");
 }
 async function translate(text){
- if(!text.trim())throw new Error("اكتب النص الذي تريد ترجمته أولاً.");
+ if(!text.trim())throw new Error(ui("textRequired"));
  const requiresDialectEngine=$("dialectMode").checked||getDialect(source)||getDialect(target);
  if(requiresDialectEngine){
   const key=localStorage.getItem("seifOpenAIKey");
-  if(!key)throw new Error("اللهجات والأنواع الإقليمية تحتاج إلى مفتاح OpenAI API. افتح الإعدادات وأضف المفتاح؛ لن نعرض ترجمة عامة على أنها لهجة.");
+  if(!key)throw new Error(ui("dialectNeedsKey"));
   return aiTranslate(text);
  }
  return {translation:await basicTranslate(text),corrections:[]};
@@ -190,7 +190,7 @@ function applyInterfaceLanguage(lang){
  $("selectAllImage").textContent=ui("selectAll");$("clearImageSelection").textContent=ui("clearSelection");
  $("extractImageText").textContent=ui("extractText");$("translateImage").textContent=ui("translateExtracted");
  $("themeBtn").title=ui("theme");$("themeBtn").setAttribute("aria-label",ui("theme"));
- $("swapBtn").title=ui("swapLanguages");$("swapBtn").setAttribute("aria-label",ui("swapLanguages"));$("menuBtn").setAttribute("aria-label",ui("menu"));
+ $("swapBtn").title=ui("swapLanguages");$("swapBtn").setAttribute("aria-label",ui("swapLanguages"));$("menuBtn").setAttribute("aria-label",ui("menu"));$("settingsTop").title=ui("settings");$("settingsTop").setAttribute("aria-label",ui("settings"));$("settingsOpen").setAttribute("aria-label",ui("settings"));$("closeSide").setAttribute("aria-label",ui("close"));$("imageSelection").setAttribute("aria-label",ui("imageSelectHint"));document.querySelectorAll("[data-close]").forEach(b=>b.setAttribute("aria-label",ui("close")));
  $("clearText").title=ui("clearText");$("copySource").title=ui("copy");$("copyResult").title=ui("copy");$("saveResult").title=ui("save");
  document.querySelectorAll(".quick").forEach(b=>{b.textContent=b.dataset.code==="auto"?(chosen.code==="ar"?"تلقائي":"Auto"):label(b.dataset.code);});
  updateDialectHint();if(!$("languageModal").hidden)renderLanguageList($("languageSearch").value);
