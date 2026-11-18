@@ -4,10 +4,11 @@ const LANGUAGES=[
 ];
 const select=$("target");
 for(const [code,name] of LANGUAGES){const option=document.createElement("option");option.value=code;option.textContent=name;select.appendChild(option);}
-chrome.storage.sync.get({target:"ar"},v=>{select.value=v.target||"ar";});
-select.addEventListener("change",()=>chrome.storage.sync.set({target:select.value}));
+function syncTargetName(){const chosen=LANGUAGES.find(([code])=>code===select.value);$("targetName").textContent=chosen?chosen[1]:select.value;}
+chrome.storage.sync.get({target:"ar"},v=>{select.value=v.target||"ar";syncTargetName();});
+select.addEventListener("change",()=>{chrome.storage.sync.set({target:select.value});syncTargetName();});
 $("more").onclick=()=>{$("menu").hidden=!$("menu").hidden;};
-$("reset").onclick=()=>{select.value="ar";chrome.storage.sync.set({target:"ar"});$("menu").hidden=true;};
+$("reset").onclick=()=>{select.value="ar";chrome.storage.sync.set({target:"ar"});syncTargetName();$("menu").hidden=true;};
 $("about").onclick=()=>{ $("menu").hidden=true; $("status").textContent="SEIF TRANSLATOR — ترجمة صفحات الويب والصور إلى لغات متعددة."; };
 $("translatePage").onclick=async()=>{
  $("status").textContent="جارٍ ترجمة الصفحة...";
