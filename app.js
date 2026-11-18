@@ -22,7 +22,7 @@ function renderLanguageList(q){
  const items=LANGS.filter(x=>(x[1]+" "+x[0]).toLowerCase().includes(q.toLowerCase()));
  $("languageList").innerHTML=items.map(x=>'<button data-code="'+x[0]+'">'+x[1]+(recentLanguages.includes(x[0])?' <small class="used-mark">✓ استُعملت</small>':"")+(x[2]==="dialect"?' <small>· لهجة</small>':'')+'</button>').join("");
 }
-$("languageList").addEventListener("click",e=>{const b=e.target.closest("button[data-code]");if(!b)return;setLanguage(activeSide,b.dataset.code);$("languageModal").hidden=true;});
+["languageList","recentLanguages"].forEach(id=>$(id).addEventListener("click",e=>{const b=e.target.closest("button[data-code]");if(!b)return;setLanguage(activeSide,b.dataset.code);$("languageModal").hidden=true;}));
 $("languageSearch").addEventListener("input",e=>renderLanguageList(e.target.value));
 $("sourceLang").onclick=()=>openLanguage("source");$("targetLang").onclick=()=>openLanguage("target");
 document.querySelectorAll(".quick").forEach(b=>b.onclick=()=>setLanguage(b.closest("#sourceQuick")?"source":"target",b.dataset.code));
