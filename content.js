@@ -1,27 +1,26 @@
-let busy=false;
+let translating=false;
 chrome.runtime.onMessage.addListener((msg,sender,sendResponse)=>{
  if(msg.type!=="TRANSLATE_PAGE")return;
- translatePage().then(count=>sendResponse({message:count? "تمت ترجمة "+count+" فقرة.":"لم يتم العثور على نص قابل للترجمة."})).catch(()=>sendResponse({message:"حدث خطأ أثناء ترجمة الصفحة."}));
+ translatePage().then(result=>sendResponse({message:result?("تمت ترجمة "+result+" جزءاً من الصفحة."):"لم يتم العثور على نص قابل للترجمة."})).catch(()=>sendResponse({message:"تعذّرت ترجمة الصفحة. حاول مجدداً."}));
  return true;
 });
 async function translatePage(){
- if(busy)return 0;busy=true;
+ if(translating)return 0;translating=true;
  try{
-  const nodes=[];const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
+  const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);const nodes=[];
   while(walker.nextNode()){
-   const n=walker.currentNode,p=n.parentElement;
-   if(!p||!n.nodeValue.trim()||p.closest("script,style,noscript,textarea,input,code,pre,[contenteditable=true]"))continue;
-   if(p.getClientRects().length)nodes.push(n);
+   const node=walker.currentNode,parent=node.parentElement;
+   if(!parent||!node.nodeValue.trim()||parent.closest("script,style,noscript,textarea,input,select,option,code,pre,[contenteditable=true],[aria-hidden=true]"))continue;
+   if(parent.getClientRects().length)nodes.push(node);
   }
-  const unique=nodes.filter(n=>n.nodeValue.trim().length>1).slice(0,180);
+  const filtered=nodes.filter(node=>node.nodeValue.trim().length>1).slice(0,220);
   const {target="ar"}=await chrome.storage.sync.get({target:"ar"});
-  const chunks=[];for(let i=0;i<unique.length;i+=15)chunks.push(unique.slice(i,i+15));
   let changed=0;
-  for(const chunk of chunks){
-   const items=chunk.map((n,i)=>({id:i,text:n.nodeValue}));
-   const result=await chrome.runtime.sendMessage({type:"TRANSLATE_BATCH",items,target});
-   if(result?.items)result.items.forEach((r,i)=>{if(r.text){chunk[i].nodeValue=r.text;changed++;}});
+  for(let i=0;i<filtered.length;i+=12){
+   const chunk=filtered.slice(i,i+12);
+   const response=await chrome.runtime.sendMessage({type:"TRANSLATE_BATCH",target,items:chunk.map((node,index)=>({id:index,text:node.nodeValue}))});
+   if(response?.items)response.items.forEach((item,index)=>{if(item.text){chunk[index].nodeValue=item.text;changed++;}});
   }
   return changed;
- }finally{busy=false;}
+ }finally{translating=false;}
 }
