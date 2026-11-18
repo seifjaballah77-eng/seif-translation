@@ -195,7 +195,11 @@ window.SEIF_INTERFACE = {
       "unsupportedFile": "صيغة الملف غير مدعومة",
       "websiteUrlError": "أدخل رابطاً صالحاً يبدأ بـ http:// أو https://",
       "websiteExtensionNote": "لترجمة الصفحة داخلها استخدم إضافة SEIF TRANSLATOR.",
-      "libraryLoadFailed": "فشل تحميل مكتبة معالجة الملف"
+      "libraryLoadFailed": "فشل تحميل مكتبة معالجة الملف",
+      "autoDetect": "اكتشاف اللغة تلقائياً",
+      "sideNote": "ترجمة تفهم المعنى، لا الكلمات فقط.",
+      "historyEyebrow": "نشاطك",
+      "savedEyebrow": "مجموعتك"
     },
     "en": {
       "settings": "Settings",
@@ -279,7 +283,11 @@ window.SEIF_INTERFACE = {
       "unsupportedFile": "Unsupported file type",
       "websiteUrlError": "Enter a valid URL beginning with http:// or https://",
       "websiteExtensionNote": "To translate inside a page, use the SEIF TRANSLATOR extension.",
-      "libraryLoadFailed": "Could not load the file processing library"
+      "libraryLoadFailed": "Could not load the file processing library",
+      "autoDetect": "Detect language automatically",
+      "sideNote": "Translation that understands meaning, not just words.",
+      "historyEyebrow": "YOUR ACTIVITY",
+      "savedEyebrow": "YOUR COLLECTION"
     },
     "fr": {
       "settings": "Paramètres",
@@ -363,7 +371,11 @@ window.SEIF_INTERFACE = {
       "unsupportedFile": "Format de fichier non pris en charge",
       "websiteUrlError": "Saisissez une URL valide commençant par http:// ou https://",
       "websiteExtensionNote": "Pour traduire dans la page, utilisez l’extension SEIF TRANSLATOR.",
-      "libraryLoadFailed": "Impossible de charger la bibliothèque de traitement des fichiers"
+      "libraryLoadFailed": "Impossible de charger la bibliothèque de traitement des fichiers",
+      "autoDetect": "Détecter la langue automatiquement",
+      "sideNote": "Une traduction qui comprend le sens, pas seulement les mots.",
+      "historyEyebrow": "VOTRE ACTIVITÉ",
+      "savedEyebrow": "VOTRE COLLECTION"
     },
     "es": {
       "settings": "Configuración",
@@ -447,7 +459,11 @@ window.SEIF_INTERFACE = {
       "unsupportedFile": "Tipo de archivo no compatible",
       "websiteUrlError": "Introduce una URL válida que empiece por http:// o https://",
       "websiteExtensionNote": "Para traducir dentro de la página, usa la extensión SEIF TRANSLATOR.",
-      "libraryLoadFailed": "No se pudo cargar la biblioteca de procesamiento de archivos"
+      "libraryLoadFailed": "No se pudo cargar la biblioteca de procesamiento de archivos",
+      "autoDetect": "Detectar idioma automáticamente",
+      "sideNote": "Una traducción que entiende el significado, no solo las palabras.",
+      "historyEyebrow": "TU ACTIVIDAD",
+      "savedEyebrow": "TU COLECCIÓN"
     },
     "de": {
       "settings": "Einstellungen",
@@ -531,7 +547,11 @@ window.SEIF_INTERFACE = {
       "unsupportedFile": "Nicht unterstützter Dateityp",
       "websiteUrlError": "Gib eine gültige URL ein, die mit http:// oder https:// beginnt",
       "websiteExtensionNote": "Zum Übersetzen direkt auf der Seite die SEIF TRANSLATOR-Erweiterung verwenden.",
-      "libraryLoadFailed": "Dateiverarbeitungsbibliothek konnte nicht geladen werden"
+      "libraryLoadFailed": "Dateiverarbeitungsbibliothek konnte nicht geladen werden",
+      "autoDetect": "Sprache automatisch erkennen",
+      "sideNote": "Übersetzung, die den Sinn versteht, nicht nur Wörter.",
+      "historyEyebrow": "DEINE AKTIVITÄT",
+      "savedEyebrow": "DEINE SAMMLUNG"
     },
     "it": {
       "settings": "Impostazioni",
@@ -615,7 +635,11 @@ window.SEIF_INTERFACE = {
       "unsupportedFile": "Tipo di file non supportato",
       "websiteUrlError": "Inserisci un URL valido che inizi con http:// o https://",
       "websiteExtensionNote": "Per tradurre nella pagina, usa l’estensione SEIF TRANSLATOR.",
-      "libraryLoadFailed": "Impossibile caricare la libreria di elaborazione file"
+      "libraryLoadFailed": "Impossibile caricare la libreria di elaborazione file",
+      "autoDetect": "Rileva automaticamente la lingua",
+      "sideNote": "Una traduzione che comprende il significato, non solo le parole.",
+      "historyEyebrow": "LA TUA ATTIVITÀ",
+      "savedEyebrow": "LA TUA RACCOLTA"
     },
     "tr": {
       "settings": "Ayarlar",
@@ -699,7 +723,11 @@ window.SEIF_INTERFACE = {
       "unsupportedFile": "Desteklenmeyen dosya türü",
       "websiteUrlError": "http:// veya https:// ile başlayan geçerli bir URL girin",
       "websiteExtensionNote": "Sayfanın içinde çevirmek için SEIF TRANSLATOR uzantısını kullanın.",
-      "libraryLoadFailed": "Dosya işleme kitaplığı yüklenemedi"
+      "libraryLoadFailed": "Dosya işleme kitaplığı yüklenemedi",
+      "autoDetect": "Dili otomatik algıla",
+      "sideNote": "Yalnızca kelimeleri değil, anlamı da anlayan çeviri.",
+      "historyEyebrow": "ETKİNLİĞİN",
+      "savedEyebrow": "KOLEKSİYONUN"
     },
     "ru": {
       "settings": "Настройки",
@@ -783,7 +811,11 @@ window.SEIF_INTERFACE = {
       "unsupportedFile": "Неподдерживаемый тип файла",
       "websiteUrlError": "Введите корректный URL, начинающийся с http:// или https://",
       "websiteExtensionNote": "Для перевода прямо на странице используйте расширение SEIF TRANSLATOR.",
-      "libraryLoadFailed": "Не удалось загрузить библиотеку обработки файлов"
+      "libraryLoadFailed": "Не удалось загрузить библиотеку обработки файлов",
+      "autoDetect": "Определять язык автоматически",
+      "sideNote": "Перевод, который понимает смысл, а не только слова.",
+      "historyEyebrow": "ВАША АКТИВНОСТЬ",
+      "savedEyebrow": "ВАША КОЛЛЕКЦИЯ"
     },
     "zh-CN": {
       "settings": "设置",
@@ -867,7 +899,11 @@ window.SEIF_INTERFACE = {
       "unsupportedFile": "不支持的文件类型",
       "websiteUrlError": "请输入以 http:// 或 https:// 开头的有效网址",
       "websiteExtensionNote": "要在页面内翻译，请使用 SEIF TRANSLATOR 扩展程序。",
-      "libraryLoadFailed": "无法加载文件处理库"
+      "libraryLoadFailed": "无法加载文件处理库",
+      "autoDetect": "自动检测语言",
+      "sideNote": "理解含义而不只是词语的翻译。",
+      "historyEyebrow": "你的活动",
+      "savedEyebrow": "你的收藏"
     },
     "ja": {
       "settings": "設定",
@@ -951,7 +987,11 @@ window.SEIF_INTERFACE = {
       "unsupportedFile": "対応していないファイル形式",
       "websiteUrlError": "http:// または https:// で始まる有効なURLを入力してください",
       "websiteExtensionNote": "ページ内で翻訳するにはSEIF TRANSLATOR拡張機能を使用してください。",
-      "libraryLoadFailed": "ファイル処理ライブラリを読み込めませんでした"
+      "libraryLoadFailed": "ファイル処理ライブラリを読み込めませんでした",
+      "autoDetect": "言語を自動検出",
+      "sideNote": "単語だけでなく意味も理解する翻訳。",
+      "historyEyebrow": "アクティビティ",
+      "savedEyebrow": "コレクション"
     },
     "ko": {
       "settings": "설정",
@@ -1035,7 +1075,11 @@ window.SEIF_INTERFACE = {
       "unsupportedFile": "지원되지 않는 파일 형식",
       "websiteUrlError": "http:// 또는 https://로 시작하는 올바른 URL을 입력하세요",
       "websiteExtensionNote": "페이지 안에서 번역하려면 SEIF TRANSLATOR 확장 프로그램을 사용하세요.",
-      "libraryLoadFailed": "파일 처리 라이브러리를 불러오지 못했습니다"
+      "libraryLoadFailed": "파일 처리 라이브러리를 불러오지 못했습니다",
+      "autoDetect": "언어 자동 감지",
+      "sideNote": "단어뿐 아니라 의미를 이해하는 번역.",
+      "historyEyebrow": "활동",
+      "savedEyebrow": "모음"
     },
     "pt": {
       "settings": "Configurações",
@@ -1119,7 +1163,11 @@ window.SEIF_INTERFACE = {
       "unsupportedFile": "Tipo de arquivo não suportado",
       "websiteUrlError": "Insira um URL válido iniciado por http:// ou https://",
       "websiteExtensionNote": "Para traduzir dentro da página, use a extensão SEIF TRANSLATOR.",
-      "libraryLoadFailed": "Não foi possível carregar a biblioteca de processamento de arquivos"
+      "libraryLoadFailed": "Não foi possível carregar a biblioteca de processamento de arquivos",
+      "autoDetect": "Detetar idioma automaticamente",
+      "sideNote": "Uma tradução que entende o significado, não apenas as palavras.",
+      "historyEyebrow": "A SUA ATIVIDADE",
+      "savedEyebrow": "A SUA COLEÇÃO"
     },
     "nl": {
       "settings": "Instellingen",
@@ -1203,7 +1251,11 @@ window.SEIF_INTERFACE = {
       "unsupportedFile": "Niet-ondersteund bestandstype",
       "websiteUrlError": "Voer een geldige URL in die begint met http:// of https://",
       "websiteExtensionNote": "Gebruik de SEIF TRANSLATOR-extensie om op de pagina zelf te vertalen.",
-      "libraryLoadFailed": "De bibliotheek voor bestandsverwerking kon niet worden geladen"
+      "libraryLoadFailed": "De bibliotheek voor bestandsverwerking kon niet worden geladen",
+      "autoDetect": "Taal automatisch detecteren",
+      "sideNote": "Een vertaling die betekenis begrijpt, niet alleen woorden.",
+      "historyEyebrow": "JOUW ACTIVITEIT",
+      "savedEyebrow": "JOUW VERZAMELING"
     },
     "hi": {
       "settings": "सेटिंग्स",
@@ -1287,7 +1339,11 @@ window.SEIF_INTERFACE = {
       "unsupportedFile": "असमर्थित फ़ाइल प्रकार",
       "websiteUrlError": "http:// या https:// से शुरू होने वाला मान्य URL दर्ज करें",
       "websiteExtensionNote": "पेज के भीतर अनुवाद के लिए SEIF TRANSLATOR एक्सटेंशन उपयोग करें।",
-      "libraryLoadFailed": "फ़ाइल प्रोसेसिंग लाइब्रेरी लोड नहीं हो सकी"
+      "libraryLoadFailed": "फ़ाइल प्रोसेसिंग लाइब्रेरी लोड नहीं हो सकी",
+      "autoDetect": "भाषा का अपने आप पता लगाएँ",
+      "sideNote": "ऐसा अनुवाद जो केवल शब्द नहीं, अर्थ भी समझता है।",
+      "historyEyebrow": "आपकी गतिविधि",
+      "savedEyebrow": "आपका संग्रह"
     },
     "ur": {
       "settings": "ترتیبات",
@@ -1371,7 +1427,11 @@ window.SEIF_INTERFACE = {
       "unsupportedFile": "غیر معاون فائل فارمیٹ",
       "websiteUrlError": "http:// یا https:// سے شروع ہونے والا درست URL درج کریں",
       "websiteExtensionNote": "صفحے کے اندر ترجمے کے لیے SEIF TRANSLATOR ایکسٹینشن استعمال کریں۔",
-      "libraryLoadFailed": "فائل پروسیسنگ لائبریری لوڈ نہیں ہوسکی"
+      "libraryLoadFailed": "فائل پروسیسنگ لائبریری لوڈ نہیں ہوسکی",
+      "autoDetect": "زبان خودکار پہچانیں",
+      "sideNote": "ایسا ترجمہ جو صرف الفاظ نہیں بلکہ معنی بھی سمجھے۔",
+      "historyEyebrow": "آپ کی سرگرمی",
+      "savedEyebrow": "آپ کا مجموعہ"
     },
     "fa": {
       "settings": "تنظیمات",
@@ -1455,7 +1515,11 @@ window.SEIF_INTERFACE = {
       "unsupportedFile": "نوع فایل پشتیبانی نمی‌شود",
       "websiteUrlError": "نشانی معتبری با شروع http:// یا https:// وارد کنید",
       "websiteExtensionNote": "برای ترجمه درون صفحه از افزونه SEIF TRANSLATOR استفاده کنید.",
-      "libraryLoadFailed": "بارگذاری کتابخانه پردازش فایل ناموفق بود"
+      "libraryLoadFailed": "بارگذاری کتابخانه پردازش فایل ناموفق بود",
+      "autoDetect": "تشخیص خودکار زبان",
+      "sideNote": "ترجمه‌ای که معنا را می‌فهمد، نه فقط واژه‌ها را.",
+      "historyEyebrow": "فعالیت شما",
+      "savedEyebrow": "مجموعه شما"
     },
     "el": {
       "settings": "Ρυθμίσεις",
@@ -1539,7 +1603,11 @@ window.SEIF_INTERFACE = {
       "unsupportedFile": "Μη υποστηριζόμενος τύπος αρχείου",
       "websiteUrlError": "Εισαγάγετε έγκυρη διεύθυνση URL που αρχίζει με http:// ή https://",
       "websiteExtensionNote": "Για μετάφραση μέσα στη σελίδα, χρησιμοποιήστε την επέκταση SEIF TRANSLATOR.",
-      "libraryLoadFailed": "Δεν ήταν δυνατή η φόρτωση της βιβλιοθήκης επεξεργασίας αρχείων"
+      "libraryLoadFailed": "Δεν ήταν δυνατή η φόρτωση της βιβλιοθήκης επεξεργασίας αρχείων",
+      "autoDetect": "Αυτόματος εντοπισμός γλώσσας",
+      "sideNote": "Μετάφραση που κατανοεί το νόημα, όχι μόνο τις λέξεις.",
+      "historyEyebrow": "Η ΔΡΑΣΤΗΡΙΟΤΗΤΑ ΣΑΣ",
+      "savedEyebrow": "Η ΣΥΛΛΟΓΗ ΣΑΣ"
     },
     "pl": {
       "settings": "Ustawienia",
@@ -1623,7 +1691,11 @@ window.SEIF_INTERFACE = {
       "unsupportedFile": "Nieobsługiwany typ pliku",
       "websiteUrlError": "Wpisz prawidłowy adres URL zaczynający się od http:// lub https://",
       "websiteExtensionNote": "Aby tłumaczyć na stronie, użyj rozszerzenia SEIF TRANSLATOR.",
-      "libraryLoadFailed": "Nie udało się załadować biblioteki przetwarzania plików"
+      "libraryLoadFailed": "Nie udało się załadować biblioteki przetwarzania plików",
+      "autoDetect": "Automatycznie wykryj język",
+      "sideNote": "Tłumaczenie, które rozumie znaczenie, a nie tylko słowa.",
+      "historyEyebrow": "TWOJA AKTYWNOŚĆ",
+      "savedEyebrow": "TWOJA KOLEKCJA"
     },
     "sv": {
       "settings": "Inställningar",
@@ -1707,7 +1779,11 @@ window.SEIF_INTERFACE = {
       "unsupportedFile": "Filtypen stöds inte",
       "websiteUrlError": "Ange en giltig URL som börjar med http:// eller https://",
       "websiteExtensionNote": "Använd SEIF TRANSLATOR-tillägget för att översätta direkt på sidan.",
-      "libraryLoadFailed": "Det gick inte att läsa in biblioteket för filhantering"
+      "libraryLoadFailed": "Det gick inte att läsa in biblioteket för filhantering",
+      "autoDetect": "Identifiera språk automatiskt",
+      "sideNote": "En översättning som förstår betydelsen, inte bara orden.",
+      "historyEyebrow": "DIN AKTIVITET",
+      "savedEyebrow": "DIN SAMLING"
     },
     "uk": {
       "settings": "Налаштування",
@@ -1791,7 +1867,11 @@ window.SEIF_INTERFACE = {
       "unsupportedFile": "Непідтримуваний тип файлу",
       "websiteUrlError": "Введіть дійсну URL-адресу, що починається з http:// або https://",
       "websiteExtensionNote": "Щоб перекладати прямо на сторінці, використовуйте розширення SEIF TRANSLATOR.",
-      "libraryLoadFailed": "Не вдалося завантажити бібліотеку обробки файлів"
+      "libraryLoadFailed": "Не вдалося завантажити бібліотеку обробки файлів",
+      "autoDetect": "Автоматично визначати мову",
+      "sideNote": "Переклад, який розуміє зміст, а не лише слова.",
+      "historyEyebrow": "ВАША АКТИВНІСТЬ",
+      "savedEyebrow": "ВАША ЗБІРКА"
     },
     "id": {
       "settings": "Pengaturan",
@@ -1875,7 +1955,11 @@ window.SEIF_INTERFACE = {
       "unsupportedFile": "Jenis file tidak didukung",
       "websiteUrlError": "Masukkan URL valid yang dimulai dengan http:// atau https://",
       "websiteExtensionNote": "Untuk menerjemahkan langsung di halaman, gunakan ekstensi SEIF TRANSLATOR.",
-      "libraryLoadFailed": "Gagal memuat pustaka pemrosesan file"
+      "libraryLoadFailed": "Gagal memuat pustaka pemrosesan file",
+      "autoDetect": "Deteksi bahasa otomatis",
+      "sideNote": "Terjemahan yang memahami makna, bukan sekadar kata.",
+      "historyEyebrow": "AKTIVITAS ANDA",
+      "savedEyebrow": "KOLEKSI ANDA"
     },
     "sw": {
       "settings": "Mipangilio",
@@ -1959,7 +2043,11 @@ window.SEIF_INTERFACE = {
       "unsupportedFile": "Aina ya faili haitumiki",
       "websiteUrlError": "Weka URL sahihi inayoanza na http:// au https://",
       "websiteExtensionNote": "Tumia kiendelezi cha SEIF TRANSLATOR ili kutafsiri ndani ya ukurasa.",
-      "libraryLoadFailed": "Imeshindwa kupakia maktaba ya kuchakata faili"
+      "libraryLoadFailed": "Imeshindwa kupakia maktaba ya kuchakata faili",
+      "autoDetect": "Tambua lugha kiotomatiki",
+      "sideNote": "Tafsiri inayoelewa maana, si maneno pekee.",
+      "historyEyebrow": "SHUGHULI ZAKO",
+      "savedEyebrow": "MKUSANYIKO WAKO"
     }
   }
 };
