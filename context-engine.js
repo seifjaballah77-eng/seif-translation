@@ -51,7 +51,11 @@ window.SEIF_CONTEXT = (function(){
     });
    }
    output.push(plain);
-   if(matches[i])output.push(matches[i]);
+   if(matches[i]){
+    const token="QZXSEIFCODE"+(counter++)+"XZQ";
+    replacements.push([token,matches[i]]);
+    output.push(token);
+   }
   }
   return {text:output.join(""),replacements,protectedCount:matches.length};
  }
