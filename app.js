@@ -281,6 +281,48 @@ buildInterfaceLanguageOptions();
 $("themeBtn").onclick=()=>{document.body.classList.toggle("light");localStorage.setItem("seifTheme",document.body.classList.contains("light")?"light":"dark");};if(localStorage.getItem("seifTheme")==="light")document.body.classList.add("light");
 document.querySelectorAll(".mode").forEach(b=>b.onclick=()=>{document.querySelectorAll(".mode").forEach(x=>x.classList.toggle("active",x===b));const mode=b.dataset.mode;["text","images","documents","web"].forEach(x=>$(x+"Mode").hidden=x!==mode);$("translateBtn").hidden=mode!=="text";const engineKeys={text:"engineText",images:"engineImage",documents:"engineDocument",web:"engineWeb"};$("engineNote").textContent=ui(engineKeys[mode]);});
 let selectedImageFile=null,imageRegion=null,imageDrag=null,previewObjectUrl=null;
+const ocrCatalogue=[...(window.SEIF_OCR_LANGUAGES||[]),...(window.SEIF_OCR_SCRIPTS||[])];
+let selectedOcrLanguages=(()=>{
+ try{
+  const saved=JSON.parse(localStorage.getItem("seifOcrLanguages")||"null");
+  if(Array.isArray(saved))return saved.filter(code=>ocrCatalogue.some(x=>x.code===code)).slice(0,4);
+ }catch(_){}
+ return ["ara","eng","fra"];
+})();
+function updateOcrLanguageSummary(){
+ const chosen=selectedOcrLanguages.map(code=>ocrCatalogue.find(x=>x.code===code)?.name||code);
+ $("ocrLanguageSummary").textContent=chosen.length?chosen.join(" + "):ui("ocrLanguageSummary");
+ $("ocrLanguageCounter").textContent=chosen.length+" / 4";
+ $("extractImageText").disabled=!chosen.length;
+}
+function renderOcrLanguageList(query=""){
+ const root=$("ocrLanguageList"),q=String(query||"").trim().toLocaleLowerCase();
+ const list=ocrCatalogue.filter(item=>!q||item.name.toLocaleLowerCase().includes(q)||item.code.toLowerCase().includes(q));
+ root.innerHTML=list.map(item=>'<label class="ocr-language-option"><input type="checkbox" data-ocr-code="'+escapeHTML(item.code)+'" '+(selectedOcrLanguages.includes(item.code)?"checked":"")+'><span>'+escapeHTML(item.name)+'</span><small>'+escapeHTML(item.code)+'</small></label>').join("")||'<div class="ocr-language-no-results">'+ui("ocrNoLanguage")+'</div>';
+ updateOcrLanguageSummary();
+}
+$("ocrLanguageSearch").addEventListener("input",e=>renderOcrLanguageList(e.target.value));
+$("ocrLanguageList").addEventListener("change",e=>{
+ const input=e.target.closest("[data-ocr-code]");if(!input)return;
+ const code=input.dataset.ocrCode;
+ if(input.checked){
+  if(selectedOcrLanguages.length>=4){input.checked=false;$("imageOcrStatus").textContent=ui("ocrMaxLanguages");return;}
+  if(!selectedOcrLanguages.includes(code))selectedOcrLanguages.push(code);
+ }else selectedOcrLanguages=selectedOcrLanguages.filter(x=>x!==code);
+ localStorage.setItem("seifOcrLanguages",JSON.stringify(selectedOcrLanguages));
+ updateOcrLanguageSummary();
+});
+$("ocrCommonLanguages").onclick=()=>{
+ selectedOcrLanguages=["ara","eng","fra"];
+ localStorage.setItem("seifOcrLanguages",JSON.stringify(selectedOcrLanguages));
+ renderOcrLanguageList($("ocrLanguageSearch").value);
+};
+$("ocrClearLanguages").onclick=()=>{
+ selectedOcrLanguages=[];
+ localStorage.setItem("seifOcrLanguages","[]");
+ renderOcrLanguageList($("ocrLanguageSearch").value);
+};
+renderOcrLanguageList();
 function drawImageSelection(){
  const canvas=$("imageSelection"),ctx=canvas.getContext("2d");if(!canvas.width||!canvas.height)return;
  ctx.clearRect(0,0,canvas.width,canvas.height);if(!imageRegion)return;
@@ -319,25 +361,72 @@ $("imageInput").onchange=e=>{
  if(previewObjectUrl)URL.revokeObjectURL(previewObjectUrl);previewObjectUrl=URL.createObjectURL(file);preview.src=previewObjectUrl;
 };
 window.addEventListener("resize",resizeImageSelectionCanvas);
+function makeOcrVariants(original){
+ const enhanced=document.createElement("canvas");enhanced.width=original.width;enhanced.height=original.height;
+ const ectx=enhanced.getContext("2d",{willReadFrequently:true});ectx.drawImage(original,0,0);
+ const binary=document.createElement("canvas");binary.width=original.width;binary.height=original.height;
+ const bctx=binary.getContext("2d",{willReadFrequently:true});bctx.drawImage(original,0,0);
+ try{
+  const source=ectx.getImageData(0,0,enhanced.width,enhanced.height),pixels=source.data;
+  const histogram=new Uint32Array(256);let total=0,sum=0;
+  for(let i=0;i<pixels.length;i+=4){const g=Math.round(.299*pixels[i]+.587*pixels[i+1]+.114*pixels[i+2]);histogram[g]++;total++;sum+=g;}
+  let sumB=0,wB=0,best=-1,threshold=150;
+  for(let t=0;t<256;t++){wB+=histogram[t];if(!wB)continue;const wF=total-wB;if(!wF)break;sumB+=t*histogram[t];const mB=sumB/wB,mF=(sum-sumB)/wF;const between=wB*wF*(mB-mF)*(mB-mF);if(between>best){best=between;threshold=t;}}
+  const binaryImage=bctx.createImageData(binary.width,binary.height),bp=binaryImage.data;
+  for(let i=0;i<pixels.length;i+=4){
+   const gray=.299*pixels[i]+.587*pixels[i+1]+.114*pixels[i+2];
+   const contrast=Math.max(0,Math.min(255,(gray-128)*1.35+128));
+   pixels[i]=pixels[i+1]=pixels[i+2]=contrast;
+   const value=gray>threshold?255:0;
+   bp[i]=bp[i+1]=bp[i+2]=value;bp[i+3]=pixels[i+3];
+  }
+  ectx.putImageData(source,0,0);bctx.putImageData(binaryImage,0,0);
+ }catch(_){}
+ return [original,enhanced,binary];
+}
 $("extractImageText").onclick=async()=>{
- const preview=$("imagePreview");if(!selectedImageFile||!preview.naturalWidth){$("imageOcrStatus").textContent=ui("imageReadError");return;}
+ const preview=$("imagePreview");
+ if(!selectedImageFile||!preview.naturalWidth){$("imageOcrStatus").textContent=ui("imageReadError");return;}
+ if(!selectedOcrLanguages.length){$("imageOcrStatus").textContent=ui("ocrNoLanguage");$("ocrLanguagePicker").querySelector("details").open=true;return;}
  const region=imageRegion||{x:0,y:0,w:1,h:1};
  const sx=Math.max(0,Math.floor(region.x*preview.naturalWidth)),sy=Math.max(0,Math.floor(region.y*preview.naturalHeight));
  const sw=Math.max(1,Math.min(preview.naturalWidth-sx,Math.ceil(region.w*preview.naturalWidth)));
  const sh=Math.max(1,Math.min(preview.naturalHeight-sy,Math.ceil(region.h*preview.naturalHeight)));
- const scale=Math.max(0.25,Math.min(2.2,4000/Math.max(sw,sh)));
+ const scale=Math.max(0.25,Math.min(2.4,4200/Math.max(sw,sh)));
  const crop=document.createElement("canvas");crop.width=Math.max(1,Math.round(sw*scale));crop.height=Math.max(1,Math.round(sh*scale));
  const ctx=crop.getContext("2d",{willReadFrequently:true});ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality="high";
  ctx.drawImage(preview,sx,sy,sw,sh,0,0,crop.width,crop.height);
- try{const pixels=ctx.getImageData(0,0,crop.width,crop.height),d=pixels.data;for(let i=0;i<d.length;i+=4){const gray=.299*d[i]+.587*d[i+1]+.114*d[i+2],contrast=Math.max(0,Math.min(255,(gray-128)*1.18+128));d[i]=d[i+1]=d[i+2]=contrast;}ctx.putImageData(pixels,0,0);}catch(_){}
- const button=$("extractImageText");button.disabled=true;$("imageOcrStatus").textContent=ui("extracting")+" 0%";
+ const variants=makeOcrVariants(crop);
+ const button=$("extractImageText");button.disabled=true;
+ $("imageOcrStatus").textContent=ui("ocrModelLoading")+" ("+selectedOcrLanguages.join(" + ")+")";
+ let worker=null;
  try{
   if(!window.Tesseract)await loadScript("https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js");
-  const result=await Tesseract.recognize(crop,"ara+eng+fra",{logger:m=>{if(m.status==="recognizing text"&&typeof m.progress==="number")$("imageOcrStatus").textContent=ui("extracting")+" "+Math.round(m.progress*100)+"%";}});
-  const extracted=(result.data.text||"").trim();$("imageText").value=extracted;$("imageText").hidden=false;$("translateImage").hidden=false;
-  $("imageOcrStatus").textContent=extracted?ui("imageDone"):ui("imageEmpty");
- }catch(err){$("imageOcrStatus").textContent=ui("imageReadError")+" "+(err&&err.message?err.message:"");$("imageText").hidden=false;$("imageText").value="";$("translateImage").hidden=false;}
- finally{button.disabled=false;}
+  worker=await Tesseract.createWorker(selectedOcrLanguages,1,{
+   logger:m=>{
+    if(m.status==="loading language traineddata")$("imageOcrStatus").textContent=ui("ocrModelLoading")+" "+Math.round((m.progress||0)*100)+"%";
+    else if(m.status==="recognizing text")$("imageOcrStatus").textContent=ui("extracting")+" "+Math.round((m.progress||0)*100)+"%";
+   }
+  });
+  try{await worker.setParameters({preserve_interword_spaces:"1"});}catch(_){}
+  const candidates=[];
+  for(let i=0;i<variants.length;i++){
+   const result=await worker.recognize(variants[i]);
+   const text=(result.data.text||"").trim();
+   const confidence=Number(result.data.confidence)||0;
+   if(text)candidates.push({text,confidence,score:confidence+Math.min(text.length,800)/80});
+  }
+  candidates.sort((a,b)=>b.score-a.score);
+  const extracted=candidates[0]?.text||"";
+  $("imageText").value=extracted;$("imageText").hidden=false;$("translateImage").hidden=!extracted;
+  $("imageOcrStatus").textContent=extracted?ui("imageDone")+" · "+Math.round(candidates[0].confidence)+"%":ui("imageEmpty");
+ }catch(err){
+  $("imageOcrStatus").textContent=ui("imageReadError")+" "+(err&&err.message?err.message:"");
+  $("imageText").hidden=false;$("imageText").value="";$("translateImage").hidden=true;
+ }finally{
+  if(worker){try{await worker.terminate();}catch(_){}}
+  button.disabled=false;updateOcrLanguageSummary();
+ }
 };
 $("translateImage").onclick=()=>{const text=$("imageText").value.trim();if(!text)return;$("sourceText").value=text;$("charCount").textContent=text.length+" / 12000";document.querySelector('[data-mode="text"]').click();$("translateBtn").click();};
 $("documentInput").onchange=async e=>{const f=e.target.files[0];if(!f)return;$("documentName").textContent=f.name;$("documentText").hidden=false;$("translateDocument").hidden=false;try{let t="";if(f.type==="text/plain"||/\.(txt|md)$/i.test(f.name))t=await f.text();else if(/\.pdf$/i.test(f.name)){await loadScript("https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js");pdfjsLib.GlobalWorkerOptions.workerSrc="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";const pdf=await pdfjsLib.getDocument({data:await f.arrayBuffer()}).promise;for(let i=1;i<=pdf.numPages;i++){const p=await pdf.getPage(i);const c=await p.getTextContent();t+=c.items.map(x=>x.str).join(" ")+"\n";}}else if(/\.docx$/i.test(f.name)){await loadScript("https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.8.0/mammoth.browser.min.js");const a=await mammoth.extractRawText({arrayBuffer:await f.arrayBuffer()});t=a.value;}else throw new Error("صيغة الملف غير مدعومة");$("documentText").value=t;}catch(err){$("documentText").value="تعذّر قراءة الملف: "+err.message;}};
