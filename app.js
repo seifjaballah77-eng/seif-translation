@@ -181,8 +181,8 @@ function applyInterfaceLanguage(lang){
  if($("translatedText").classList.contains("placeholder"))$("translatedText").textContent=ui("outputPlaceholder");
  $("outputLabel").textContent=ui("output");$("translateBtn").querySelector("span").textContent=ui("translate");
  $("clearHistory").textContent=ui("clearAll");document.querySelector(".site-footer").textContent=ui("footer");
- $("historyPanel").querySelector("h1").textContent=ui("history");$("historyPanel").querySelector("p").textContent=ui("historyDesc");
- $("savedPanel").querySelector("h1").textContent=ui("saved");$("savedPanel").querySelector("p").textContent=ui("savedDesc");
+ $("historyPanel").querySelector(".eyebrow").textContent=ui("historyEyebrow");$("historyPanel").querySelector("h1").textContent=ui("history");$("historyPanel").querySelector("p").textContent=ui("historyDesc");
+ $("savedPanel").querySelector(".eyebrow").textContent=ui("savedEyebrow");$("savedPanel").querySelector("h1").textContent=ui("saved");$("savedPanel").querySelector("p").textContent=ui("savedDesc");
  $("languageModal").querySelector("h3").textContent=ui("languagePickerTitle");$("settingsModal").querySelector("h3").textContent=ui("settings");
  document.querySelectorAll("[data-i18n]").forEach(el=>{el.textContent=ui(el.dataset.i18n);});
  $("imageText").placeholder=ui("imageTextPlaceholder");$("documentText").placeholder=ui("documentTextPlaceholder");
