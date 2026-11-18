@@ -162,7 +162,16 @@ window.SEIF_INTERFACE = {
       "menu": "القائمة",
       "copy": "نسخ",
       "save": "حفظ",
-      "clearText": "مسح النص"
+      "clearText": "مسح النص",
+      "documentDesc": "ارفع ملفاً نصياً أو PDF أو Word لاستخراج محتواه وترجمته.",
+      "websiteDesc": "أدخل رابط الصفحة لترجمة محتواها.",
+      "websiteNote": "ترجمة الصفحة داخلها تتطلب إضافة SEIF TRANSLATOR.",
+      "featureLanguages": "لغات ولهجات",
+      "featureLanguagesDesc": "من الفصحى إلى اللهجات والعكس",
+      "featureContext": "فهم السياق",
+      "featureContextDesc": "المعنى والتعبير قبل الحرفية",
+      "featurePrivacy": "خصوصيتك",
+      "featurePrivacyDesc": "إعداداتك محفوظة على جهازك"
     },
     "en": {
       "settings": "Settings",
@@ -213,7 +222,16 @@ window.SEIF_INTERFACE = {
       "menu": "Menu",
       "copy": "Copy",
       "save": "Save",
-      "clearText": "Clear text"
+      "clearText": "Clear text",
+      "documentDesc": "Upload a text, PDF or Word file to extract and translate its contents.",
+      "websiteDesc": "Enter a page URL to translate its content.",
+      "websiteNote": "Translating a page in place requires the SEIF TRANSLATOR browser extension.",
+      "featureLanguages": "Languages & dialects",
+      "featureLanguagesDesc": "From standard language to dialects and back",
+      "featureContext": "Context awareness",
+      "featureContextDesc": "Meaning and expression before literal wording",
+      "featurePrivacy": "Your privacy",
+      "featurePrivacyDesc": "Your settings are saved on this device"
     },
     "fr": {
       "settings": "Paramètres",
@@ -264,7 +282,16 @@ window.SEIF_INTERFACE = {
       "menu": "Menu",
       "copy": "Copier",
       "save": "Enregistrer",
-      "clearText": "Effacer le texte"
+      "clearText": "Effacer le texte",
+      "documentDesc": "Importez un fichier texte, PDF ou Word pour en extraire et traduire le contenu.",
+      "websiteDesc": "Saisissez l’URL d’une page pour traduire son contenu.",
+      "websiteNote": "La traduction directement dans la page nécessite l’extension SEIF TRANSLATOR.",
+      "featureLanguages": "Langues et dialectes",
+      "featureLanguagesDesc": "De la langue standard aux dialectes et inversement",
+      "featureContext": "Compréhension du contexte",
+      "featureContextDesc": "Le sens et l’expression avant le mot à mot",
+      "featurePrivacy": "Votre confidentialité",
+      "featurePrivacyDesc": "Vos paramètres sont enregistrés sur cet appareil"
     },
     "es": {
       "settings": "Configuración",
@@ -309,13 +336,22 @@ window.SEIF_INTERFACE = {
       "imageEmpty": "No se encontró texto en el área seleccionada.",
       "documentTextPlaceholder": "Contenido del documento…",
       "historyDesc": "Tus traducciones recientes en este dispositivo.",
-      "savedDesc": "Guarda frases para consultarlas después.",
+      "savedDesc": "Guarda frases que quieras consultar de nuevo.",
       "swapLanguages": "Intercambiar idiomas",
       "theme": "Cambiar apariencia",
       "menu": "Menú",
       "copy": "Copiar",
       "save": "Guardar",
-      "clearText": "Borrar texto"
+      "clearText": "Borrar texto",
+      "documentDesc": "Sube un archivo de texto, PDF o Word para extraer y traducir su contenido.",
+      "websiteDesc": "Introduce la URL de una página para traducir su contenido.",
+      "websiteNote": "Traducir directamente dentro de la página requiere la extensión SEIF TRANSLATOR.",
+      "featureLanguages": "Idiomas y dialectos",
+      "featureLanguagesDesc": "De la lengua estándar a los dialectos y viceversa",
+      "featureContext": "Comprensión del contexto",
+      "featureContextDesc": "El significado y la expresión antes de la traducción literal",
+      "featurePrivacy": "Tu privacidad",
+      "featurePrivacyDesc": "Tu configuración se guarda en este dispositivo"
     },
     "de": {
       "settings": "Einstellungen",
@@ -366,7 +402,16 @@ window.SEIF_INTERFACE = {
       "menu": "Menü",
       "copy": "Kopieren",
       "save": "Speichern",
-      "clearText": "Text löschen"
+      "clearText": "Text löschen",
+      "documentDesc": "Lade eine Text-, PDF- oder Word-Datei hoch, um den Inhalt zu extrahieren und zu übersetzen.",
+      "websiteDesc": "Gib eine Seitenadresse ein, um deren Inhalt zu übersetzen.",
+      "websiteNote": "Die Übersetzung direkt auf der Seite erfordert die SEIF TRANSLATOR-Erweiterung.",
+      "featureLanguages": "Sprachen und Dialekte",
+      "featureLanguagesDesc": "Von Standardsprache zu Dialekten und zurück",
+      "featureContext": "Kontextverständnis",
+      "featureContextDesc": "Bedeutung und Ausdruck vor wörtlicher Übersetzung",
+      "featurePrivacy": "Deine Privatsphäre",
+      "featurePrivacyDesc": "Deine Einstellungen werden auf diesem Gerät gespeichert"
     },
     "it": {
       "settings": "Impostazioni",
@@ -410,14 +455,23 @@ window.SEIF_INTERFACE = {
       "imageDone": "Testo estratto correttamente.",
       "imageEmpty": "Nessun testo trovato nell’area selezionata.",
       "documentTextPlaceholder": "Contenuto del documento…",
-      "historyDesc": "Le traduzioni recenti su questo dispositivo.",
-      "savedDesc": "Conserva le frasi da consultare in seguito.",
+      "historyDesc": "Le tue traduzioni recenti su questo dispositivo.",
+      "savedDesc": "Conserva le frasi che vuoi ritrovare.",
       "swapLanguages": "Inverti lingue",
       "theme": "Cambia aspetto",
       "menu": "Menu",
       "copy": "Copia",
       "save": "Salva",
-      "clearText": "Cancella testo"
+      "clearText": "Cancella testo",
+      "documentDesc": "Carica un file di testo, PDF o Word per estrarne e tradurne il contenuto.",
+      "websiteDesc": "Inserisci l’URL di una pagina per tradurne il contenuto.",
+      "websiteNote": "La traduzione direttamente nella pagina richiede l’estensione SEIF TRANSLATOR.",
+      "featureLanguages": "Lingue e dialetti",
+      "featureLanguagesDesc": "Dalla lingua standard ai dialetti e viceversa",
+      "featureContext": "Comprensione del contesto",
+      "featureContextDesc": "Significato ed espressione prima della resa letterale",
+      "featurePrivacy": "La tua privacy",
+      "featurePrivacyDesc": "Le impostazioni sono salvate su questo dispositivo"
     },
     "tr": {
       "settings": "Ayarlar",
@@ -468,7 +522,16 @@ window.SEIF_INTERFACE = {
       "menu": "Menü",
       "copy": "Kopyala",
       "save": "Kaydet",
-      "clearText": "Metni temizle"
+      "clearText": "Metni temizle",
+      "documentDesc": "İçeriğini çıkarıp çevirmek için metin, PDF veya Word dosyası yükleyin.",
+      "websiteDesc": "İçeriğini çevirmek için sayfa adresini girin.",
+      "websiteNote": "Sayfanın içinde çeviri için SEIF TRANSLATOR uzantısı gerekir.",
+      "featureLanguages": "Diller ve lehçeler",
+      "featureLanguagesDesc": "Standart dilden lehçelere ve tersine",
+      "featureContext": "Bağlamı anlama",
+      "featureContextDesc": "Kelimesi kelimesine çeviriden önce anlam ve ifade",
+      "featurePrivacy": "Gizliliğiniz",
+      "featurePrivacyDesc": "Ayarlarınız bu cihazda saklanır"
     },
     "ru": {
       "settings": "Настройки",
@@ -519,7 +582,16 @@ window.SEIF_INTERFACE = {
       "menu": "Меню",
       "copy": "Копировать",
       "save": "Сохранить",
-      "clearText": "Очистить текст"
+      "clearText": "Очистить текст",
+      "documentDesc": "Загрузите текстовый, PDF- или Word-файл, чтобы извлечь и перевести его содержимое.",
+      "websiteDesc": "Введите адрес страницы, чтобы перевести её содержимое.",
+      "websiteNote": "Для перевода прямо на странице требуется расширение SEIF TRANSLATOR.",
+      "featureLanguages": "Языки и диалекты",
+      "featureLanguagesDesc": "От литературного языка к диалектам и обратно",
+      "featureContext": "Понимание контекста",
+      "featureContextDesc": "Смысл и выражение важнее дословности",
+      "featurePrivacy": "Ваша конфиденциальность",
+      "featurePrivacyDesc": "Настройки сохраняются на этом устройстве"
     },
     "zh-CN": {
       "settings": "设置",
@@ -570,7 +642,16 @@ window.SEIF_INTERFACE = {
       "menu": "菜单",
       "copy": "复制",
       "save": "保存",
-      "clearText": "清除文本"
+      "clearText": "清除文本",
+      "documentDesc": "上传文本、PDF 或 Word 文件以提取并翻译其内容。",
+      "websiteDesc": "输入网页地址以翻译其内容。",
+      "websiteNote": "要在网页内直接翻译，需要安装 SEIF TRANSLATOR 扩展。",
+      "featureLanguages": "语言和方言",
+      "featureLanguagesDesc": "标准语言与方言之间互译",
+      "featureContext": "理解语境",
+      "featureContextDesc": "优先理解含义和表达，而非逐字翻译",
+      "featurePrivacy": "隐私保护",
+      "featurePrivacyDesc": "设置保存在此设备上"
     },
     "ja": {
       "settings": "設定",
@@ -621,7 +702,16 @@ window.SEIF_INTERFACE = {
       "menu": "メニュー",
       "copy": "コピー",
       "save": "保存",
-      "clearText": "テキストを消去"
+      "clearText": "テキストを消去",
+      "documentDesc": "テキスト、PDF、Wordファイルをアップロードして内容を抽出・翻訳します。",
+      "websiteDesc": "ページの内容を翻訳するにはURLを入力してください。",
+      "websiteNote": "ページ内で直接翻訳するにはSEIF TRANSLATOR拡張機能が必要です。",
+      "featureLanguages": "言語と方言",
+      "featureLanguagesDesc": "標準語と方言の相互翻訳",
+      "featureContext": "文脈の理解",
+      "featureContextDesc": "逐語訳より意味と表現を重視",
+      "featurePrivacy": "プライバシー",
+      "featurePrivacyDesc": "設定はこの端末に保存されます"
     },
     "ko": {
       "settings": "설정",
@@ -672,7 +762,16 @@ window.SEIF_INTERFACE = {
       "menu": "메뉴",
       "copy": "복사",
       "save": "저장",
-      "clearText": "텍스트 지우기"
+      "clearText": "텍스트 지우기",
+      "documentDesc": "텍스트, PDF 또는 Word 파일을 업로드하여 내용을 추출하고 번역하세요.",
+      "websiteDesc": "내용을 번역할 페이지 주소를 입력하세요.",
+      "websiteNote": "페이지 안에서 직접 번역하려면 SEIF TRANSLATOR 확장 프로그램이 필요합니다.",
+      "featureLanguages": "언어 및 방언",
+      "featureLanguagesDesc": "표준어와 방언 간 번역",
+      "featureContext": "문맥 이해",
+      "featureContextDesc": "직역보다 의미와 표현을 우선",
+      "featurePrivacy": "개인정보 보호",
+      "featurePrivacyDesc": "설정은 이 기기에 저장됩니다"
     },
     "pt": {
       "settings": "Configurações",
@@ -723,7 +822,16 @@ window.SEIF_INTERFACE = {
       "menu": "Menu",
       "copy": "Copiar",
       "save": "Salvar",
-      "clearText": "Limpar texto"
+      "clearText": "Limpar texto",
+      "documentDesc": "Envie um arquivo de texto, PDF ou Word para extrair e traduzir seu conteúdo.",
+      "websiteDesc": "Digite o endereço da página para traduzir seu conteúdo.",
+      "websiteNote": "A tradução diretamente na página exige a extensão SEIF TRANSLATOR.",
+      "featureLanguages": "Idiomas e dialetos",
+      "featureLanguagesDesc": "Da língua padrão aos dialetos e vice-versa",
+      "featureContext": "Compreensão do contexto",
+      "featureContextDesc": "Significado e expressão antes da tradução literal",
+      "featurePrivacy": "Sua privacidade",
+      "featurePrivacyDesc": "Suas configurações ficam salvas neste dispositivo"
     },
     "nl": {
       "settings": "Instellingen",
@@ -774,7 +882,16 @@ window.SEIF_INTERFACE = {
       "menu": "Menu",
       "copy": "Kopiëren",
       "save": "Opslaan",
-      "clearText": "Tekst wissen"
+      "clearText": "Tekst wissen",
+      "documentDesc": "Upload een tekst-, PDF- of Word-bestand om de inhoud te extraheren en te vertalen.",
+      "websiteDesc": "Voer een pagina-adres in om de inhoud te vertalen.",
+      "websiteNote": "Vertalen op de pagina zelf vereist de SEIF TRANSLATOR-extensie.",
+      "featureLanguages": "Talen en dialecten",
+      "featureLanguagesDesc": "Van standaardtaal naar dialecten en terug",
+      "featureContext": "Context begrijpen",
+      "featureContextDesc": "Betekenis en uitdrukking vóór letterlijke vertaling",
+      "featurePrivacy": "Je privacy",
+      "featurePrivacyDesc": "Je instellingen worden op dit apparaat opgeslagen"
     },
     "hi": {
       "settings": "सेटिंग्स",
@@ -825,7 +942,16 @@ window.SEIF_INTERFACE = {
       "menu": "मेनू",
       "copy": "कॉपी करें",
       "save": "सहेजें",
-      "clearText": "पाठ साफ़ करें"
+      "clearText": "पाठ साफ़ करें",
+      "documentDesc": "सामग्री निकालने और अनुवाद करने के लिए टेक्स्ट, PDF या Word फ़ाइल अपलोड करें।",
+      "websiteDesc": "सामग्री का अनुवाद करने के लिए पेज का पता दर्ज करें।",
+      "websiteNote": "पेज के भीतर अनुवाद के लिए SEIF TRANSLATOR एक्सटेंशन आवश्यक है।",
+      "featureLanguages": "भाषाएँ और बोलियाँ",
+      "featureLanguagesDesc": "मानक भाषा से बोलियों तक और वापस",
+      "featureContext": "संदर्भ की समझ",
+      "featureContextDesc": "शब्दशः अनुवाद से पहले अर्थ और अभिव्यक्ति",
+      "featurePrivacy": "आपकी गोपनीयता",
+      "featurePrivacyDesc": "आपकी सेटिंग इस डिवाइस पर सहेजी जाती हैं"
     },
     "ur": {
       "settings": "ترتیبات",
@@ -876,7 +1002,16 @@ window.SEIF_INTERFACE = {
       "menu": "مینو",
       "copy": "کاپی کریں",
       "save": "محفوظ کریں",
-      "clearText": "متن صاف کریں"
+      "clearText": "متن صاف کریں",
+      "documentDesc": "مواد نکالنے اور ترجمہ کرنے کے لیے ٹیکسٹ، PDF یا Word فائل اپ لوڈ کریں۔",
+      "websiteDesc": "مواد کا ترجمہ کرنے کے لیے صفحے کا پتہ درج کریں۔",
+      "websiteNote": "صفحے کے اندر ترجمے کے لیے SEIF TRANSLATOR ایکسٹینشن درکار ہے۔",
+      "featureLanguages": "زبانیں اور بولیاں",
+      "featureLanguagesDesc": "معیاری زبان سے بولیوں تک اور واپس",
+      "featureContext": "سیاق و سباق کی سمجھ",
+      "featureContextDesc": "لفظی ترجمے سے پہلے معنی اور انداز",
+      "featurePrivacy": "آپ کی رازداری",
+      "featurePrivacyDesc": "آپ کی ترتیبات اس آلے پر محفوظ ہیں"
     },
     "fa": {
       "settings": "تنظیمات",
@@ -927,7 +1062,16 @@ window.SEIF_INTERFACE = {
       "menu": "منو",
       "copy": "کپی",
       "save": "ذخیره",
-      "clearText": "پاک کردن متن"
+      "clearText": "پاک کردن متن",
+      "documentDesc": "برای استخراج و ترجمه محتوا، فایل متنی، PDF یا Word بارگذاری کنید.",
+      "websiteDesc": "برای ترجمه محتوای صفحه، نشانی آن را وارد کنید.",
+      "websiteNote": "ترجمه مستقیم داخل صفحه به افزونه SEIF TRANSLATOR نیاز دارد.",
+      "featureLanguages": "زبان‌ها و گویش‌ها",
+      "featureLanguagesDesc": "ترجمه میان زبان معیار و گویش‌ها",
+      "featureContext": "درک بافت",
+      "featureContextDesc": "معنا و بیان مهم‌تر از ترجمه واژه‌به‌واژه",
+      "featurePrivacy": "حریم خصوصی شما",
+      "featurePrivacyDesc": "تنظیمات شما در این دستگاه ذخیره می‌شود"
     },
     "el": {
       "settings": "Ρυθμίσεις",
@@ -978,7 +1122,16 @@ window.SEIF_INTERFACE = {
       "menu": "Μενού",
       "copy": "Αντιγραφή",
       "save": "Αποθήκευση",
-      "clearText": "Εκκαθάριση κειμένου"
+      "clearText": "Εκκαθάριση κειμένου",
+      "documentDesc": "Ανεβάστε αρχείο κειμένου, PDF ή Word για εξαγωγή και μετάφραση του περιεχομένου.",
+      "websiteDesc": "Εισαγάγετε τη διεύθυνση μιας σελίδας για μετάφραση του περιεχομένου της.",
+      "websiteNote": "Η μετάφραση μέσα στη σελίδα απαιτεί την επέκταση SEIF TRANSLATOR.",
+      "featureLanguages": "Γλώσσες και διάλεκτοι",
+      "featureLanguagesDesc": "Από την κοινή γλώσσα στις διαλέκτους και αντίστροφα",
+      "featureContext": "Κατανόηση συμφραζομένων",
+      "featureContextDesc": "Το νόημα και η έκφραση πριν από την κατά λέξη μετάφραση",
+      "featurePrivacy": "Το απόρρητό σας",
+      "featurePrivacyDesc": "Οι ρυθμίσεις αποθηκεύονται σε αυτήν τη συσκευή"
     },
     "pl": {
       "settings": "Ustawienia",
@@ -1029,7 +1182,16 @@ window.SEIF_INTERFACE = {
       "menu": "Menu",
       "copy": "Kopiuj",
       "save": "Zapisz",
-      "clearText": "Wyczyść tekst"
+      "clearText": "Wyczyść tekst",
+      "documentDesc": "Prześlij plik tekstowy, PDF lub Word, aby wyodrębnić i przetłumaczyć jego treść.",
+      "websiteDesc": "Wpisz adres strony, aby przetłumaczyć jej zawartość.",
+      "websiteNote": "Tłumaczenie bezpośrednio na stronie wymaga rozszerzenia SEIF TRANSLATOR.",
+      "featureLanguages": "Języki i dialekty",
+      "featureLanguagesDesc": "Od języka standardowego do dialektów i z powrotem",
+      "featureContext": "Rozumienie kontekstu",
+      "featureContextDesc": "Znaczenie i wyrażenie przed dosłownym przekładem",
+      "featurePrivacy": "Twoja prywatność",
+      "featurePrivacyDesc": "Ustawienia są zapisane na tym urządzeniu"
     },
     "sv": {
       "settings": "Inställningar",
@@ -1080,7 +1242,16 @@ window.SEIF_INTERFACE = {
       "menu": "Meny",
       "copy": "Kopiera",
       "save": "Spara",
-      "clearText": "Rensa text"
+      "clearText": "Rensa text",
+      "documentDesc": "Ladda upp en text-, PDF- eller Word-fil för att extrahera och översätta innehållet.",
+      "websiteDesc": "Ange en sidadress för att översätta dess innehåll.",
+      "websiteNote": "Översättning direkt på sidan kräver tillägget SEIF TRANSLATOR.",
+      "featureLanguages": "Språk och dialekter",
+      "featureLanguagesDesc": "Från standardspråk till dialekter och tillbaka",
+      "featureContext": "Kontextförståelse",
+      "featureContextDesc": "Betydelse och uttryck före ordagrann översättning",
+      "featurePrivacy": "Din integritet",
+      "featurePrivacyDesc": "Dina inställningar sparas på den här enheten"
     },
     "uk": {
       "settings": "Налаштування",
@@ -1131,7 +1302,16 @@ window.SEIF_INTERFACE = {
       "menu": "Меню",
       "copy": "Копіювати",
       "save": "Зберегти",
-      "clearText": "Очистити текст"
+      "clearText": "Очистити текст",
+      "documentDesc": "Завантажте текстовий, PDF- або Word-файл, щоб витягти й перекласти його вміст.",
+      "websiteDesc": "Введіть адресу сторінки, щоб перекласти її вміст.",
+      "websiteNote": "Для перекладу безпосередньо на сторінці потрібне розширення SEIF TRANSLATOR.",
+      "featureLanguages": "Мови та діалекти",
+      "featureLanguagesDesc": "Від літературної мови до діалектів і назад",
+      "featureContext": "Розуміння контексту",
+      "featureContextDesc": "Зміст і виразність важливіші за дослівність",
+      "featurePrivacy": "Ваша конфіденційність",
+      "featurePrivacyDesc": "Налаштування зберігаються на цьому пристрої"
     },
     "id": {
       "settings": "Pengaturan",
@@ -1182,7 +1362,16 @@ window.SEIF_INTERFACE = {
       "menu": "Menu",
       "copy": "Salin",
       "save": "Simpan",
-      "clearText": "Hapus teks"
+      "clearText": "Hapus teks",
+      "documentDesc": "Unggah file teks, PDF, atau Word untuk mengekstrak dan menerjemahkan isinya.",
+      "websiteDesc": "Masukkan alamat halaman untuk menerjemahkan kontennya.",
+      "websiteNote": "Terjemahan langsung di halaman memerlukan ekstensi SEIF TRANSLATOR.",
+      "featureLanguages": "Bahasa dan dialek",
+      "featureLanguagesDesc": "Dari bahasa standar ke dialek dan sebaliknya",
+      "featureContext": "Pemahaman konteks",
+      "featureContextDesc": "Makna dan ungkapan lebih penting daripada terjemahan harfiah",
+      "featurePrivacy": "Privasi Anda",
+      "featurePrivacyDesc": "Pengaturan Anda disimpan di perangkat ini"
     },
     "sw": {
       "settings": "Mipangilio",
@@ -1233,7 +1422,16 @@ window.SEIF_INTERFACE = {
       "menu": "Menyu",
       "copy": "Nakili",
       "save": "Hifadhi",
-      "clearText": "Futa maandishi"
+      "clearText": "Futa maandishi",
+      "documentDesc": "Pakia faili la maandishi, PDF au Word ili kutoa na kutafsiri yaliyomo.",
+      "websiteDesc": "Weka anwani ya ukurasa ili kutafsiri yaliyomo.",
+      "websiteNote": "Tafsiri ndani ya ukurasa inahitaji kiendelezi cha SEIF TRANSLATOR.",
+      "featureLanguages": "Lugha na lahaja",
+      "featureLanguagesDesc": "Kutoka lugha sanifu hadi lahaja na kurudi",
+      "featureContext": "Uelewa wa muktadha",
+      "featureContextDesc": "Maana na mtindo kabla ya tafsiri ya neno kwa neno",
+      "featurePrivacy": "Faragha yako",
+      "featurePrivacyDesc": "Mipangilio yako imehifadhiwa kwenye kifaa hiki"
     }
   }
 };
