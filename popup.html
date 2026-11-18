@@ -1,37 +1,27 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
-<head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>SEIF TRANSLATOR</title><link rel="stylesheet" href="popup.css">
-</head>
-<body>
-<main class="app">
-  <header class="top"><div class="brand">SEIF <span>TRANSLATOR</span></div><button id="more" class="icon-button" aria-label="المزيد" title="المزيد">⋮</button></header>
-  <section class="language-pair" aria-label="لغات الترجمة">
-    <div class="lang-box"><small>من</small><div class="auto-lang">التعرّف التلقائي</div></div>
-    <span class="arrow" aria-hidden="true">→</span>
-    <label class="lang-box"><small>إلى</small><select id="target" aria-label="لغة الترجمة"></select></label>
-  </section>
-  <button id="translatePage" class="main-action">ترجمة هذه الصفحة</button>
-  <div class="separator"><span>أو</span></div>
-  <button id="imageMode" class="outline-action"><span class="image-icon" aria-hidden="true">▧</span> ترجمة صورة من الجهاز</button>
-  <input id="imageFile" type="file" accept="image/*" hidden>
-  <section id="imagePanel" class="image-panel" hidden>
-    <div class="image-heading"><strong>الصورة المحددة</strong><button id="clearImage" class="text-button">إزالة</button></div>
-    <img id="preview" alt="معاينة الصورة">
-    <label class="field-label" for="imageText">النص المستخرج</label>
-    <textarea id="imageText" placeholder="سيظهر النص المستخرج هنا..."></textarea>
-    <button id="translateImage" class="main-action compact">ترجمة النص</button>
-    <div id="imageResult" class="result" aria-live="polite"></div>
-    <p class="note">يمكنك تعديل النص المستخرج قبل ترجمته. إعادة كتابة الترجمة داخل الصورة مع مطابقة الخط والتصميم قيد التطوير.</p>
-  </section>
-  <p id="status" class="status" role="status" aria-live="polite"></p>
-  <div id="menu" class="menu" hidden>
-    <button id="reset">إعادة اللغة الافتراضية</button>
-    <button id="about">حول الإضافة</button>
-    <p>SEIF TRANSLATOR · 1.1</p>
-  </div>
-  <footer>ترجمة مباشرة وبسيطة</footer>
-</main>
-<script src="popup.js"></script>
-</body></html>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SEIF TRANSLATOR</title><link rel="stylesheet" href="popup.css"></head>
+<body><main class="app">
+<header class="top"><div class="brand">SEIF <span>TRANSLATOR</span></div><button id="more" class="icon-button" aria-label="المزيد" title="المزيد">⋮</button></header>
+<section class="language-pair" aria-label="لغات الترجمة">
+ <div class="lang-box"><small>من</small><div class="auto-lang">التعرّف التلقائي</div></div>
+ <span class="arrow" aria-hidden="true">→</span>
+ <div class="lang-box"><small>إلى</small><div id="targetName" class="auto-lang">العربية</div></div>
+</section>
+<button id="translatePage" class="main-action">ترجمة هذه الصفحة</button>
+<div class="separator"><span>أو</span></div>
+<button id="imageMode" class="outline-action"><span class="image-icon" aria-hidden="true">▧</span> ترجمة صورة من الجهاز</button>
+<input id="imageFile" type="file" accept="image/*" hidden>
+<section id="imagePanel" class="image-panel" hidden>
+ <div class="image-heading"><strong>الصورة المحددة</strong><button id="clearImage" class="text-button">إزالة</button></div>
+ <img id="preview" alt="معاينة الصورة">
+ <label class="field-label" for="imageText">النص المستخرج</label><textarea id="imageText" placeholder="سيظهر النص المستخرج هنا..."></textarea>
+ <button id="translateImage" class="main-action compact">ترجمة النص</button><div id="imageResult" class="result" aria-live="polite"></div>
+ <p class="note">يمكنك تعديل النص المستخرج قبل ترجمته. إعادة كتابة الترجمة داخل الصورة مع مطابقة الخط والتصميم قيد التطوير.</p>
+</section>
+<p id="status" class="status" role="status" aria-live="polite"></p>
+<div id="menu" class="menu" hidden>
+ <label class="menu-label" for="target">الترجمة إلى</label><select id="target" aria-label="لغة الترجمة"></select>
+ <div class="menu-divider"></div><button id="reset">إعادة اللغة الافتراضية</button><button id="about">حول الإضافة</button><p>SEIF TRANSLATOR · 1.1</p>
+</div>
+<footer>ترجمة مباشرة وبسيطة</footer></main><script src="popup.js"></script></body></html>
