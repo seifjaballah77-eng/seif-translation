@@ -32,7 +32,7 @@ function showTranslationWaiting(){
  const output=$("translatedText");
  output.textContent=stableTranslation;
  output.classList.remove("placeholder");
- output.setAttribute("aria-label","تحديث الترجمة جارٍ");
+ output.setAttribute("aria-label",ui("translatingNow"));
 
  const dots=document.createElement("span");
  dots.className="translation-loading";
@@ -46,7 +46,7 @@ function scheduleAutoTranslate(){
  const text=$("sourceText").value.trim();
  if(!text){
   stableTranslation="";
-  $("translatedText").textContent="ستظهر الترجمة هنا";
+  $("translatedText").textContent=ui("outputPlaceholder");
   $("translatedText").classList.add("placeholder");
   $("translatedText").removeAttribute("aria-label");
   $("translationStatus").textContent=ui("translate");
@@ -54,9 +54,9 @@ function scheduleAutoTranslate(){
   return;
  }
  showTranslationWaiting();
- $("translationStatus").textContent="جارٍ تجهيز الترجمة…";
+ $("translationStatus").textContent=ui("preparing");
  autoTimer=setTimeout(async()=>{
-  $("translationStatus").textContent="جارٍ ترجمة النص…";
+  $("translationStatus").textContent=ui("translatingNow");
   try{
    const result=await translate(text);
    if(request!==autoRequest||text!==$("sourceText").value.trim())return;
@@ -73,7 +73,7 @@ function scheduleAutoTranslate(){
 $("sourceText").addEventListener("input",()=>{$("charCount").textContent=$("sourceText").value.length+" / 12000";scheduleAutoTranslate();});
 $("clearText").onclick=()=>{$("sourceText").value="";$("charCount").textContent="0 / 12000";scheduleAutoTranslate();$("sourceText").focus();};
 $("copySource").onclick=()=>copy($("sourceText").value);$("copyResult").onclick=()=>copy($("translatedText").textContent);
-async function copy(t){try{await navigator.clipboard.writeText(t);$("translationStatus").textContent="تم النسخ";}catch{$("translationStatus").textContent="تعذّر النسخ";}}
+async function copy(t){try{await navigator.clipboard.writeText(t);$("translationStatus").textContent=ui("copied");}catch{$("translationStatus").textContent=ui("copyFailed");}}
 function getDialect(code){return LANGS.find(x=>x[0]===code)?.[2]==="dialect";}
 function updateDialectHint(){const hint=document.querySelector(".dialect-hint");if(!hint)return;const selected=[source,target].filter(code=>getDialect(code)).map(label);hint.textContent=ui("dialectHint")+(selected.length?" · "+selected.join(" ↔ "):"");}
 function dialectProfilePrompt(code,role){
@@ -138,10 +138,10 @@ async function translate(text){
  }
  return {translation:await basicTranslate(text),corrections:[]};
 }
-function showResult(result,saveToHistory=true){const text=typeof result==="string"?result:result.translation;stableTranslation=text;$("translatedText").textContent=text;$("translatedText").classList.remove("placeholder");$("translatedText").removeAttribute("aria-label");renderCorrections(typeof result==="string"?[]:result.corrections||[]);$("translationStatus").textContent="اكتملت الترجمة";if(saveToHistory){const entry={source,target,input:$("sourceText").value,output:text,date:Date.now()};history.unshift(entry);history=history.slice(0,50);localStorage.setItem("seifHistory",JSON.stringify(history));}}
-function renderCorrections(items){const root=$("correctionSuggestions");root.innerHTML="";if(!items.length){root.hidden=true;return;}root.hidden=false;const title=document.createElement("div");title.className="correction-title";title.textContent="اقتراح تصحيح أو معنى أوضح";root.appendChild(title);items.forEach(item=>{if(!item||!item.translation)return;const b=document.createElement("button");b.type="button";b.className="correction-chip";const colored=document.createElement("span");colored.className="gemini-text";colored.textContent=item.label||"صياغة أوضح";b.appendChild(colored);b.title=item.reason||"اضغط لتطبيق هذا التصحيح";b.addEventListener("click",()=>{stableTranslation=item.translation;$("translatedText").textContent=item.translation;$("translationStatus").textContent="تم تطبيق التصحيح المقترح";$("correctionSuggestions").hidden=true;});root.appendChild(b);});if(!root.querySelector(".correction-chip"))root.hidden=true;}
-$("translateBtn").onclick=async()=>{const text=$("sourceText").value;if(!text.trim()){ $("translationStatus").textContent="اكتب نصاً أولاً";return;}const btn=$("translateBtn");btn.disabled=true;btn.querySelector("span").textContent="جارٍ الترجمة...";$("translationStatus").textContent="نعالج النص الآن";try{const result=await translate(text);showResult(result);}catch(e){$("translatedText").textContent=e.message;$("translationStatus").textContent="تعذّرت الترجمة";}finally{btn.disabled=false;btn.querySelector("span").textContent="ترجمة";}};
-$("saveResult").onclick=()=>{const output=$("translatedText").textContent;if(!output||$("translatedText").classList.contains("placeholder"))return; saved.unshift({source,target,input:$("sourceText").value,output,date:Date.now()});saved=saved.slice(0,100);localStorage.setItem("seifSaved",JSON.stringify(saved));$("translationStatus").textContent="أُضيفت إلى المحفوظات";};
+function showResult(result,saveToHistory=true){const text=typeof result==="string"?result:result.translation;stableTranslation=text;$("translatedText").textContent=text;$("translatedText").classList.remove("placeholder");$("translatedText").removeAttribute("aria-label");renderCorrections(typeof result==="string"?[]:result.corrections||[]);$("translationStatus").textContent=ui("translationComplete");if(saveToHistory){const entry={source,target,input:$("sourceText").value,output:text,date:Date.now()};history.unshift(entry);history=history.slice(0,50);localStorage.setItem("seifHistory",JSON.stringify(history));}}
+function renderCorrections(items){const root=$("correctionSuggestions");root.innerHTML="";if(!items.length){root.hidden=true;return;}root.hidden=false;const title=document.createElement("div");title.className="correction-title";title.textContent=ui("suggestionsTitle");root.appendChild(title);items.forEach(item=>{if(!item||!item.translation)return;const b=document.createElement("button");b.type="button";b.className="correction-chip";const colored=document.createElement("span");colored.className="gemini-text";colored.textContent=item.label||"صياغة أوضح";b.appendChild(colored);b.title=item.reason||ui("correctionApplied");b.addEventListener("click",()=>{stableTranslation=item.translation;$("translatedText").textContent=item.translation;$("translationStatus").textContent=ui("correctionApplied");$("correctionSuggestions").hidden=true;});root.appendChild(b);});if(!root.querySelector(".correction-chip"))root.hidden=true;}
+$("translateBtn").onclick=async()=>{const text=$("sourceText").value;if(!text.trim()){ $("translationStatus").textContent=ui("writeTextFirst");return;}const btn=$("translateBtn");btn.disabled=true;btn.querySelector("span").textContent=ui("translatingNow");$("translationStatus").textContent=ui("processing");try{const result=await translate(text);showResult(result);}catch(e){$("translatedText").textContent=e.message;$("translationStatus").textContent=ui("translationFailed");}finally{btn.disabled=false;btn.querySelector("span").textContent=ui("translate");}};
+$("saveResult").onclick=()=>{const output=$("translatedText").textContent;if(!output||$("translatedText").classList.contains("placeholder"))return; saved.unshift({source,target,input:$("sourceText").value,output,date:Date.now()});saved=saved.slice(0,100);localStorage.setItem("seifSaved",JSON.stringify(saved));$("translationStatus").textContent=ui("savedSuccess");};
 function renderRecords(which){
  const arr=which==="history"?history:saved,root=$(which==="history"?"historyList":"savedList");
  if(which==="history")$("clearHistory").disabled=!arr.length;
