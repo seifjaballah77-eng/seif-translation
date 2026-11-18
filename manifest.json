@@ -1,0 +1,11 @@
+{
+  "manifest_version": 3,
+  "name": "SEIF TRANSLATOR",
+  "version": "1.0.0",
+  "description": "ترجمة صفحات الويب والنصوص داخل الصور.",
+  "permissions": ["activeTab", "scripting", "storage", "contextMenus"],
+  "host_permissions": ["https://translate.googleapis.com/*", "https://api.ocr.space/*"],
+  "action": { "default_popup": "popup.html", "default_title": "SEIF TRANSLATOR" },
+  "background": { "service_worker": "background.js" },
+  "icons": {}
+}
