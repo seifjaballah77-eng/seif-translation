@@ -139,23 +139,26 @@ function makePrompt(text){
  "TEXT TO TRANSLATE:\n"+text;
 }
 async function aiTranslate(text){
- const key=localStorage.getItem("seifOpenAIKey");
- if(!key)throw new Error(ui("dialectNeedsKey"));
- const model=localStorage.getItem("seifAIModel")||"gpt-4o-mini";
- const r=await fetch("https://api.openai.com/v1/chat/completions",{
-  method:"POST",headers:{"Content-Type":"application/json","Authorization":"Bearer "+key},
-  body:JSON.stringify({model,temperature:.15,response_format:{type:"json_object"},messages:[
-   {role:"system",content:"You are a specialist translator of world languages and regional varieties, especially Arabic dialects. Follow the exact source and target dialect profiles. Never silently replace a dialect with Modern Standard Arabic or a neighboring dialect. Output valid JSON only."},
-   {role:"user",content:makePrompt(text)}
-  ]})
- });
- const j=await r.json();
- if(!r.ok)throw new Error(j.error?.message||ui("dialectServiceError"));
- const raw=j.choices?.[0]?.message?.content||"";
- let parsed;
- try{parsed=JSON.parse(raw);}catch{throw new Error("وصل رد غير صالح من محرك اللهجات. حاول مجدداً.");}
- if(typeof parsed.translation!=="string"||!parsed.translation.trim())throw new Error(ui("emptyTranslation"));
- return {translation:parsed.translation.trim(),corrections:Array.isArray(parsed.corrections)?parsed.corrections.slice(0,3):[]};
+ const apiBase=String(window.SEIF_API_BASE||"").replace(/\/+$/,"");
+ if(!apiBase)throw new Error(ui("dialectServerMissing"));
+ let response;
+ try{
+  response=await fetch(apiBase+"/api/translate",{
+   method:"POST",
+   headers:{"Content-Type":"application/json"},
+   body:JSON.stringify({text,prompt:makePrompt(text)})
+  });
+ }catch(_){
+  throw new Error(ui("dialectServerUnavailable"));
+ }
+ const result=await response.json().catch(()=>({}));
+ if(!response.ok){
+  if(result.error==="server_not_configured")throw new Error(ui("dialectServerMissing"));
+  if(result.error==="rate_limited")throw new Error(result.message||ui("dialectServerUnavailable"));
+  throw new Error(result.message||ui("dialectServerUnavailable"));
+ }
+ if(typeof result.translation!=="string"||!result.translation.trim())throw new Error(ui("emptyTranslation"));
+ return {translation:result.translation.trim(),corrections:Array.isArray(result.corrections)?result.corrections.slice(0,3):[]};
 }
 async function googleTranslatePlain(text){
  if(!text.trim())return "";
@@ -202,13 +205,8 @@ async function basicTranslate(text){
 }
 async function translate(text){
  if(!text.trim())throw new Error(ui("textRequired"));
- const requiresDialectEngine=$("dialectMode").checked||getDialect(source)||getDialect(target);
- const key=localStorage.getItem("seifOpenAIKey");
- if(requiresDialectEngine){
-  if(!key)throw new Error(ui("dialectNeedsKey"));
-  return aiTranslate(text);
- }
- if($("technicalMode").checked&&key)return aiTranslate(text);
+ const requiresSmartEngine=$("dialectMode").checked||getDialect(source)||getDialect(target)||$("technicalMode").checked;
+ if(requiresSmartEngine)return aiTranslate(text);
  return {translation:await basicTranslate(text),corrections:[]};
 }
 function showResult(result,saveToHistory=true){const text=typeof result==="string"?result:result.translation;stableTranslation=text;$("translatedText").textContent=text;$("translatedText").classList.remove("placeholder");$("translatedText").removeAttribute("aria-label");renderCorrections(typeof result==="string"?[]:result.corrections||[]);renderTermGlossary($("sourceText").value);updateSourceIntelligence();$("translationStatus").textContent=ui("translationComplete");if(saveToHistory){const entry={source,target,input:$("sourceText").value,output:text,date:Date.now()};history.unshift(entry);history=history.slice(0,50);localStorage.setItem("seifHistory",JSON.stringify(history));}}
