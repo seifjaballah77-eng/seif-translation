@@ -244,7 +244,7 @@ $("extractImageText").onclick=async()=>{
  const sx=Math.max(0,Math.floor(region.x*preview.naturalWidth)),sy=Math.max(0,Math.floor(region.y*preview.naturalHeight));
  const sw=Math.max(1,Math.min(preview.naturalWidth-sx,Math.ceil(region.w*preview.naturalWidth)));
  const sh=Math.max(1,Math.min(preview.naturalHeight-sy,Math.ceil(region.h*preview.naturalHeight)));
- const scale=Math.max(1,Math.min(2.2,4000/Math.max(sw,sh)));
+ const scale=Math.max(0.25,Math.min(2.2,4000/Math.max(sw,sh)));
  const crop=document.createElement("canvas");crop.width=Math.max(1,Math.round(sw*scale));crop.height=Math.max(1,Math.round(sh*scale));
  const ctx=crop.getContext("2d",{willReadFrequently:true});ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality="high";
  ctx.drawImage(preview,sx,sy,sw,sh,0,0,crop.width,crop.height);
