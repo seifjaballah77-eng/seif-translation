@@ -51,3 +51,40 @@ html[dir="ltr"] .record{text-align:left}
 html[dir="ltr"] .language-list button{text-align:left}
 html[dir="ltr"] .recent-title{text-align:left}
 html[dir="ltr"] .dialect-row{direction:ltr}
+
+/* Context-aware translator, DevTerm mode, proverb notes and quick emoji insertion. */
+.developer-mode-row{border-top:1px solid var(--line);padding:11px 3px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.developer-toggle{display:flex;align-items:center;gap:9px;font-size:13px;cursor:pointer;white-space:nowrap}
+.developer-toggle input{display:none}
+.developer-toggle input:checked+.toggle{background:#7868ed}
+.developer-toggle input:checked+.toggle:after{right:18px}
+.developer-mode-hint{font-size:11px;color:var(--muted);line-height:1.6}
+.intent-analysis{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 12px}
+.intent-chip{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);background:var(--panel2);border-radius:999px;padding:6px 11px;font-size:11px;color:var(--muted)}
+.intent-chip span{color:var(--text);font-weight:600}
+.emoji-toolbar{display:flex;align-items:center;gap:3px;flex-wrap:wrap;padding:4px 9px 8px;border-top:1px solid #ffffff08}
+.emoji-toolbar button{border:0;background:transparent;border-radius:7px;min-width:29px;height:29px;padding:3px;font-size:17px;line-height:1}
+.emoji-toolbar button:hover,.emoji-toolbar button:focus-visible{background:#302c46;outline:1px solid #8b7bff}
+.dialect-glossary{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:8px;margin:12px 0 18px}
+.insight-heading,.term-glossary-heading{grid-column:1/-1;font-size:11px;font-weight:700;color:#a99eff;margin:0 0 2px}
+.idiom-card{border:1px solid var(--line);border-radius:10px;background:var(--panel);padding:10px 12px;min-width:0}
+.idiom-card b{font-size:13px}
+.idiom-card .idiom-dialect{display:inline-block;margin-inline-start:7px;color:var(--muted);font-size:10px}
+.idiom-card p{font-size:11px;color:var(--muted);line-height:1.7;margin:7px 0 0}
+.term-glossary{padding:2px 14px 12px;display:grid;gap:7px}
+.term-glossary-item{display:flex;align-items:flex-start;gap:8px;font-size:11px;line-height:1.6;border-top:1px solid #ffffff0b;padding-top:6px}
+.term-glossary-item code{flex:0 0 auto;border:1px solid #6f63d955;background:#7163d91a;color:#c6beff;border-radius:6px;padding:2px 6px;font-size:10px}
+.term-glossary-item span{color:var(--muted)}
+body.light .intent-chip{background:#f5f4ff}
+body.light .idiom-card{background:#fff}
+body.light .term-glossary-item{border-color:#0000000d}
+html[dir="ltr"] .intent-analysis{direction:ltr}
+html[dir="ltr"] .idiom-card{text-align:left}
+@media(max-width:600px){
+ .developer-mode-row{align-items:flex-start;gap:7px;flex-direction:column}
+ .developer-mode-hint{padding-inline-start:43px}
+ .emoji-toolbar{gap:1px;padding:4px 5px 7px}
+ .emoji-toolbar button{min-width:27px;font-size:16px}
+ .intent-analysis{gap:5px}
+ .intent-chip{font-size:10px;padding:5px 8px}
+}
