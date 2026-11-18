@@ -117,3 +117,30 @@ html[dir="ltr"] .ocr-language-list{direction:ltr}
  .ocr-language-list{grid-template-columns:1fr;max-height:190px}
  .ocr-language-popover{padding:8px}
 }
+
+/* SEIF Emojis × Seif Tradition: integrated translation and decoration tools. */
+.seif-decorate-tools{margin:14px 0 18px;padding:15px;border:1px solid var(--line);border-radius:14px;background:var(--panel);box-shadow:0 8px 26px #00000012}
+.decorate-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
+.decorate-heading strong{display:block;color:var(--text);font-size:13px}
+.decorate-heading small{display:block;color:var(--muted);font-size:11px;margin-top:3px}
+.decorate-mark{display:grid;place-items:center;width:34px;height:34px;border-radius:11px;background:linear-gradient(135deg,#b89450,#f0d58d);color:#171421;font-size:19px}
+.decorate-controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.decorate-style-label{font-size:11px;color:var(--muted)}
+#decorateStyle{min-width:145px;border:1px solid var(--line);background:var(--panel2);color:var(--text);border-radius:9px;padding:9px;font:inherit;font-size:12px}
+.decorate-result-actions{display:flex;justify-content:flex-end;margin-top:8px}
+.decorated-result{margin-top:12px;padding:13px;border:1px solid #b8945055;border-radius:10px;background:var(--panel2);color:var(--text);white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.9}
+.seif-float-button{position:fixed;z-index:9998;right:22px;bottom:22px;width:56px;height:56px;border:1px solid #e4c477;border-radius:50%;background:linear-gradient(145deg,#292238,#111018);color:#f1d28b;font-size:25px;box-shadow:0 9px 30px #0008;cursor:pointer}
+.seif-float-button:hover{transform:translateY(-2px);box-shadow:0 12px 34px #0009}
+.seif-float-panel{position:fixed;z-index:9999;right:20px;bottom:90px;width:min(370px,calc(100vw - 32px));max-height:78vh;overflow:auto;padding:14px;border:1px solid #b89450;border-radius:17px;background:#171421;color:#f7f3ea;box-shadow:0 16px 50px #000a;direction:rtl}
+.float-panel-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.float-panel-head strong{display:block;color:#f1d28b;font-size:13px}
+.float-panel-head small{display:block;color:#c7bbd1;font-size:10px;margin-top:2px}
+#seifFloatClose{width:30px;height:30px;border:1px solid #51445f;border-radius:8px;background:#302a3c;color:#fff;font-size:19px}
+#seifFloatInput{width:100%;min-height:84px;resize:vertical;padding:10px;border:1px solid #51445f;border-radius:10px;background:#242033;color:#fff;font:13px/1.7 system-ui,sans-serif}
+.float-panel-actions{display:flex;gap:6px;margin:8px 0;flex-wrap:wrap}
+.float-panel-actions button,.float-secondary,.float-copy{padding:8px 10px;border:1px solid #51445f;border-radius:9px;background:#302a3c;color:#f7e5bd;font-size:11px;cursor:pointer}
+.float-primary{width:100%;padding:10px;border:0;border-radius:9px;background:#c7a45d;color:#171421;font-weight:700;cursor:pointer}
+.float-secondary{width:100%;margin-top:6px}
+.float-output{margin-top:9px;padding:10px;min-height:44px;border-radius:9px;background:#242033;color:#fff;white-space:pre-wrap;overflow-wrap:anywhere;font-size:13px;line-height:1.8}
+.float-copy{width:100%;margin-top:7px}
+@media(max-width:600px){.seif-decorate-tools{padding:12px}.decorate-controls>*{flex:1 1 auto}.seif-float-button{right:14px;bottom:14px;width:52px;height:52px}.seif-float-panel{right:12px;bottom:76px}.decorate-controls .primary-btn{width:100%}}
