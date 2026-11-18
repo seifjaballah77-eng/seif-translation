@@ -192,8 +192,9 @@ function applyInterfaceLanguage(lang){
  $("themeBtn").title=ui("theme");$("themeBtn").setAttribute("aria-label",ui("theme"));
  $("swapBtn").title=ui("swapLanguages");$("swapBtn").setAttribute("aria-label",ui("swapLanguages"));$("menuBtn").setAttribute("aria-label",ui("menu"));$("settingsTop").title=ui("settings");$("settingsTop").setAttribute("aria-label",ui("settings"));$("settingsOpen").setAttribute("aria-label",ui("settings"));$("closeSide").setAttribute("aria-label",ui("close"));$("imageSelection").setAttribute("aria-label",ui("imageSelectHint"));document.querySelectorAll("[data-close]").forEach(b=>b.setAttribute("aria-label",ui("close")));
  $("clearText").title=ui("clearText");$("copySource").title=ui("copy");$("copyResult").title=ui("copy");$("saveResult").title=ui("save");
- document.querySelectorAll(".quick").forEach(b=>{b.textContent=b.dataset.code==="auto"?(chosen.code==="ar"?"تلقائي":"Auto"):label(b.dataset.code);});
- updateDialectHint();if(!$("languageModal").hidden)renderLanguageList($("languageSearch").value);
+ updateQuick();$("sourceLang").innerHTML=(source==="auto"?ui("autoDetect"):label(source))+" <span>⌄</span>";$("targetLang").innerHTML=label(target)+" <span>⌄</span>";
+ const activeMode=document.querySelector(".mode.active")?.dataset.mode||"text";const engineKeys={text:"engineText",images:"engineImage",documents:"engineDocument",web:"engineWeb"};$("engineNote").textContent=ui(engineKeys[activeMode]);
+ updateDialectHint();if(!$("languageModal").hidden)renderLanguageList($("languageSearch").value);renderRecords("history");renderRecords("saved");
 }
 buildInterfaceLanguageOptions();
 $("themeBtn").onclick=()=>{document.body.classList.toggle("light");localStorage.setItem("seifTheme",document.body.classList.contains("light")?"light":"dark");};if(localStorage.getItem("seifTheme")==="light")document.body.classList.add("light");
