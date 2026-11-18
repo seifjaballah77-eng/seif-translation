@@ -228,7 +228,17 @@ window.SEIF_INTERFACE = {
       "toneAngry": "غاضبة",
       "toneHumorous": "مرحة أو ساخرة",
       "idiomGlossaryTitle": "التعابير الدارجة المكتشفة",
-      "technicalGlossaryTitle": "قاموس المصطلحات التقنية"
+      "technicalGlossaryTitle": "قاموس المصطلحات التقنية",
+      "ocrLanguageLabel": "لغة النص في الصورة",
+      "ocrLanguageSummary": "اختيار لغة النص",
+      "ocrLanguageHint": "اختر لغة أو أكثر من 112 لغة أو نظام كتابة. اختيار اللغات الصحيحة يحسن دقة الاستخراج.",
+      "ocrLanguageSearch": "ابحث عن لغة…",
+      "ocrNoLanguage": "لم تختر لغة بعد.",
+      "ocrMaxLanguages": "اختر حتى 4 لغات لتجنب بطء التحميل.",
+      "ocrModelLoading": "جارٍ تحميل نماذج التعرف…",
+      "dialectServerMissing": "محرك اللهجات يحتاج إلى ربط الخادم الآمن. لم يعد مطلوباً إدخال مفتاح في المتصفح.",
+      "dialectServerUnavailable": "خدمة ترجمة اللهجات غير متاحة حالياً. حاول لاحقاً.",
+      "dialectServerReady": "محرك ترجمة اللهجات متصل."
     },
     "en": {
       "settings": "Settings",
@@ -345,7 +355,17 @@ window.SEIF_INTERFACE = {
       "toneAngry": "Angry",
       "toneHumorous": "Humorous or sarcastic",
       "idiomGlossaryTitle": "Detected colloquial expressions",
-      "technicalGlossaryTitle": "Technical term glossary"
+      "technicalGlossaryTitle": "Technical term glossary",
+      "ocrLanguageLabel": "Text language in image",
+      "ocrLanguageSummary": "Choose text language",
+      "ocrLanguageHint": "Choose one or more of 112 languages or writing scripts. Selecting the correct languages improves recognition.",
+      "ocrLanguageSearch": "Search languages…",
+      "ocrNoLanguage": "No language selected yet.",
+      "ocrMaxLanguages": "Choose up to 4 languages to avoid slow loading.",
+      "ocrModelLoading": "Loading recognition models…",
+      "dialectServerMissing": "The dialect engine needs its secure server connection. No browser API key is required.",
+      "dialectServerUnavailable": "Dialect translation service is currently unavailable. Try again later.",
+      "dialectServerReady": "Dialect translation server is connected."
     },
     "fr": {
       "settings": "Paramètres",
@@ -462,7 +482,17 @@ window.SEIF_INTERFACE = {
       "toneAngry": "En colère",
       "toneHumorous": "Humoristique ou sarcastique",
       "idiomGlossaryTitle": "Expressions familières détectées",
-      "technicalGlossaryTitle": "Glossaire technique"
+      "technicalGlossaryTitle": "Glossaire technique",
+      "ocrLanguageLabel": "Langue du texte dans l’image",
+      "ocrLanguageSummary": "Choisir la langue du texte",
+      "ocrLanguageHint": "Choisissez une ou plusieurs langues parmi 112 langues et systèmes d’écriture. Le bon choix améliore la reconnaissance.",
+      "ocrLanguageSearch": "Rechercher des langues…",
+      "ocrNoLanguage": "Aucune langue sélectionnée.",
+      "ocrMaxLanguages": "Choisissez jusqu’à 4 langues pour éviter un chargement lent.",
+      "ocrModelLoading": "Chargement des modèles de reconnaissance…",
+      "dialectServerMissing": "Le moteur des dialectes doit être relié à son serveur sécurisé. Aucune clé API dans le navigateur n’est nécessaire.",
+      "dialectServerUnavailable": "Le service de traduction des dialectes est indisponible. Réessayez plus tard.",
+      "dialectServerReady": "Le serveur de traduction des dialectes est connecté."
     },
     "es": {
       "settings": "Configuración",
@@ -579,7 +609,17 @@ window.SEIF_INTERFACE = {
       "toneAngry": "Enfadado",
       "toneHumorous": "Humorístico o sarcástico",
       "idiomGlossaryTitle": "Expresiones coloquiales detectadas",
-      "technicalGlossaryTitle": "Glosario técnico"
+      "technicalGlossaryTitle": "Glosario técnico",
+      "ocrLanguageLabel": "Idioma del texto de la imagen",
+      "ocrLanguageSummary": "Elegir idioma del texto",
+      "ocrLanguageHint": "Elige uno o varios de 112 idiomas o sistemas de escritura. Seleccionar los idiomas correctos mejora el reconocimiento.",
+      "ocrLanguageSearch": "Buscar idiomas…",
+      "ocrNoLanguage": "No hay ningún idioma seleccionado.",
+      "ocrMaxLanguages": "Elige hasta 4 idiomas para evitar una carga lenta.",
+      "ocrModelLoading": "Cargando modelos de reconocimiento…",
+      "dialectServerMissing": "El motor de dialectos necesita conectarse a su servidor seguro. No se requiere una clave API en el navegador.",
+      "dialectServerUnavailable": "El servicio de traducción de dialectos no está disponible. Inténtalo más tarde.",
+      "dialectServerReady": "El servidor de traducción de dialectos está conectado."
     },
     "de": {
       "settings": "Einstellungen",
@@ -696,7 +736,17 @@ window.SEIF_INTERFACE = {
       "toneAngry": "Wütend",
       "toneHumorous": "Humorvoll oder sarkastisch",
       "idiomGlossaryTitle": "Erkannte umgangssprachliche Ausdrücke",
-      "technicalGlossaryTitle": "Technisches Glossar"
+      "technicalGlossaryTitle": "Technisches Glossar",
+      "ocrLanguageLabel": "Sprache des Bildtextes",
+      "ocrLanguageSummary": "Textsprache auswählen",
+      "ocrLanguageHint": "Wähle eine oder mehrere von 112 Sprachen oder Schriftsystemen. Die richtige Auswahl verbessert die Erkennung.",
+      "ocrLanguageSearch": "Sprachen suchen…",
+      "ocrNoLanguage": "Keine Sprache ausgewählt.",
+      "ocrMaxLanguages": "Wähle bis zu 4 Sprachen, um lange Ladezeiten zu vermeiden.",
+      "ocrModelLoading": "Erkennungsmodelle werden geladen…",
+      "dialectServerMissing": "Die Dialektübersetzung benötigt eine Verbindung zum sicheren Server. Kein API-Schlüssel im Browser erforderlich.",
+      "dialectServerUnavailable": "Der Dialektübersetzungsdienst ist derzeit nicht verfügbar. Bitte später erneut versuchen.",
+      "dialectServerReady": "Der Dialektübersetzungsserver ist verbunden."
     },
     "it": {
       "settings": "Impostazioni",
@@ -813,7 +863,17 @@ window.SEIF_INTERFACE = {
       "toneAngry": "Arrabbiato",
       "toneHumorous": "Umoristico o sarcastico",
       "idiomGlossaryTitle": "Espressioni colloquiali rilevate",
-      "technicalGlossaryTitle": "Glossario tecnico"
+      "technicalGlossaryTitle": "Glossario tecnico",
+      "ocrLanguageLabel": "Lingua del testo nell’immagine",
+      "ocrLanguageSummary": "Scegli la lingua del testo",
+      "ocrLanguageHint": "Scegli una o più lingue tra 112 lingue e sistemi di scrittura. La scelta corretta migliora il riconoscimento.",
+      "ocrLanguageSearch": "Cerca lingue…",
+      "ocrNoLanguage": "Nessuna lingua selezionata.",
+      "ocrMaxLanguages": "Scegli fino a 4 lingue per evitare caricamenti lenti.",
+      "ocrModelLoading": "Caricamento dei modelli di riconoscimento…",
+      "dialectServerMissing": "Il motore dei dialetti deve essere collegato al server sicuro. Non serve una chiave API nel browser.",
+      "dialectServerUnavailable": "Il servizio di traduzione dei dialetti non è disponibile. Riprova più tardi.",
+      "dialectServerReady": "Il server di traduzione dei dialetti è connesso."
     },
     "tr": {
       "settings": "Ayarlar",
@@ -930,7 +990,17 @@ window.SEIF_INTERFACE = {
       "toneAngry": "Kızgın",
       "toneHumorous": "Mizahi veya alaycı",
       "idiomGlossaryTitle": "Algılanan günlük ifadeler",
-      "technicalGlossaryTitle": "Teknik terimler sözlüğü"
+      "technicalGlossaryTitle": "Teknik terimler sözlüğü",
+      "ocrLanguageLabel": "Resimdeki metnin dili",
+      "ocrLanguageSummary": "Metin dilini seç",
+      "ocrLanguageHint": "112 dil veya yazı sisteminden birini ya da birkaçını seçin. Doğru dilleri seçmek tanımayı iyileştirir.",
+      "ocrLanguageSearch": "Dilleri ara…",
+      "ocrNoLanguage": "Henüz dil seçilmedi.",
+      "ocrMaxLanguages": "Yavaş yüklemeyi önlemek için en fazla 4 dil seçin.",
+      "ocrModelLoading": "Tanıma modelleri yükleniyor…",
+      "dialectServerMissing": "Lehçe motorunun güvenli sunucuya bağlanması gerekir. Tarayıcıda API anahtarı gerekmez.",
+      "dialectServerUnavailable": "Lehçe çeviri hizmeti şu anda kullanılamıyor. Daha sonra tekrar deneyin.",
+      "dialectServerReady": "Lehçe çeviri sunucusu bağlı."
     },
     "ru": {
       "settings": "Настройки",
@@ -1047,7 +1117,17 @@ window.SEIF_INTERFACE = {
       "toneAngry": "Злой",
       "toneHumorous": "Шутливый или саркастический",
       "idiomGlossaryTitle": "Найденные разговорные выражения",
-      "technicalGlossaryTitle": "Словарь технических терминов"
+      "technicalGlossaryTitle": "Словарь технических терминов",
+      "ocrLanguageLabel": "Язык текста на изображении",
+      "ocrLanguageSummary": "Выберите язык текста",
+      "ocrLanguageHint": "Выберите один или несколько из 112 языков и систем письма. Правильный выбор повышает точность распознавания.",
+      "ocrLanguageSearch": "Поиск языков…",
+      "ocrNoLanguage": "Язык пока не выбран.",
+      "ocrMaxLanguages": "Выберите до 4 языков, чтобы избежать медленной загрузки.",
+      "ocrModelLoading": "Загрузка моделей распознавания…",
+      "dialectServerMissing": "Для движка диалектов требуется подключение к защищённому серверу. Ключ API в браузере не нужен.",
+      "dialectServerUnavailable": "Сервис перевода диалектов сейчас недоступен. Попробуйте позже.",
+      "dialectServerReady": "Сервер перевода диалектов подключён."
     },
     "zh-CN": {
       "settings": "设置",
@@ -1164,7 +1244,17 @@ window.SEIF_INTERFACE = {
       "toneAngry": "愤怒",
       "toneHumorous": "幽默或讽刺",
       "idiomGlossaryTitle": "检测到的口语表达",
-      "technicalGlossaryTitle": "技术术语词典"
+      "technicalGlossaryTitle": "技术术语词典",
+      "ocrLanguageLabel": "图像文字语言",
+      "ocrLanguageSummary": "选择文字语言",
+      "ocrLanguageHint": "从112种语言或书写系统中选择一种或多种。选择正确的语言可提高识别准确度。",
+      "ocrLanguageSearch": "搜索语言…",
+      "ocrNoLanguage": "尚未选择语言。",
+      "ocrMaxLanguages": "最多选择4种语言，以免加载过慢。",
+      "ocrModelLoading": "正在加载识别模型…",
+      "dialectServerMissing": "方言引擎需要连接安全服务器。浏览器无需API密钥。",
+      "dialectServerUnavailable": "方言翻译服务暂时不可用，请稍后重试。",
+      "dialectServerReady": "方言翻译服务器已连接。"
     },
     "ja": {
       "settings": "設定",
@@ -1281,7 +1371,17 @@ window.SEIF_INTERFACE = {
       "toneAngry": "怒り",
       "toneHumorous": "ユーモア・皮肉",
       "idiomGlossaryTitle": "検出された口語表現",
-      "technicalGlossaryTitle": "技術用語集"
+      "technicalGlossaryTitle": "技術用語集",
+      "ocrLanguageLabel": "画像内のテキスト言語",
+      "ocrLanguageSummary": "テキストの言語を選択",
+      "ocrLanguageHint": "112の言語または文字体系から1つ以上選択します。正しい言語を選ぶと認識精度が向上します。",
+      "ocrLanguageSearch": "言語を検索…",
+      "ocrNoLanguage": "言語が選択されていません。",
+      "ocrMaxLanguages": "読み込みが遅くならないよう最大4言語を選択してください。",
+      "ocrModelLoading": "認識モデルを読み込み中…",
+      "dialectServerMissing": "方言エンジンには安全なサーバーへの接続が必要です。ブラウザーにAPIキーは不要です。",
+      "dialectServerUnavailable": "方言翻訳サービスは現在利用できません。後でもう一度お試しください。",
+      "dialectServerReady": "方言翻訳サーバーに接続しました。"
     },
     "ko": {
       "settings": "설정",
@@ -1398,7 +1498,17 @@ window.SEIF_INTERFACE = {
       "toneAngry": "분노",
       "toneHumorous": "유머 또는 풍자",
       "idiomGlossaryTitle": "감지된 구어 표현",
-      "technicalGlossaryTitle": "기술 용어 사전"
+      "technicalGlossaryTitle": "기술 용어 사전",
+      "ocrLanguageLabel": "이미지 텍스트 언어",
+      "ocrLanguageSummary": "텍스트 언어 선택",
+      "ocrLanguageHint": "112개 언어 또는 문자 체계 중 하나 이상을 선택하세요. 올바른 언어를 선택하면 인식률이 향상됩니다.",
+      "ocrLanguageSearch": "언어 검색…",
+      "ocrNoLanguage": "선택된 언어가 없습니다.",
+      "ocrMaxLanguages": "로딩 지연을 방지하려면 최대 4개 언어를 선택하세요.",
+      "ocrModelLoading": "인식 모델 로딩 중…",
+      "dialectServerMissing": "방언 엔진은 보안 서버에 연결해야 합니다. 브라우저 API 키는 필요하지 않습니다.",
+      "dialectServerUnavailable": "방언 번역 서비스를 현재 사용할 수 없습니다. 나중에 다시 시도하세요.",
+      "dialectServerReady": "방언 번역 서버가 연결되었습니다."
     },
     "pt": {
       "settings": "Configurações",
@@ -1515,7 +1625,17 @@ window.SEIF_INTERFACE = {
       "toneAngry": "Com raiva",
       "toneHumorous": "Humorístico ou sarcástico",
       "idiomGlossaryTitle": "Expressões coloquiais detectadas",
-      "technicalGlossaryTitle": "Glossário de termos técnicos"
+      "technicalGlossaryTitle": "Glossário de termos técnicos",
+      "ocrLanguageLabel": "Idioma do texto na imagem",
+      "ocrLanguageSummary": "Escolher idioma do texto",
+      "ocrLanguageHint": "Escolha um ou mais dos 112 idiomas ou sistemas de escrita. Selecionar os idiomas corretos melhora o reconhecimento.",
+      "ocrLanguageSearch": "Pesquisar idiomas…",
+      "ocrNoLanguage": "Nenhum idioma selecionado.",
+      "ocrMaxLanguages": "Escolha até 4 idiomas para evitar carregamento lento.",
+      "ocrModelLoading": "Carregando modelos de reconhecimento…",
+      "dialectServerMissing": "O motor de dialetos precisa de conexão com o servidor seguro. Não é necessária uma chave API no navegador.",
+      "dialectServerUnavailable": "O serviço de tradução de dialetos está indisponível. Tente novamente mais tarde.",
+      "dialectServerReady": "O servidor de tradução de dialetos está conectado."
     },
     "nl": {
       "settings": "Instellingen",
@@ -1632,7 +1752,17 @@ window.SEIF_INTERFACE = {
       "toneAngry": "Boos",
       "toneHumorous": "Humoristisch of sarcastisch",
       "idiomGlossaryTitle": "Gevonden informele uitdrukkingen",
-      "technicalGlossaryTitle": "Technische begrippenlijst"
+      "technicalGlossaryTitle": "Technische begrippenlijst",
+      "ocrLanguageLabel": "Taal van de tekst in de afbeelding",
+      "ocrLanguageSummary": "Teksttaal kiezen",
+      "ocrLanguageHint": "Kies een of meer van 112 talen of schriftsystemen. De juiste taalkeuze verbetert de herkenning.",
+      "ocrLanguageSearch": "Talen zoeken…",
+      "ocrNoLanguage": "Er is nog geen taal geselecteerd.",
+      "ocrMaxLanguages": "Kies maximaal 4 talen om langzaam laden te voorkomen.",
+      "ocrModelLoading": "Herkenningsmodellen laden…",
+      "dialectServerMissing": "De dialectengine moet worden gekoppeld aan de beveiligde server. Een API-sleutel in de browser is niet nodig.",
+      "dialectServerUnavailable": "De dialectvertaaldienst is momenteel niet beschikbaar. Probeer het later opnieuw.",
+      "dialectServerReady": "De dialectvertaalserver is verbonden."
     },
     "hi": {
       "settings": "सेटिंग्स",
@@ -1749,7 +1879,17 @@ window.SEIF_INTERFACE = {
       "toneAngry": "क्रोधित",
       "toneHumorous": "हास्यपूर्ण या व्यंग्यात्मक",
       "idiomGlossaryTitle": "पहचाने गए बोलचाल के भाव",
-      "technicalGlossaryTitle": "तकनीकी शब्दावली"
+      "technicalGlossaryTitle": "तकनीकी शब्दावली",
+      "ocrLanguageLabel": "चित्र में पाठ की भाषा",
+      "ocrLanguageSummary": "पाठ की भाषा चुनें",
+      "ocrLanguageHint": "112 भाषाओं या लिपि प्रणालियों में से एक या अधिक चुनें। सही भाषाएँ चुनने से पहचान बेहतर होती है।",
+      "ocrLanguageSearch": "भाषाएँ खोजें…",
+      "ocrNoLanguage": "अभी कोई भाषा नहीं चुनी गई।",
+      "ocrMaxLanguages": "धीमी लोडिंग से बचने के लिए अधिकतम 4 भाषाएँ चुनें।",
+      "ocrModelLoading": "पहचान मॉडल लोड हो रहे हैं…",
+      "dialectServerMissing": "बोली इंजन को सुरक्षित सर्वर से जोड़ना आवश्यक है। ब्राउज़र में API कुंजी की आवश्यकता नहीं है।",
+      "dialectServerUnavailable": "बोली अनुवाद सेवा अभी उपलब्ध नहीं है। बाद में पुनः प्रयास करें।",
+      "dialectServerReady": "बोली अनुवाद सर्वर जुड़ा हुआ है।"
     },
     "ur": {
       "settings": "ترتیبات",
@@ -1866,7 +2006,17 @@ window.SEIF_INTERFACE = {
       "toneAngry": "غصے میں",
       "toneHumorous": "مزاحیہ یا طنزیہ",
       "idiomGlossaryTitle": "شناخت شدہ روزمرہ محاورے",
-      "technicalGlossaryTitle": "تکنیکی اصطلاحات کی لغت"
+      "technicalGlossaryTitle": "تکنیکی اصطلاحات کی لغت",
+      "ocrLanguageLabel": "تصویر کے متن کی زبان",
+      "ocrLanguageSummary": "متن کی زبان منتخب کریں",
+      "ocrLanguageHint": "112 زبانوں یا رسم الخط کے نظاموں میں سے ایک یا زیادہ منتخب کریں۔ درست زبانیں منتخب کرنے سے شناخت بہتر ہوتی ہے۔",
+      "ocrLanguageSearch": "زبانیں تلاش کریں…",
+      "ocrNoLanguage": "ابھی کوئی زبان منتخب نہیں۔",
+      "ocrMaxLanguages": "سست لوڈنگ سے بچنے کے لیے زیادہ سے زیادہ 4 زبانیں منتخب کریں۔",
+      "ocrModelLoading": "شناخت کے ماڈل لوڈ ہو رہے ہیں…",
+      "dialectServerMissing": "بولی کے انجن کو محفوظ سرور سے جوڑنا ضروری ہے۔ براؤزر میں API کلید درکار نہیں۔",
+      "dialectServerUnavailable": "بولی کے ترجمے کی خدمت فی الحال دستیاب نہیں۔ بعد میں دوبارہ کوشش کریں۔",
+      "dialectServerReady": "بولی کا ترجمہ سرور منسلک ہے۔"
     },
     "fa": {
       "settings": "تنظیمات",
@@ -1983,7 +2133,17 @@ window.SEIF_INTERFACE = {
       "toneAngry": "عصبانی",
       "toneHumorous": "طنزآمیز یا کنایه‌آمیز",
       "idiomGlossaryTitle": "عبارت‌های محاوره‌ای شناسایی‌شده",
-      "technicalGlossaryTitle": "واژه‌نامه اصطلاحات فنی"
+      "technicalGlossaryTitle": "واژه‌نامه اصطلاحات فنی",
+      "ocrLanguageLabel": "زبان متن تصویر",
+      "ocrLanguageSummary": "انتخاب زبان متن",
+      "ocrLanguageHint": "یک یا چند مورد از ۱۱۲ زبان یا سامانه نوشتاری را انتخاب کنید. انتخاب درست دقت شناسایی را افزایش می‌دهد.",
+      "ocrLanguageSearch": "جستجوی زبان‌ها…",
+      "ocrNoLanguage": "هنوز زبانی انتخاب نشده است.",
+      "ocrMaxLanguages": "برای جلوگیری از بارگذاری کند حداکثر ۴ زبان انتخاب کنید.",
+      "ocrModelLoading": "در حال بارگذاری مدل‌های شناسایی…",
+      "dialectServerMissing": "موتور گویش باید به سرور امن متصل شود. نیازی به کلید API در مرورگر نیست.",
+      "dialectServerUnavailable": "سرویس ترجمه گویش فعلاً در دسترس نیست. بعداً دوباره تلاش کنید.",
+      "dialectServerReady": "سرور ترجمه گویش متصل است."
     },
     "el": {
       "settings": "Ρυθμίσεις",
@@ -2100,7 +2260,17 @@ window.SEIF_INTERFACE = {
       "toneAngry": "Θυμωμένο",
       "toneHumorous": "Χιουμοριστικό ή σαρκαστικό",
       "idiomGlossaryTitle": "Εντοπισμένες καθημερινές εκφράσεις",
-      "technicalGlossaryTitle": "Γλωσσάρι τεχνικών όρων"
+      "technicalGlossaryTitle": "Γλωσσάρι τεχνικών όρων",
+      "ocrLanguageLabel": "Γλώσσα κειμένου στην εικόνα",
+      "ocrLanguageSummary": "Επιλογή γλώσσας κειμένου",
+      "ocrLanguageHint": "Επιλέξτε μία ή περισσότερες από 112 γλώσσες ή συστήματα γραφής. Η σωστή επιλογή βελτιώνει την αναγνώριση.",
+      "ocrLanguageSearch": "Αναζήτηση γλωσσών…",
+      "ocrNoLanguage": "Δεν έχει επιλεγεί γλώσσα.",
+      "ocrMaxLanguages": "Επιλέξτε έως 4 γλώσσες για να αποφύγετε αργή φόρτωση.",
+      "ocrModelLoading": "Φόρτωση μοντέλων αναγνώρισης…",
+      "dialectServerMissing": "Η μηχανή διαλέκτων χρειάζεται σύνδεση με ασφαλή διακομιστή. Δεν απαιτείται κλειδί API στο πρόγραμμα περιήγησης.",
+      "dialectServerUnavailable": "Η υπηρεσία μετάφρασης διαλέκτων δεν είναι διαθέσιμη. Δοκιμάστε αργότερα.",
+      "dialectServerReady": "Ο διακομιστής μετάφρασης διαλέκτων είναι συνδεδεμένος."
     },
     "pl": {
       "settings": "Ustawienia",
@@ -2217,7 +2387,17 @@ window.SEIF_INTERFACE = {
       "toneAngry": "Zły",
       "toneHumorous": "Humorystyczny lub sarkastyczny",
       "idiomGlossaryTitle": "Wykryte potoczne wyrażenia",
-      "technicalGlossaryTitle": "Słownik terminów technicznych"
+      "technicalGlossaryTitle": "Słownik terminów technicznych",
+      "ocrLanguageLabel": "Język tekstu na obrazie",
+      "ocrLanguageSummary": "Wybierz język tekstu",
+      "ocrLanguageHint": "Wybierz jeden lub kilka spośród 112 języków lub systemów pisma. Wybór właściwych języków poprawia rozpoznawanie.",
+      "ocrLanguageSearch": "Szukaj języków…",
+      "ocrNoLanguage": "Nie wybrano języka.",
+      "ocrMaxLanguages": "Wybierz maksymalnie 4 języki, aby uniknąć wolnego ładowania.",
+      "ocrModelLoading": "Ładowanie modeli rozpoznawania…",
+      "dialectServerMissing": "Silnik dialektów wymaga połączenia z bezpiecznym serwerem. Klucz API w przeglądarce nie jest potrzebny.",
+      "dialectServerUnavailable": "Usługa tłumaczenia dialektów jest obecnie niedostępna. Spróbuj później.",
+      "dialectServerReady": "Serwer tłumaczenia dialektów jest połączony."
     },
     "sv": {
       "settings": "Inställningar",
@@ -2334,7 +2514,17 @@ window.SEIF_INTERFACE = {
       "toneAngry": "Arg",
       "toneHumorous": "Humoristisk eller sarkastisk",
       "idiomGlossaryTitle": "Upptäckta vardagliga uttryck",
-      "technicalGlossaryTitle": "Ordlista för tekniska termer"
+      "technicalGlossaryTitle": "Ordlista för tekniska termer",
+      "ocrLanguageLabel": "Språk för texten i bilden",
+      "ocrLanguageSummary": "Välj textens språk",
+      "ocrLanguageHint": "Välj ett eller flera av 112 språk eller skriftsystem. Rätt språkval förbättrar igenkänningen.",
+      "ocrLanguageSearch": "Sök språk…",
+      "ocrNoLanguage": "Inget språk har valts.",
+      "ocrMaxLanguages": "Välj högst fyra språk för att undvika långsam laddning.",
+      "ocrModelLoading": "Laddar igenkänningsmodeller…",
+      "dialectServerMissing": "Dialektmotorn måste anslutas till den säkra servern. Ingen API-nyckel behövs i webbläsaren.",
+      "dialectServerUnavailable": "Översättningstjänsten för dialekter är inte tillgänglig just nu. Försök senare.",
+      "dialectServerReady": "Servern för dialektöversättning är ansluten."
     },
     "uk": {
       "settings": "Налаштування",
@@ -2451,7 +2641,17 @@ window.SEIF_INTERFACE = {
       "toneAngry": "Злий",
       "toneHumorous": "Жартівливий або саркастичний",
       "idiomGlossaryTitle": "Виявлені розмовні вирази",
-      "technicalGlossaryTitle": "Словник технічних термінів"
+      "technicalGlossaryTitle": "Словник технічних термінів",
+      "ocrLanguageLabel": "Мова тексту на зображенні",
+      "ocrLanguageSummary": "Вибрати мову тексту",
+      "ocrLanguageHint": "Виберіть одну або кілька зі 112 мов або систем письма. Правильний вибір мов покращує розпізнавання.",
+      "ocrLanguageSearch": "Пошук мов…",
+      "ocrNoLanguage": "Мову ще не вибрано.",
+      "ocrMaxLanguages": "Виберіть до 4 мов, щоб уникнути повільного завантаження.",
+      "ocrModelLoading": "Завантаження моделей розпізнавання…",
+      "dialectServerMissing": "Рушій діалектів потрібно підключити до захищеного сервера. Ключ API у браузері не потрібен.",
+      "dialectServerUnavailable": "Служба перекладу діалектів зараз недоступна. Спробуйте пізніше.",
+      "dialectServerReady": "Сервер перекладу діалектів підключено."
     },
     "id": {
       "settings": "Pengaturan",
@@ -2568,7 +2768,17 @@ window.SEIF_INTERFACE = {
       "toneAngry": "Marah",
       "toneHumorous": "Humoris atau sarkastis",
       "idiomGlossaryTitle": "Ungkapan sehari-hari yang terdeteksi",
-      "technicalGlossaryTitle": "Glosarium istilah teknis"
+      "technicalGlossaryTitle": "Glosarium istilah teknis",
+      "ocrLanguageLabel": "Bahasa teks pada gambar",
+      "ocrLanguageSummary": "Pilih bahasa teks",
+      "ocrLanguageHint": "Pilih satu atau lebih dari 112 bahasa atau sistem tulisan. Pemilihan bahasa yang tepat meningkatkan pengenalan.",
+      "ocrLanguageSearch": "Cari bahasa…",
+      "ocrNoLanguage": "Belum ada bahasa yang dipilih.",
+      "ocrMaxLanguages": "Pilih hingga 4 bahasa agar pemuatan tidak lambat.",
+      "ocrModelLoading": "Memuat model pengenalan…",
+      "dialectServerMissing": "Mesin dialek harus terhubung ke server aman. Kunci API di browser tidak diperlukan.",
+      "dialectServerUnavailable": "Layanan terjemahan dialek sedang tidak tersedia. Coba lagi nanti.",
+      "dialectServerReady": "Server terjemahan dialek terhubung."
     },
     "sw": {
       "settings": "Mipangilio",
@@ -2685,7 +2895,17 @@ window.SEIF_INTERFACE = {
       "toneAngry": "Hasira",
       "toneHumorous": "Ya ucheshi au kejeli",
       "idiomGlossaryTitle": "Misemo ya mazungumzo iliyotambuliwa",
-      "technicalGlossaryTitle": "Kamusi ya istilahi za kiufundi"
+      "technicalGlossaryTitle": "Kamusi ya istilahi za kiufundi",
+      "ocrLanguageLabel": "Lugha ya maandishi kwenye picha",
+      "ocrLanguageSummary": "Chagua lugha ya maandishi",
+      "ocrLanguageHint": "Chagua lugha moja au zaidi kati ya lugha 112 au mifumo ya maandishi. Kuchagua lugha sahihi huboresha utambuzi.",
+      "ocrLanguageSearch": "Tafuta lugha…",
+      "ocrNoLanguage": "Bado hakuna lugha iliyochaguliwa.",
+      "ocrMaxLanguages": "Chagua hadi lugha 4 ili kuepuka upakiaji wa polepole.",
+      "ocrModelLoading": "Inapakia modeli za utambuzi…",
+      "dialectServerMissing": "Injini ya lahaja inahitaji kuunganishwa na seva salama. Hakuna ufunguo wa API unaohitajika kwenye kivinjari.",
+      "dialectServerUnavailable": "Huduma ya tafsiri ya lahaja haipatikani kwa sasa. Jaribu tena baadaye.",
+      "dialectServerReady": "Seva ya tafsiri ya lahaja imeunganishwa."
     }
   }
 };
