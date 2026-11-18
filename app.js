@@ -1,12 +1,12 @@
 const $=id=>document.getElementById(id);
 const LANGS=[
-["auto","اكتشاف اللغة تلقائياً","auto"],["ar","العربية","language"],["en","الإنجليزية","language"],["fr","الفرنسية","language"],["es","الإسبانية","language"],["de","الألمانية","language"],["it","الإيطالية","language"],["tr","التركية","language"],["ru","الروسية","language"],["zh-CN","الصينية المبسطة","language"],["ja","اليابانية","language"],["ko","الكورية","language"],["pt","البرتغالية","language"],["nl","الهولندية","language"],["hi","الهندية","language"],["ur","الأردية","language"],["fa","الفارسية","language"],["el","اليونانية","language"],["pl","البولندية","language"],["sv","السويدية","language"],["uk","الأوكرانية","language"],["id","الإندونيسية","language"],["sw","السواحيلية","language"],
+["auto","اكتشاف اللغة تلقائياً","auto"],["ar","العربية","language"],["en","English","language"],["fr","Français","language"],["es","Español","language"],["de","Deutsch","language"],["it","Italiano","language"],["tr","Türkçe","language"],["ru","Русский","language"],["zh-CN","中文（简体）","language"],["ja","日本語","language"],["ko","한국어","language"],["pt","Português","language"],["nl","Nederlands","language"],["hi","हिन्दी","language"],["ur","اردو","language"],["fa","فارسی","language"],["el","Ελληνικά","language"],["pl","Polski","language"],["sv","Svenska","language"],["uk","Українська","language"],["id","Bahasa Indonesia","language"],["sw","Kiswahili","language"],
 ["ar-TN","التونسية","dialect"],["ar-EG","المصرية","dialect"],["ar-MA","المغربية","dialect"],["ar-DZ","الجزائرية","dialect"],["ar-LB","اللبنانية","dialect"],["ar-SY","السورية","dialect"],["ar-JO","الأردنية","dialect"],["ar-PS","الفلسطينية","dialect"],["ar-IQ","العراقية","dialect"],["ar-SA","السعودية","dialect"],["ar-AE","الإماراتية","dialect"],["ar-YE","اليمنية","dialect"],["ar-SD","السودانية","dialect"],["ar-OM","العُمانية","dialect"],["ar-KW","الكويتية","dialect"],["ar-QA","القطرية","dialect"],["ar-BH","البحرينية","dialect"],["ar-LY","الليبية","dialect"],["fr-CA","الفرنسية الكندية","dialect"],["en-US","الإنجليزية الأمريكية","dialect"],["en-GB","الإنجليزية البريطانية","dialect"],["es-MX","الإسبانية المكسيكية","dialect"],["pt-BR","البرتغالية البرازيلية","dialect"]
 ];
 let source=localStorage.getItem("seifSourceLang")||"auto",target=localStorage.getItem("seifTargetLang")||"ar",activeSide="source",recentLanguages=JSON.parse(localStorage.getItem("seifRecentLanguages")||"[]"),history=JSON.parse(localStorage.getItem("seifHistory")||"[]"),saved=JSON.parse(localStorage.getItem("seifSaved")||"[]");
 const label=code=>LANGS.find(x=>x[0]===code)?.[1]||code;
 function paintLanguages(){ $("sourceLang").innerHTML=label(source)+' <span>⌄</span>'; $("targetLang").innerHTML=label(target)+' <span>⌄</span>'; updateQuick(); updateDialectHint(); }
-function updateQuick(){["source","target"].forEach(side=>{const value=side==="source"?source:target;document.querySelectorAll("#"+side+"Quick .quick").forEach(b=>b.classList.toggle("selected",b.dataset.code===value));});}
+function updateQuick(){["source","target"].forEach(side=>{const value=side==="source"?source:target;document.querySelectorAll("#"+side+"Quick .quick").forEach(b=>{b.classList.toggle("selected",b.dataset.code===value);b.textContent=b.dataset.code==="auto"?(localStorage.getItem("seifInterfaceLanguage")==="ar"?"تلقائي":"Auto"):label(b.dataset.code);});});}
 function setLanguage(side,code){
  if(side==="source")source=code;else target=code;
  localStorage.setItem(side==="source"?"seifSourceLang":"seifTargetLang",code);
@@ -18,7 +18,7 @@ function renderLanguageList(q){
  const recent=recentLanguages.map(code=>LANGS.find(x=>x[0]===code)).filter(Boolean);
  const recentRoot=$("recentLanguages");
  recentRoot.hidden=!!q||!recent.length;
- recentRoot.innerHTML=recentRoot.hidden?"":'<div class="recent-title">استُعملت مؤخراً</div>'+recent.map(x=>'<button type="button" data-code="'+x[0]+'">'+x[1]+' <small>✓</small></button>').join("");
+ recentRoot.innerHTML=recentRoot.hidden?"":'<div class="recent-title">'+ui("recentUsed")+"</div>"+recent.map(x=>'<button type="button" data-code="'+x[0]+'">'+x[1]+' <small>✓</small></button>').join("");
  const items=LANGS.filter(x=>(x[1]+" "+x[0]).toLowerCase().includes(q.toLowerCase()));
  $("languageList").innerHTML=items.map(x=>'<button data-code="'+x[0]+'">'+x[1]+(recentLanguages.includes(x[0])?' <small class="used-mark">✓ استُعملت</small>':"")+(x[2]==="dialect"?' <small>· لهجة</small>':'')+'</button>').join("");
 }
@@ -49,7 +49,7 @@ function scheduleAutoTranslate(){
   $("translatedText").textContent="ستظهر الترجمة هنا";
   $("translatedText").classList.add("placeholder");
   $("translatedText").removeAttribute("aria-label");
-  $("translationStatus").textContent="اكتب للترجمة تلقائياً";
+  $("translationStatus").textContent=ui("translate");
   $("correctionSuggestions").hidden=true;
   return;
  }
@@ -75,14 +75,7 @@ $("clearText").onclick=()=>{$("sourceText").value="";$("charCount").textContent=
 $("copySource").onclick=()=>copy($("sourceText").value);$("copyResult").onclick=()=>copy($("translatedText").textContent);
 async function copy(t){try{await navigator.clipboard.writeText(t);$("translationStatus").textContent="تم النسخ";}catch{$("translationStatus").textContent="تعذّر النسخ";}}
 function getDialect(code){return LANGS.find(x=>x[0]===code)?.[2]==="dialect";}
-function updateDialectHint(){
- const selected=[source,target].filter(code=>getDialect(code)).map(label);
- const hint=document.querySelector(".dialect-hint");
- if(!hint)return;
- hint.textContent=selected.length
-  ?"محرك اللهجة المحددة مفعّل: "+selected.join(" ↔ ")+" · يتطلب مفتاح API من الإعدادات"
-  :"يفهم التعبيرات المحلية والسياق؛ اختيار لهجة محددة يفعّل محركها الخاص";
-}
+function updateDialectHint(){const hint=document.querySelector(".dialect-hint");if(!hint)return;const selected=[source,target].filter(code=>getDialect(code)).map(label);hint.textContent=ui("dialectHint")+(selected.length?" · "+selected.join(" ↔ "):"");}
 function dialectProfilePrompt(code,role){
  const profile=window.SEIF_DIALECTS&&window.SEIF_DIALECTS[code];
  if(!profile)return "";
@@ -149,49 +142,117 @@ function showResult(result,saveToHistory=true){const text=typeof result==="strin
 function renderCorrections(items){const root=$("correctionSuggestions");root.innerHTML="";if(!items.length){root.hidden=true;return;}root.hidden=false;const title=document.createElement("div");title.className="correction-title";title.textContent="اقتراح تصحيح أو معنى أوضح";root.appendChild(title);items.forEach(item=>{if(!item||!item.translation)return;const b=document.createElement("button");b.type="button";b.className="correction-chip";const colored=document.createElement("span");colored.className="gemini-text";colored.textContent=item.label||"صياغة أوضح";b.appendChild(colored);b.title=item.reason||"اضغط لتطبيق هذا التصحيح";b.addEventListener("click",()=>{stableTranslation=item.translation;$("translatedText").textContent=item.translation;$("translationStatus").textContent="تم تطبيق التصحيح المقترح";$("correctionSuggestions").hidden=true;});root.appendChild(b);});if(!root.querySelector(".correction-chip"))root.hidden=true;}
 $("translateBtn").onclick=async()=>{const text=$("sourceText").value;if(!text.trim()){ $("translationStatus").textContent="اكتب نصاً أولاً";return;}const btn=$("translateBtn");btn.disabled=true;btn.querySelector("span").textContent="جارٍ الترجمة...";$("translationStatus").textContent="نعالج النص الآن";try{const result=await translate(text);showResult(result);}catch(e){$("translatedText").textContent=e.message;$("translationStatus").textContent="تعذّرت الترجمة";}finally{btn.disabled=false;btn.querySelector("span").textContent="ترجمة";}};
 $("saveResult").onclick=()=>{const output=$("translatedText").textContent;if(!output||$("translatedText").classList.contains("placeholder"))return; saved.unshift({source,target,input:$("sourceText").value,output,date:Date.now()});saved=saved.slice(0,100);localStorage.setItem("seifSaved",JSON.stringify(saved));$("translationStatus").textContent="أُضيفت إلى المحفوظات";};
-function renderRecords(which){const arr=which==="history"?history:saved,root=$(which==="history"?"historyList":"savedList");if(which==="history")$("clearHistory").disabled=!arr.length;if(!arr.length){root.innerHTML='<div class="empty">لا توجد عناصر هنا بعد.</div>';return;}root.innerHTML=arr.map((x,i)=>'<article class="record"><div class="muted">'+label(x.source)+' ← '+label(x.target)+' · '+new Date(x.date).toLocaleString()+'</div><p>'+escapeHTML(x.input)+'</p><p><b>'+escapeHTML(x.output)+'</b></p><div class="record-actions"><button data-copy="'+i+'" data-kind="'+which+'">نسخ الترجمة</button><button data-delete="'+i+'" data-kind="'+which+'">حذف</button></div></article>').join("");}
+function renderRecords(which){const arr=which==="history"?history:saved,root=$(which==="history"?"historyList":"savedList");if(which==="history")$("clearHistory").disabled=!arr.length;if(!arr.length){root.innerHTML='<div class="empty">'+ui("recordsEmpty")+"</div>";return;}root.innerHTML=arr.map((x,i)=>'<article class="record"><div class="muted">'+label(x.source)+' ← '+label(x.target)+' · '+new Date(x.date).toLocaleString()+'</div><p>'+escapeHTML(x.input)+'</p><p><b>'+escapeHTML(x.output)+'</b></p><div class="record-actions"><button data-copy="'+i+'" data-kind="'+which+'">نسخ الترجمة</button><button data-delete="'+i+'" data-kind="'+which+'">حذف</button></div></article>').join("");}
 $("clearHistory").onclick=()=>{if(!history.length)return;if(!confirm("هل تريد حذف سجل الترجمة بالكامل؟ لا يمكن التراجع عن هذا الإجراء."))return;history=[];localStorage.setItem("seifHistory",JSON.stringify(history));renderRecords("history");};
 function escapeHTML(s){return String(s||"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
 document.addEventListener("click",e=>{const d=e.target.closest("[data-delete]");if(d){const arr=d.dataset.kind==="history"?history:saved;arr.splice(+d.dataset.delete,1);localStorage.setItem(d.dataset.kind==="history"?"seifHistory":"seifSaved",JSON.stringify(arr));renderRecords(d.dataset.kind);}const c=e.target.closest("[data-copy]");if(c){const arr=c.dataset.kind==="history"?history:saved;copy(arr[+c.dataset.copy].output);}});
 function showPanel(name){["translate","history","saved"].forEach(n=>{$(n+"Panel").hidden=n!==name;document.querySelectorAll(".side-link[data-panel]").forEach(b=>b.classList.toggle("active",b.dataset.panel===name));});if(name==="history"||name==="saved")renderRecords(name);$("sidebar").classList.remove("open");$("scrim").classList.remove("show");}
 document.querySelectorAll("[data-panel]").forEach(b=>b.onclick=()=>showPanel(b.dataset.panel));
 $("menuBtn").onclick=()=>{$("sidebar").classList.add("open");$("scrim").classList.add("show");};$("closeSide").onclick=$("scrim").onclick=()=>{$("sidebar").classList.remove("open");$("scrim").classList.remove("show");};
-function openSettings(){$("interfaceLanguage").value=localStorage.getItem("seifInterfaceLanguage")||"ar";$("apiKey").value=localStorage.getItem("seifOpenAIKey")||"";$("aiModel").value=localStorage.getItem("seifAIModel")||"gpt-4o-mini";$("settingsModal").hidden=false;}
-$("settingsOpen").onclick=$("settingsTop").onclick=openSettings;$("saveSettings").onclick=()=>{applyInterfaceLanguage($("interfaceLanguage").value);localStorage.setItem("seifOpenAIKey",$("apiKey").value.trim());localStorage.setItem("seifAIModel",$("aiModel").value.trim()||"gpt-4o-mini");$("settingsModal").hidden=true;};
+function openSettings(){$("interfaceLanguage").value=localStorage.getItem("seifInterfaceLanguage")||"ar";$("settingsModal").hidden=false;}
+$("settingsOpen").onclick=$("settingsTop").onclick=openSettings;$("saveSettings").onclick=()=>{applyInterfaceLanguage($("interfaceLanguage").value);$("settingsModal").hidden=true;};
 document.querySelectorAll("[data-close]").forEach(b=>b.onclick=()=>$ (b.dataset.close).hidden=true);
 $("dialectMode").addEventListener("change",scheduleAutoTranslate);
-const UI_TEXT={
- en:{navTranslate:"Translate",navHistory:"History",navSaved:"Saved",settings:"Settings",modeText:"Text",modeImages:"Images",modeDocs:"Documents",modeWeb:"Websites",dialect:"Smart dialect translation",outputLabel:"Translation",sourcePlaceholder:"Type or paste text here...",outputPlaceholder:"Your translation will appear here",translate:"Translate",historyTitle:"Translation history",historyDesc:"Your recent translations on this device.",savedTitle:"Saved translations",savedDesc:"Keep phrases you want to revisit.",languageModal:"Choose a language or dialect",languageSearch:"Search languages or dialects...",clearHistory:"Clear all",footer:"SEIF TRANSLATOR"},
- ru:{navTranslate:"Перевод",navHistory:"История",navSaved:"Сохранённое",settings:"Настройки",modeText:"Текст",modeImages:"Изображения",modeDocs:"Документы",modeWeb:"Сайты",dialect:"Умный перевод диалектов",outputLabel:"Перевод",sourcePlaceholder:"Введите или вставьте текст...",outputPlaceholder:"Здесь появится перевод",translate:"Перевести",historyTitle:"История переводов",historyDesc:"Ваши последние переводы на этом устройстве.",savedTitle:"Сохранённые переводы",savedDesc:"Сохраните фразы, к которым хотите вернуться.",languageModal:"Выберите язык или диалект",languageSearch:"Поиск языка или диалекта...",clearHistory:"Удалить всё",footer:"SEIF TRANSLATOR"}
-};
-function applyInterfaceLanguage(lang){
- const dict=UI_TEXT[lang]||{};
- document.documentElement.lang=lang;document.documentElement.dir=lang==="ar"?"rtl":"ltr";
- $("sourceText").placeholder=dict.sourcePlaceholder||"اكتب النص أو الصقه هنا...";
- $("languageSearch").placeholder=dict.languageSearch||"ابحث عن لغة أو لهجة...";
- $("translatedText").textContent=$("translatedText").classList.contains("placeholder")?(dict.outputPlaceholder||"ستظهر الترجمة هنا"):$("translatedText").textContent;
- const nav=document.querySelectorAll(".side-link[data-panel]");
- [dict.navTranslate||"الترجمة",dict.navHistory||"السجل",dict.navSaved||"المحفوظات"].forEach((v,i)=>{if(nav[i])nav[i].lastChild.textContent=" "+v;});
- const settings=$("settingsOpen");if(settings)settings.lastChild.textContent=" "+(dict.settings||"الإعدادات");
- const modeKeys=["modeText","modeImages","modeDocs","modeWeb"],modeFallback=["نص","صور","مستندات","مواقع ويب"];
- document.querySelectorAll(".mode").forEach((b,i)=>{b.lastChild.textContent=" "+(dict[modeKeys[i]]||modeFallback[i]);});
- const dialect=document.querySelector(".dialect-row label");if(dialect)dialect.lastChild.textContent=" "+(dict.dialect||"ترجمة ذكية للهجات");
- $("outputLabel").textContent=dict.outputLabel||"الترجمة";
- $("translateBtn").querySelector("span").textContent=dict.translate||"ترجمة";
- $("clearHistory").textContent=dict.clearHistory||"حذف الكل";
- document.querySelector(".site-footer").textContent=dict.footer||"SEIF TRANSLATOR";
- $("historyPanel").querySelector("h1").textContent=dict.historyTitle||"سجل الترجمة";
- $("historyPanel").querySelector("p").textContent=dict.historyDesc||"آخر الترجمات التي أجريتها على هذا الجهاز.";
- $("savedPanel").querySelector("h1").textContent=dict.savedTitle||"الترجمات المحفوظة";
- $("savedPanel").querySelector("p").textContent=dict.savedDesc||"احتفظ بالعبارات التي تريد الرجوع إليها.";
- $("languageModal").querySelector("h3").textContent=dict.languageModal||"اختر اللغة أو اللهجة";
- localStorage.setItem("seifInterfaceLanguage",lang);
+const INTERFACE=window.SEIF_INTERFACE;
+const currentInterface=()=>localStorage.getItem("seifInterfaceLanguage")||"ar";
+function ui(key){const lang=currentInterface();return INTERFACE?.translations?.[lang]?.[key]||INTERFACE?.translations?.en?.[key]||key;}
+function buildInterfaceLanguageOptions(){
+ const select=$("interfaceLanguage");if(!select||!INTERFACE)return;
+ select.innerHTML="";
+ INTERFACE.languages.forEach(item=>{const option=document.createElement("option");option.value=item.code;option.textContent=item.name;select.appendChild(option);});
+ select.value=currentInterface();
 }
-
+function setLastText(el,value){if(el&&el.lastChild)el.lastChild.textContent=" "+value;}
+function applyInterfaceLanguage(lang){
+ const chosen=INTERFACE.languages.find(x=>x.code===lang)||INTERFACE.languages[0];
+ document.documentElement.lang=chosen.code;document.documentElement.dir=chosen.dir;
+ localStorage.setItem("seifInterfaceLanguage",chosen.code);$("interfaceLanguage").value=chosen.code;
+ const nav=document.querySelectorAll(".side-link[data-panel]");
+ setLastText(nav[0],ui("translate"));setLastText(nav[1],ui("history"));setLastText(nav[2],ui("saved"));setLastText($("settingsOpen"),ui("settings"));
+ const modeKeys={text:"text",images:"images",documents:"documents",web:"websites"};
+ document.querySelectorAll(".mode").forEach(b=>setLastText(b,ui(modeKeys[b.dataset.mode])));
+ setLastText(document.querySelector(".dialect-row label"),ui("dialect"));
+ $("sourceText").placeholder=ui("sourcePlaceholder");$("languageSearch").placeholder=ui("languageSearch");
+ if($("translatedText").classList.contains("placeholder"))$("translatedText").textContent=ui("outputPlaceholder");
+ $("outputLabel").textContent=ui("output");$("translateBtn").querySelector("span").textContent=ui("translate");
+ $("clearHistory").textContent=ui("clearAll");document.querySelector(".site-footer").textContent=ui("footer");
+ $("historyPanel").querySelector("h1").textContent=ui("history");$("historyPanel").querySelector("p").textContent=ui("historyDesc");
+ $("savedPanel").querySelector("h1").textContent=ui("saved");$("savedPanel").querySelector("p").textContent=ui("savedDesc");
+ $("languageModal").querySelector("h3").textContent=ui("languagePickerTitle");$("settingsModal").querySelector("h3").textContent=ui("settings");
+ document.querySelectorAll("[data-i18n]").forEach(el=>{el.textContent=ui(el.dataset.i18n);});
+ $("imageText").placeholder=ui("imageTextPlaceholder");$("documentText").placeholder=ui("documentTextPlaceholder");
+ $("imageSelectionHint").textContent=ui("imageSelectHint");
+ $("selectAllImage").textContent=ui("selectAll");$("clearImageSelection").textContent=ui("clearSelection");
+ $("extractImageText").textContent=ui("extractText");$("translateImage").textContent=ui("translateExtracted");
+ $("themeBtn").title=ui("theme");$("themeBtn").setAttribute("aria-label",ui("theme"));
+ $("swapBtn").title=ui("swapLanguages");$("swapBtn").setAttribute("aria-label",ui("swapLanguages"));$("menuBtn").setAttribute("aria-label",ui("menu"));
+ $("clearText").title=ui("clearText");$("copySource").title=ui("copy");$("copyResult").title=ui("copy");$("saveResult").title=ui("save");
+ document.querySelectorAll(".quick").forEach(b=>{b.textContent=b.dataset.code==="auto"?(chosen.code==="ar"?"تلقائي":"Auto"):label(b.dataset.code);});
+ updateDialectHint();if(!$("languageModal").hidden)renderLanguageList($("languageSearch").value);
+}
+buildInterfaceLanguageOptions();
 $("themeBtn").onclick=()=>{document.body.classList.toggle("light");localStorage.setItem("seifTheme",document.body.classList.contains("light")?"light":"dark");};if(localStorage.getItem("seifTheme")==="light")document.body.classList.add("light");
 document.querySelectorAll(".mode").forEach(b=>b.onclick=()=>{document.querySelectorAll(".mode").forEach(x=>x.classList.toggle("active",x===b));const mode=b.dataset.mode;["text","images","documents","web"].forEach(x=>$(x+"Mode").hidden=x!==mode);$("translateBtn").hidden=mode!=="text";$("engineNote").textContent=mode==="text"?"الترجمة النصية · اكتشاف تلقائي":mode==="images"?"استخراج النص من الصور وترجمته":mode==="documents"?"استخراج محتوى المستند وترجمته":"ترجمة صفحات الويب";});
-$("imageInput").onchange=async e=>{const file=e.target.files[0];if(!file)return;$("imagePreview").src=URL.createObjectURL(file);$("imagePreview").hidden=false;$("imageText").hidden=false;$("translateImage").hidden=false;$("imageText").value="جارٍ استخراج النص...";try{if(!window.Tesseract){await loadScript("https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js");}const result=await Tesseract.recognize(file,"ara+eng+fra");$("imageText").value=result.data.text.trim()||"لم يتم العثور على نص واضح.";}catch{$("imageText").value="تعذّر استخراج النص تلقائياً. اكتب النص هنا يدوياً.";}}; 
-$("translateImage").onclick=async()=>{const text=$("imageText").value.trim();if(!text)return;$("sourceText").value=text;document.querySelector('[data-mode="text"]').click();$("translateBtn").click();};
+let selectedImageFile=null,imageRegion=null,imageDrag=null,previewObjectUrl=null;
+function drawImageSelection(){
+ const canvas=$("imageSelection"),ctx=canvas.getContext("2d");if(!canvas.width||!canvas.height)return;
+ ctx.clearRect(0,0,canvas.width,canvas.height);if(!imageRegion)return;
+ const x=imageRegion.x*canvas.width,y=imageRegion.y*canvas.height,w=imageRegion.w*canvas.width,h=imageRegion.h*canvas.height;
+ ctx.fillStyle="rgba(5,7,14,.46)";ctx.fillRect(0,0,canvas.width,canvas.height);ctx.clearRect(x,y,w,h);
+ ctx.strokeStyle="#a99eff";ctx.lineWidth=2;ctx.setLineDash([7,4]);ctx.strokeRect(x,y,w,h);ctx.setLineDash([]);
+ ctx.fillStyle="#a99eff";[[x,y],[x+w-8,y],[x,y+h-8],[x+w-8,y+h-8]].forEach(([px,py])=>ctx.fillRect(px,py,8,8));
+}
+function resizeImageSelectionCanvas(){
+ const img=$("imagePreview"),canvas=$("imageSelection");if(!img.complete||!img.naturalWidth)return;
+ const width=img.clientWidth,height=img.clientHeight;if(!width||!height)return;canvas.width=width;canvas.height=height;drawImageSelection();
+}
+function imagePoint(event){
+ const rect=$("imageSelection").getBoundingClientRect();
+ return {x:Math.max(0,Math.min(1,(event.clientX-rect.left)/rect.width)),y:Math.max(0,Math.min(1,(event.clientY-rect.top)/rect.height))};
+}
+$("imageSelection").addEventListener("pointerdown",e=>{
+ if($("imageCropper").hidden)return;e.preventDefault();imageDrag={start:imagePoint(e)};
+ $("imageSelection").setPointerCapture(e.pointerId);imageRegion={x:imageDrag.start.x,y:imageDrag.start.y,w:0,h:0};drawImageSelection();
+});
+$("imageSelection").addEventListener("pointermove",e=>{
+ if(!imageDrag)return;const a=imageDrag.start,b=imagePoint(e);
+ imageRegion={x:Math.min(a.x,b.x),y:Math.min(a.y,b.y),w:Math.abs(b.x-a.x),h:Math.abs(b.y-a.y)};drawImageSelection();
+});
+function finishImageDrag(){if(!imageDrag)return;if(!imageRegion||imageRegion.w<0.008||imageRegion.h<0.008)imageRegion=null;imageDrag=null;drawImageSelection();}
+$("imageSelection").addEventListener("pointerup",finishImageDrag);$("imageSelection").addEventListener("pointercancel",finishImageDrag);
+$("selectAllImage").onclick=()=>{imageRegion={x:0,y:0,w:1,h:1};drawImageSelection();};
+$("clearImageSelection").onclick=()=>{imageRegion=null;drawImageSelection();};
+$("imageInput").onchange=e=>{
+ const file=e.target.files&&e.target.files[0];e.target.value="";if(!file)return;
+ if(!file.type.startsWith("image/")){$("imageOcrStatus").textContent=ui("imageReadError");return;}
+ selectedImageFile=file;imageRegion=null;imageDrag=null;$("imageText").hidden=true;$("translateImage").hidden=true;$("imageText").value="";
+ $("imageOcrStatus").textContent="";$("imageCropper").hidden=false;$("imageSelectionHint").hidden=false;$("imageCropActions").hidden=false;
+ const preview=$("imagePreview");preview.onload=()=>{resizeImageSelectionCanvas();$("imageOcrStatus").textContent=ui("imageSelectHint");};
+ preview.onerror=()=>{$("imageOcrStatus").textContent=ui("imageReadError");};
+ if(previewObjectUrl)URL.revokeObjectURL(previewObjectUrl);previewObjectUrl=URL.createObjectURL(file);preview.src=previewObjectUrl;
+};
+window.addEventListener("resize",resizeImageSelectionCanvas);
+$("extractImageText").onclick=async()=>{
+ const preview=$("imagePreview");if(!selectedImageFile||!preview.naturalWidth){$("imageOcrStatus").textContent=ui("imageReadError");return;}
+ const region=imageRegion||{x:0,y:0,w:1,h:1};
+ const sx=Math.max(0,Math.floor(region.x*preview.naturalWidth)),sy=Math.max(0,Math.floor(region.y*preview.naturalHeight));
+ const sw=Math.max(1,Math.min(preview.naturalWidth-sx,Math.ceil(region.w*preview.naturalWidth)));
+ const sh=Math.max(1,Math.min(preview.naturalHeight-sy,Math.ceil(region.h*preview.naturalHeight)));
+ const scale=Math.max(1,Math.min(2.2,4000/Math.max(sw,sh)));
+ const crop=document.createElement("canvas");crop.width=Math.max(1,Math.round(sw*scale));crop.height=Math.max(1,Math.round(sh*scale));
+ const ctx=crop.getContext("2d",{willReadFrequently:true});ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality="high";
+ ctx.drawImage(preview,sx,sy,sw,sh,0,0,crop.width,crop.height);
+ try{const pixels=ctx.getImageData(0,0,crop.width,crop.height),d=pixels.data;for(let i=0;i<d.length;i+=4){const gray=.299*d[i]+.587*d[i+1]+.114*d[i+2],contrast=Math.max(0,Math.min(255,(gray-128)*1.18+128));d[i]=d[i+1]=d[i+2]=contrast;}ctx.putImageData(pixels,0,0);}catch(_){}
+ const button=$("extractImageText");button.disabled=true;$("imageOcrStatus").textContent=ui("extracting")+" 0%";
+ try{
+  if(!window.Tesseract)await loadScript("https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js");
+  const result=await Tesseract.recognize(crop,"ara+eng+fra",{logger:m=>{if(m.status==="recognizing text"&&typeof m.progress==="number")$("imageOcrStatus").textContent=ui("extracting")+" "+Math.round(m.progress*100)+"%";}});
+  const extracted=(result.data.text||"").trim();$("imageText").value=extracted;$("imageText").hidden=false;$("translateImage").hidden=false;
+  $("imageOcrStatus").textContent=extracted?ui("imageDone"):ui("imageEmpty");
+ }catch(err){$("imageOcrStatus").textContent=ui("imageReadError")+" "+(err&&err.message?err.message:"");$("imageText").hidden=false;$("imageText").value="";$("translateImage").hidden=false;}
+ finally{button.disabled=false;}
+};
+$("translateImage").onclick=()=>{const text=$("imageText").value.trim();if(!text)return;$("sourceText").value=text;$("charCount").textContent=text.length+" / 12000";document.querySelector('[data-mode="text"]').click();scheduleAutoTranslate();};
 $("documentInput").onchange=async e=>{const f=e.target.files[0];if(!f)return;$("documentName").textContent=f.name;$("documentText").hidden=false;$("translateDocument").hidden=false;try{let t="";if(f.type==="text/plain"||/\.(txt|md)$/i.test(f.name))t=await f.text();else if(/\.pdf$/i.test(f.name)){await loadScript("https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js");pdfjsLib.GlobalWorkerOptions.workerSrc="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";const pdf=await pdfjsLib.getDocument({data:await f.arrayBuffer()}).promise;for(let i=1;i<=pdf.numPages;i++){const p=await pdf.getPage(i);const c=await p.getTextContent();t+=c.items.map(x=>x.str).join(" ")+"\n";}}else if(/\.docx$/i.test(f.name)){await loadScript("https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.8.0/mammoth.browser.min.js");const a=await mammoth.extractRawText({arrayBuffer:await f.arrayBuffer()});t=a.value;}else throw new Error("صيغة الملف غير مدعومة");$("documentText").value=t;}catch(err){$("documentText").value="تعذّر قراءة الملف: "+err.message;}};
 $("translateDocument").onclick=()=>{$("sourceText").value=$("documentText").value;document.querySelector('[data-mode="text"]').click();$("translateBtn").click();};
 $("openWebsite").onclick=()=>{const u=$("websiteUrl").value.trim();if(!/^https?:\/\//i.test(u)){alert("أدخل رابطاً يبدأ بـ https:// أو http://");return;}alert("لترجمة النصوص داخل الصفحة الحالية دون مغادرتها، ثبّت إضافة SEIF TRANSLATOR وافتح الرابط في المتصفح.");};
