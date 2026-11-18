@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SEIF TRANSLATOR</title><link rel="stylesheet" href="popup.css">
+</head>
+<body>
+<main class="app">
+  <header><div class="brand">SEIF <span>TRANSLATOR</span></div><button id="more" class="more" aria-label="المزيد">⋮</button></header>
+  <section class="language-row">
+    <div class="language"><small>من</small><strong>التعرّف التلقائي</strong></div>
+    <div class="swap">→</div>
+    <label class="language target"><small>إلى</small><select id="target">
+      <option value="ar">العربية</option><option value="en">الإنجليزية</option><option value="fr">الفرنسية</option><option value="es">الإسبانية</option><option value="de">الألمانية</option><option value="it">الإيطالية</option><option value="tr">التركية</option><option value="pt">البرتغالية</option><option value="ru">الروسية</option><option value="ja">اليابانية</option><option value="zh-CN">الصينية</option>
+    </select></label>
+  </section>
+  <section class="actions">
+    <button id="translatePage" class="primary">ترجمة هذه الصفحة</button>
+    <button id="imageMode" class="secondary">ترجمة صورة من الجهاز</button>
+    <input id="imageFile" type="file" accept="image/*" hidden>
+  </section>
+  <section id="imagePanel" class="image-panel" hidden>
+    <img id="preview" alt="معاينة الصورة">
+    <textarea id="imageText" placeholder="سيظهر النص المستخرج من الصورة هنا..."></textarea>
+    <button id="translateImage" class="primary">ترجمة النص المستخرج</button>
+    <div id="imageResult" class="result"></div>
+    <p class="hint">هذه النسخة تعرض النص المترجم بجانب الصورة؛ إعادة تركيب النص داخل الصورة مع مطابقة الخط والخلفية ستُطوّر لاحقاً.</p>
+  </section>
+  <p id="status" role="status"></p>
+  <div id="menu" class="menu" hidden><button id="reset">إعادة ضبط</button><p>SEIF TRANSLATOR · 1.0</p></div>
+  <footer>ترجمة بسيطة، مباشرة.</footer>
+</main><script src="popup.js"></script>
+</body></html>
