@@ -7,13 +7,13 @@
 </head>
 <body>
 <aside class="sidebar" id="sidebar">
- <div class="side-brand"><span class="brand-mark">S</span><span>SEIF <b>TRANSLATOR</b></span><button class="icon-btn close-side" id="closeSide" aria-label="إغلاق القائمة">×</button></div>
+ <div class="side-brand"><button class="icon-btn close-side" id="closeSide" aria-label="إغلاق القائمة">×</button></div>
  <nav><button class="side-link active" data-panel="translate"><span>文</span> الترجمة</button><button class="side-link" data-panel="history"><span>◷</span> السجل</button><button class="side-link" data-panel="saved"><span>☆</span> المحفوظات</button></nav>
  <div class="side-bottom"><button class="side-link" id="settingsOpen"><span>⚙</span> الإعدادات</button><div class="side-note">ترجمة تفهم المعنى، لا الكلمات فقط.</div></div>
 </aside>
 <div class="scrim" id="scrim"></div>
 <main class="main">
- <header class="topbar"><button class="icon-btn menu-btn" id="menuBtn" aria-label="القائمة">☰</button><div class="mobile-brand">SEIF <b>TRANSLATOR</b></div><div class="top-actions"><button class="icon-btn" id="themeBtn" title="تغيير المظهر" aria-label="تغيير المظهر">☼</button><button class="icon-btn" id="settingsTop" title="الإعدادات" aria-label="الإعدادات">⚙</button></div></header>
+ <header class="topbar"><button class="icon-btn menu-btn" id="menuBtn" aria-label="القائمة">☰</button><div class="mobile-brand" aria-hidden="true"></div><div class="top-actions"><button class="icon-btn" id="themeBtn" title="تغيير المظهر" aria-label="تغيير المظهر">☼</button><button class="icon-btn" id="settingsTop" title="الإعدادات" aria-label="الإعدادات">⚙</button></div></header>
  <section class="workspace" id="translatePanel">
   <div class="intro intro-spacer" aria-hidden="true"></div>
   <div class="modebar" role="tablist"><button class="mode active" data-mode="text"><span>文</span> نص</button><button class="mode" data-mode="images"><span>▧</span> صور</button><button class="mode" data-mode="documents"><span>▤</span> مستندات</button><button class="mode" data-mode="web"><span>◎</span> مواقع ويب</button></div>
@@ -37,7 +37,7 @@
  </section>
  <section class="workspace secondary-panel" id="historyPanel" hidden><div class="intro"><div class="eyebrow">YOUR ACTIVITY</div><h1>سجل <span>الترجمة</span></h1><p>آخر الترجمات التي أجريتها على هذا الجهاز.</p></div><div class="records-head"><button class="clear-history-btn" id="clearHistory" type="button">حذف الكل</button></div><div id="historyList" class="records"></div></section>
  <section class="workspace secondary-panel" id="savedPanel" hidden><div class="intro"><div class="eyebrow">YOUR COLLECTION</div><h1>الترجمات <span>المحفوظة</span></h1><p>احتفظ بالعبارات التي تريد الرجوع إليها.</p></div><div id="savedList" class="records"></div></section>
- <footer class="site-footer">SEIF TRANSLATOR <span>•</span> صنع بيد سيف</footer>
+ <footer class="site-footer">SEIF TRANSLATOR</footer>
 </main>
 <div class="modal-backdrop" id="languageModal" hidden><div class="modal"><div class="modal-head"><h3>اختر اللغة أو اللهجة</h3><button class="icon-btn" data-close="languageModal">×</button></div><input id="languageSearch" placeholder="ابحث عن لغة أو لهجة..."><div class="language-list" id="languageList"></div></div></div>
 <div class="modal-backdrop" id="settingsModal" hidden><div class="modal"><div class="modal-head"><h3>الإعدادات</h3><button class="icon-btn" data-close="settingsModal">×</button></div><label class="setting-label" for="apiKey">مفتاح الذكاء الاصطناعي لترجمة اللهجات</label><input id="apiKey" type="password" placeholder="أدخل مفتاح OpenAI API"><p class="small-note">يُحفظ المفتاح محلياً في هذا المتصفح فقط. لا تضع مفتاحاً مشتركاً أو عاماً على جهاز غير موثوق. استخدام واجهة API قد يترتب عليه تكلفة من مزود الخدمة.</p><label class="setting-label" for="aiModel">النموذج</label><input id="aiModel" value="gpt-4o-mini"><button class="primary-btn full" id="saveSettings">حفظ الإعدادات</button></div></div>
