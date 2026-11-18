@@ -47,3 +47,7 @@ html[dir="ltr"] .record{text-align:left}
  .image-crop-actions button{font-size:11px;padding:9px 10px}
  .image-crop-actions #extractImageText{width:100%}
 }
+
+html[dir="ltr"] .language-list button{text-align:left}
+html[dir="ltr"] .recent-title{text-align:left}
+html[dir="ltr"] .dialect-row{direction:ltr}
