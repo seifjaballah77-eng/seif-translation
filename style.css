@@ -7,3 +7,10 @@ body.light{color-scheme:light;--bg:#f4f5f9;--panel:#fff;--panel2:#f0f1f6;--line:
 [hidden]{display:none!important}
 .correction-suggestions{padding:0 15px 12px;display:flex;align-items:center;gap:7px;flex-wrap:wrap}.correction-title{width:100%;font-size:10px;color:var(--muted);margin-bottom:2px}.correction-chip{border:1px solid #7163d955;border-radius:8px;background:linear-gradient(110deg,#6e63d91c,#4285f41c,#34a85318,#fbbc0518);padding:6px 10px;font-size:11px;color:#c5bbff;cursor:pointer}.correction-chip:hover{border-color:#a99eff;background-color:#302c46}.correction-chip:focus-visible{outline:2px solid #a99eff;outline-offset:2px}
 .gemini-text{background:linear-gradient(90deg,#4285f4 0%,#8b72d9 34%,#d96570 68%,#e6a23c 100%);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:600}
+/* Animated waiting indicator shown while the latest translation is being prepared. */
+.translation-loading{display:inline-flex;align-items:center;gap:7px;min-height:34px;vertical-align:middle}
+.translation-loading i{display:block;width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,#8e7fff,#55a7ff);animation:seif-translate-dot 1s ease-in-out infinite;opacity:.35}
+.translation-loading i:nth-child(2){animation-delay:.16s}
+.translation-loading i:nth-child(3){animation-delay:.32s}
+@keyframes seif-translate-dot{0%,60%,100%{transform:translateY(0);opacity:.35}30%{transform:translateY(-8px);opacity:1}}
+@media(prefers-reduced-motion:reduce){.translation-loading i{animation:none;opacity:1}}
