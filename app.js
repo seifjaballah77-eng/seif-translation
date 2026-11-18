@@ -194,8 +194,10 @@ async function basicTranslate(text){
   translated=translatedPieces.join("");
  }
  for(const [token,value] of replacements)translated=translated.split(token).join(value);
- const question=window.SEIF_CONTEXT.analyzeIntent(text).kind==="intentQuestion";
- const questionMark=target==="ar"||target.startsWith("ar-")?"؟":"?";if(question&&!/[؟?]\s*$/.test(translated))translated=translated.replace(/[.!،,؛:]+\s*$/,"")+questionMark;
+ const detectedIntent=window.SEIF_CONTEXT.analyzeIntent(text);
+ const questionMark=target==="ar"||target.startsWith("ar-")?"؟":"?";
+ if(detectedIntent.kind==="intentQuestion"&&!/[؟?]\s*$/.test(translated))translated=translated.replace(/[.!،,؛:]+\s*$/,"")+questionMark;
+ if(detectedIntent.kind==="intentExclamation"&&!/[!！]\s*$/.test(translated))translated=translated.replace(/[؟?،,؛:]+\s*$/,"")+"!";
  return translated;
 }
 async function translate(text){
