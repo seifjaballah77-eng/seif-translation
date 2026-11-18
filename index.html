@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#101116"><meta name="description" content="SEIF TRANSLATOR — ترجمة النصوص واللغات واللهجات والصور والمستندات.">
+<meta name="theme-color" content="#101116"><link rel="manifest" href="manifest.webmanifest"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="description" content="SEIF TRANSLATOR — ترجمة النصوص واللغات واللهجات والصور والمستندات.">
 <title>SEIF TRANSLATOR</title><link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -13,7 +13,7 @@
 </aside>
 <div class="scrim" id="scrim"></div>
 <main class="main">
- <header class="topbar"><button class="icon-btn menu-btn" id="menuBtn" aria-label="القائمة">☰</button><div class="mobile-brand" aria-hidden="true"></div><div class="top-actions"><button class="icon-btn" id="themeBtn" title="تغيير المظهر" aria-label="تغيير المظهر">☼</button><button class="icon-btn" id="settingsTop" title="الإعدادات" aria-label="الإعدادات">⚙</button></div></header>
+ <header class="topbar"><button class="icon-btn menu-btn" id="menuBtn" aria-label="القائمة">☰</button><div class="mobile-brand" aria-hidden="true"></div><div class="top-actions"><button class="icon-btn" id="installAppBtn" title="تثبيت التطبيق" aria-label="تثبيت التطبيق" hidden>↓</button><a class="icon-btn" id="downloadZipBtn" href="https://github.com/seifjaballah77-eng/seif-translation/archive/refs/heads/main.zip" download="SEIF-TRANSLATOR-SOURCE.zip" title="تنزيل حزمة ZIP" aria-label="تنزيل حزمة ZIP" style="display:grid;place-items:center;text-decoration:none">ZIP</a><button class="icon-btn" id="themeBtn" title="تغيير المظهر" aria-label="تغيير المظهر">☼</button><button class="icon-btn" id="settingsTop" title="الإعدادات" aria-label="الإعدادات">⚙</button></div></header>
  <section class="workspace" id="translatePanel">
   <div class="intro intro-spacer" aria-hidden="true"></div>
   <div class="modebar" role="tablist"><button class="mode active" data-mode="text"><span>文</span> نص</button><button class="mode" data-mode="images"><span>▧</span> صور</button><button class="mode" data-mode="documents"><span>▤</span> مستندات</button><button class="mode" data-mode="web"><span>◎</span> مواقع ويب</button></div>
@@ -85,5 +85,5 @@
 <script src="ocr-languages.js"></script>
 <script src="api-config.js"></script>
 <script src="dialects.js"></script>
-<script src="app.js"></script>
+<script src="app.js"></script><script src="pwa.js"></script>
 </body></html>
