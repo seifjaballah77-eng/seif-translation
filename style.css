@@ -144,3 +144,27 @@ html[dir="ltr"] .ocr-language-list{direction:ltr}
 .float-output{margin-top:9px;padding:10px;min-height:44px;border-radius:9px;background:#242033;color:#fff;white-space:pre-wrap;overflow-wrap:anywhere;font-size:13px;line-height:1.8}
 .float-copy{width:100%;margin-top:7px}
 @media(max-width:600px){.seif-decorate-tools{padding:12px}.decorate-controls>*{flex:1 1 auto}.seif-float-button{right:14px;bottom:14px;width:52px;height:52px}.seif-float-panel{right:12px;bottom:76px}.decorate-controls .primary-btn{width:100%}}
+
+/* Preserve dialect insight and quick-emoji styling after removing the technical mode. */
+.intent-analysis{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 12px}
+.intent-chip{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);background:var(--panel2);border-radius:999px;padding:6px 11px;font-size:11px;color:var(--muted)}
+.intent-chip span{color:var(--text);font-weight:600}
+.emoji-toolbar{display:flex;align-items:center;gap:3px;flex-wrap:wrap;padding:4px 9px 8px;border-top:1px solid #ffffff08}
+.emoji-toolbar button{border:0;background:transparent;border-radius:7px;min-width:29px;height:29px;padding:3px;font-size:17px;line-height:1}
+.emoji-toolbar button:hover,.emoji-toolbar button:focus-visible{background:#302c46;outline:1px solid #8b7bff}
+.dialect-glossary{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:8px;margin:12px 0 18px}
+.insight-heading{grid-column:1/-1;font-size:11px;font-weight:700;color:#a99eff;margin:0 0 2px}
+.idiom-card{border:1px solid var(--line);border-radius:10px;background:var(--panel);padding:10px 12px;min-width:0}
+.idiom-card b{font-size:13px}
+.idiom-card .idiom-dialect{display:inline-block;margin-inline-start:7px;color:var(--muted);font-size:10px}
+.idiom-card p{font-size:11px;color:var(--muted);line-height:1.7;margin:7px 0 0}
+body.light .intent-chip{background:#f5f4ff}
+body.light .idiom-card{background:#fff}
+html[dir="ltr"] .intent-analysis{direction:ltr}
+html[dir="ltr"] .idiom-card{text-align:left}
+@media(max-width:600px){
+ .emoji-toolbar{gap:1px;padding:4px 5px 7px}
+ .emoji-toolbar button{min-width:27px;font-size:16px}
+ .intent-analysis{gap:5px}
+ .intent-chip{font-size:10px;padding:5px 8px}
+}
