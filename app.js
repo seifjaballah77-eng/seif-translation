@@ -189,7 +189,7 @@ async function basicTranslate(text){
  if(missing){
   const tokenPattern=/(QZXSEIF(?:IDIOM|TERM|CODE)\d+XZQ)/g;
   const pieces=working.split(tokenPattern);
-  const translatedPieces=await Promise.all(pieces.map(piece=>tokenPattern.test(piece)?Promise.resolve(piece):googleTranslatePlain(piece)));
+  const lockToken=/^QZXSEIF(?:IDIOM|TERM|CODE)\\d+XZQ$/;const translatedPieces=await Promise.all(pieces.map(piece=>lockToken.test(piece)?Promise.resolve(piece):googleTranslatePlain(piece)));
   tokenPattern.lastIndex=0;
   translated=translatedPieces.join("");
  }
