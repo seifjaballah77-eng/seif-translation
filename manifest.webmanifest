@@ -1,0 +1,16 @@
+{
+  "id": "./",
+  "name": "SEIF TRANSLATOR",
+  "short_name": "SEIF Translate",
+  "description": "مترجم SEIF للنصوص والصور واللهجات",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#101116",
+  "theme_color": "#101116",
+  "icons": [
+    {"src":"seif-icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}
+  ]
+}
