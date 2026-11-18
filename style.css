@@ -22,3 +22,5 @@ body.light{color-scheme:light;--bg:#f4f5f9;--panel:#fff;--panel2:#f0f1f6;--line:
 .clear-history-btn:hover:not(:disabled){background:#a8324530;border-color:#d66a7a}
 .clear-history-btn:disabled{opacity:.38;cursor:not-allowed}
 @media(max-width:600px){.intro-spacer{min-height:86px;margin-bottom:24px}}
+
+.recent-languages{display:flex;flex-wrap:wrap;gap:7px;padding:10px 0 13px;border-bottom:1px solid var(--line);margin-bottom:8px}.recent-title{width:100%;font-size:11px;color:var(--muted);padding:0 8px 3px}.recent-languages button{border:1px solid #514878;background:#29263a;color:#d1caff;border-radius:8px;padding:7px 10px;font-size:12px}.recent-languages button small,.used-mark{color:#8fdfb0;font-size:10px}.url-input{font-family:inherit}
