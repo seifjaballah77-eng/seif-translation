@@ -15,7 +15,7 @@
 <main class="main">
  <header class="topbar"><button class="icon-btn menu-btn" id="menuBtn" aria-label="القائمة">☰</button><div class="mobile-brand">SEIF <b>TRANSLATOR</b></div><div class="top-actions"><button class="icon-btn" id="themeBtn" title="تغيير المظهر" aria-label="تغيير المظهر">☼</button><button class="icon-btn" id="settingsTop" title="الإعدادات" aria-label="الإعدادات">⚙</button></div></header>
  <section class="workspace" id="translatePanel">
-  <div class="intro"><div class="eyebrow">SEIF LANGUAGE TOOLS</div><h1>كل لغة… <span>بمعناها الحقيقي.</span></h1><p>ترجم بين اللغات واللهجات مع الحفاظ على المعنى والأسلوب.</p></div>
+  <div class="intro intro-spacer" aria-hidden="true"></div>
   <div class="modebar" role="tablist"><button class="mode active" data-mode="text"><span>文</span> نص</button><button class="mode" data-mode="images"><span>▧</span> صور</button><button class="mode" data-mode="documents"><span>▤</span> مستندات</button><button class="mode" data-mode="web"><span>◎</span> مواقع ويب</button></div>
   <div class="translator">
    <div class="language-row">
@@ -35,7 +35,7 @@
   </div>
   <div class="feature-strip"><div><span>◉</span><b>لغات ولهجات</b><small>من الفصحى إلى اللهجات والعكس</small></div><div><span>⌁</span><b>فهم السياق</b><small>المعنى والتعبير قبل الحرفية</small></div><div><span>⌂</span><b>خصوصيتك</b><small>إعداداتك محفوظة على جهازك</small></div></div>
  </section>
- <section class="workspace secondary-panel" id="historyPanel" hidden><div class="intro"><div class="eyebrow">YOUR ACTIVITY</div><h1>سجل <span>الترجمة</span></h1><p>آخر الترجمات التي أجريتها على هذا الجهاز.</p></div><div id="historyList" class="records"></div></section>
+ <section class="workspace secondary-panel" id="historyPanel" hidden><div class="intro"><div class="eyebrow">YOUR ACTIVITY</div><h1>سجل <span>الترجمة</span></h1><p>آخر الترجمات التي أجريتها على هذا الجهاز.</p></div><div class="records-head"><button class="clear-history-btn" id="clearHistory" type="button">حذف الكل</button></div><div id="historyList" class="records"></div></section>
  <section class="workspace secondary-panel" id="savedPanel" hidden><div class="intro"><div class="eyebrow">YOUR COLLECTION</div><h1>الترجمات <span>المحفوظة</span></h1><p>احتفظ بالعبارات التي تريد الرجوع إليها.</p></div><div id="savedList" class="records"></div></section>
  <footer class="site-footer">SEIF TRANSLATOR <span>•</span> صنع بيد سيف</footer>
 </main>
