@@ -75,7 +75,7 @@ $("clearText").onclick=()=>{$("sourceText").value="";$("charCount").textContent=
 $("copySource").onclick=()=>copy($("sourceText").value);$("copyResult").onclick=()=>copy($("translatedText").textContent);
 async function copy(t){try{await navigator.clipboard.writeText(t);$("translationStatus").textContent=ui("copied");}catch{$("translationStatus").textContent=ui("copyFailed");}}
 function getDialect(code){return LANGS.find(x=>x[0]===code)?.[2]==="dialect";}
-function updateDialectHint(){const hint=document.querySelector(".dialect-hint");if(!hint)return;const selected=[source,target].filter(code=>getDialect(code)).map(label);hint.textContent=ui("dialectHint")+(selected.length?" · "+selected.join(" ↔ "):"");}
+function updateDialectHint(){const hint=document.querySelector(".dialect-hint");if(!hint)return;const selected=[source,target].filter(code=>getDialect(code)).map(label);hint.textContent=ui("dialectHint")+(selected.length?" · "+selected.join(" ↔ "):"");const status=document.querySelector(".developer-mode-hint");if(status)status.textContent=ui("technicalHint");}
 function dialectProfilePrompt(code,role){
  const profile=window.SEIF_DIALECTS&&window.SEIF_DIALECTS[code];
  if(!profile)return "";
@@ -268,6 +268,7 @@ function applyInterfaceLanguage(lang){
  document.querySelectorAll("[data-i18n]").forEach(el=>{el.textContent=ui(el.dataset.i18n);});
  $("imageText").placeholder=ui("imageTextPlaceholder");$("documentText").placeholder=ui("documentTextPlaceholder");
  $("imageSelectionHint").textContent=ui("imageSelectHint");
+ $("ocrLanguageSearch").placeholder=ui("ocrLanguageSearch");renderOcrLanguageList($("ocrLanguageSearch").value);
  $("selectAllImage").textContent=ui("selectAll");$("clearImageSelection").textContent=ui("clearSelection");
  $("extractImageText").textContent=ui("extractText");$("translateImage").textContent=ui("translateExtracted");
  $("themeBtn").title=ui("theme");$("themeBtn").setAttribute("aria-label",ui("theme"));
