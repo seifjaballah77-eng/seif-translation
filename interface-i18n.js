@@ -199,7 +199,15 @@ window.SEIF_INTERFACE = {
       "autoDetect": "اكتشاف اللغة تلقائياً",
       "sideNote": "ترجمة تفهم المعنى، لا الكلمات فقط.",
       "historyEyebrow": "نشاطك",
-      "savedEyebrow": "مجموعتك"
+      "savedEyebrow": "مجموعتك",
+      "close": "إغلاق",
+      "dialectNeedsKey": "محرك ترجمة اللهجات غير مُهيّأ على هذا المتصفح.",
+      "dialectServiceError": "تعذّر الاتصال بمحرك ترجمة اللهجات.",
+      "invalidDialectResponse": "وصل رد غير صالح من محرك اللهجات. حاول مجدداً.",
+      "emptyTranslation": "لم يُرجع محرك اللهجات ترجمة صالحة. حاول مجدداً.",
+      "genericDialectFallback": "لا يمكن استخدام الترجمة العامة عند اختيار لهجة؛ استخدم محرك اللهجات المتخصص.",
+      "serviceUnavailable": "خدمة الترجمة غير متاحة حالياً.",
+      "textRequired": "اكتب النص الذي تريد ترجمته أولاً."
     },
     "en": {
       "settings": "Settings",
@@ -287,7 +295,15 @@ window.SEIF_INTERFACE = {
       "autoDetect": "Detect language automatically",
       "sideNote": "Translation that understands meaning, not just words.",
       "historyEyebrow": "YOUR ACTIVITY",
-      "savedEyebrow": "YOUR COLLECTION"
+      "savedEyebrow": "YOUR COLLECTION",
+      "close": "Close",
+      "dialectNeedsKey": "Dialect translation is not configured in this browser.",
+      "dialectServiceError": "Could not connect to the dialect translation engine.",
+      "invalidDialectResponse": "The dialect engine returned an invalid response. Please try again.",
+      "emptyTranslation": "The dialect engine did not return a valid translation. Please try again.",
+      "genericDialectFallback": "Generic translation is disabled for dialects; use the dedicated dialect engine.",
+      "serviceUnavailable": "Translation service is currently unavailable.",
+      "textRequired": "Enter the text you want to translate first."
     },
     "fr": {
       "settings": "Paramètres",
@@ -375,7 +391,15 @@ window.SEIF_INTERFACE = {
       "autoDetect": "Détecter la langue automatiquement",
       "sideNote": "Une traduction qui comprend le sens, pas seulement les mots.",
       "historyEyebrow": "VOTRE ACTIVITÉ",
-      "savedEyebrow": "VOTRE COLLECTION"
+      "savedEyebrow": "VOTRE COLLECTION",
+      "close": "Fermer",
+      "dialectNeedsKey": "La traduction des dialectes n’est pas configurée dans ce navigateur.",
+      "dialectServiceError": "Impossible de contacter le moteur de traduction des dialectes.",
+      "invalidDialectResponse": "Le moteur des dialectes a renvoyé une réponse invalide. Réessayez.",
+      "emptyTranslation": "Le moteur des dialectes n’a pas fourni de traduction valide. Réessayez.",
+      "genericDialectFallback": "La traduction générale est désactivée pour les dialectes ; utilisez le moteur dédié.",
+      "serviceUnavailable": "Le service de traduction est indisponible pour le moment.",
+      "textRequired": "Saisissez d’abord le texte à traduire."
     },
     "es": {
       "settings": "Configuración",
@@ -463,7 +487,15 @@ window.SEIF_INTERFACE = {
       "autoDetect": "Detectar idioma automáticamente",
       "sideNote": "Una traducción que entiende el significado, no solo las palabras.",
       "historyEyebrow": "TU ACTIVIDAD",
-      "savedEyebrow": "TU COLECCIÓN"
+      "savedEyebrow": "TU COLECCIÓN",
+      "close": "Cerrar",
+      "dialectNeedsKey": "La traducción de dialectos no está configurada en este navegador.",
+      "dialectServiceError": "No se pudo conectar con el motor de traducción de dialectos.",
+      "invalidDialectResponse": "El motor de dialectos devolvió una respuesta no válida. Inténtalo de nuevo.",
+      "emptyTranslation": "El motor de dialectos no devolvió una traducción válida. Inténtalo de nuevo.",
+      "genericDialectFallback": "La traducción general está desactivada para los dialectos; usa el motor específico.",
+      "serviceUnavailable": "El servicio de traducción no está disponible en este momento.",
+      "textRequired": "Primero escribe el texto que quieres traducir."
     },
     "de": {
       "settings": "Einstellungen",
@@ -551,7 +583,15 @@ window.SEIF_INTERFACE = {
       "autoDetect": "Sprache automatisch erkennen",
       "sideNote": "Übersetzung, die den Sinn versteht, nicht nur Wörter.",
       "historyEyebrow": "DEINE AKTIVITÄT",
-      "savedEyebrow": "DEINE SAMMLUNG"
+      "savedEyebrow": "DEINE SAMMLUNG",
+      "close": "Schließen",
+      "dialectNeedsKey": "Die Dialektübersetzung ist in diesem Browser nicht eingerichtet.",
+      "dialectServiceError": "Verbindung zum Dialekt-Übersetzungsmodul nicht möglich.",
+      "invalidDialectResponse": "Das Dialektmodul hat eine ungültige Antwort zurückgegeben. Bitte erneut versuchen.",
+      "emptyTranslation": "Das Dialektmodul hat keine gültige Übersetzung geliefert. Bitte erneut versuchen.",
+      "genericDialectFallback": "Allgemeine Übersetzung ist für Dialekte deaktiviert; verwende das spezielle Modul.",
+      "serviceUnavailable": "Der Übersetzungsdienst ist derzeit nicht verfügbar.",
+      "textRequired": "Gib zuerst den zu übersetzenden Text ein."
     },
     "it": {
       "settings": "Impostazioni",
@@ -639,7 +679,15 @@ window.SEIF_INTERFACE = {
       "autoDetect": "Rileva automaticamente la lingua",
       "sideNote": "Una traduzione che comprende il significato, non solo le parole.",
       "historyEyebrow": "LA TUA ATTIVITÀ",
-      "savedEyebrow": "LA TUA RACCOLTA"
+      "savedEyebrow": "LA TUA RACCOLTA",
+      "close": "Chiudi",
+      "dialectNeedsKey": "La traduzione dei dialetti non è configurata in questo browser.",
+      "dialectServiceError": "Impossibile connettersi al motore di traduzione dei dialetti.",
+      "invalidDialectResponse": "Il motore dei dialetti ha restituito una risposta non valida. Riprova.",
+      "emptyTranslation": "Il motore dei dialetti non ha restituito una traduzione valida. Riprova.",
+      "genericDialectFallback": "La traduzione generica è disattivata per i dialetti; usa il motore dedicato.",
+      "serviceUnavailable": "Il servizio di traduzione non è attualmente disponibile.",
+      "textRequired": "Inserisci prima il testo da tradurre."
     },
     "tr": {
       "settings": "Ayarlar",
@@ -727,7 +775,15 @@ window.SEIF_INTERFACE = {
       "autoDetect": "Dili otomatik algıla",
       "sideNote": "Yalnızca kelimeleri değil, anlamı da anlayan çeviri.",
       "historyEyebrow": "ETKİNLİĞİN",
-      "savedEyebrow": "KOLEKSİYONUN"
+      "savedEyebrow": "KOLEKSİYONUN",
+      "close": "Kapat",
+      "dialectNeedsKey": "Lehçe çevirisi bu tarayıcıda yapılandırılmamış.",
+      "dialectServiceError": "Lehçe çeviri motoruna bağlanılamadı.",
+      "invalidDialectResponse": "Lehçe motoru geçersiz yanıt verdi. Lütfen tekrar deneyin.",
+      "emptyTranslation": "Lehçe motoru geçerli bir çeviri döndürmedi. Lütfen tekrar deneyin.",
+      "genericDialectFallback": "Lehçeler için genel çeviri kapalıdır; özel lehçe motorunu kullanın.",
+      "serviceUnavailable": "Çeviri hizmeti şu anda kullanılamıyor.",
+      "textRequired": "Önce çevirmek istediğiniz metni girin."
     },
     "ru": {
       "settings": "Настройки",
@@ -815,7 +871,15 @@ window.SEIF_INTERFACE = {
       "autoDetect": "Определять язык автоматически",
       "sideNote": "Перевод, который понимает смысл, а не только слова.",
       "historyEyebrow": "ВАША АКТИВНОСТЬ",
-      "savedEyebrow": "ВАША КОЛЛЕКЦИЯ"
+      "savedEyebrow": "ВАША КОЛЛЕКЦИЯ",
+      "close": "Закрыть",
+      "dialectNeedsKey": "Перевод диалектов не настроен в этом браузере.",
+      "dialectServiceError": "Не удалось подключиться к движку перевода диалектов.",
+      "invalidDialectResponse": "Движок диалектов вернул неверный ответ. Попробуйте ещё раз.",
+      "emptyTranslation": "Движок диалектов не вернул корректный перевод. Попробуйте ещё раз.",
+      "genericDialectFallback": "Обычный перевод для диалектов отключён; используйте специализированный движок.",
+      "serviceUnavailable": "Служба перевода сейчас недоступна.",
+      "textRequired": "Сначала введите текст для перевода."
     },
     "zh-CN": {
       "settings": "设置",
@@ -903,7 +967,15 @@ window.SEIF_INTERFACE = {
       "autoDetect": "自动检测语言",
       "sideNote": "理解含义而不只是词语的翻译。",
       "historyEyebrow": "你的活动",
-      "savedEyebrow": "你的收藏"
+      "savedEyebrow": "你的收藏",
+      "close": "关闭",
+      "dialectNeedsKey": "此浏览器尚未配置方言翻译功能。",
+      "dialectServiceError": "无法连接到方言翻译引擎。",
+      "invalidDialectResponse": "方言引擎返回了无效响应，请重试。",
+      "emptyTranslation": "方言引擎未返回有效译文，请重试。",
+      "genericDialectFallback": "方言已禁用通用翻译，请使用专用方言引擎。",
+      "serviceUnavailable": "翻译服务目前不可用。",
+      "textRequired": "请先输入要翻译的文本。"
     },
     "ja": {
       "settings": "設定",
@@ -991,7 +1063,15 @@ window.SEIF_INTERFACE = {
       "autoDetect": "言語を自動検出",
       "sideNote": "単語だけでなく意味も理解する翻訳。",
       "historyEyebrow": "アクティビティ",
-      "savedEyebrow": "コレクション"
+      "savedEyebrow": "コレクション",
+      "close": "閉じる",
+      "dialectNeedsKey": "このブラウザーでは方言翻訳が設定されていません。",
+      "dialectServiceError": "方言翻訳エンジンに接続できませんでした。",
+      "invalidDialectResponse": "方言エンジンから無効な応答が返されました。もう一度お試しください。",
+      "emptyTranslation": "有効な翻訳が返されませんでした。もう一度お試しください。",
+      "genericDialectFallback": "方言では通常翻訳を無効にしています。専用エンジンを使用してください。",
+      "serviceUnavailable": "翻訳サービスは現在利用できません。",
+      "textRequired": "先に翻訳するテキストを入力してください。"
     },
     "ko": {
       "settings": "설정",
@@ -1079,7 +1159,15 @@ window.SEIF_INTERFACE = {
       "autoDetect": "언어 자동 감지",
       "sideNote": "단어뿐 아니라 의미를 이해하는 번역.",
       "historyEyebrow": "활동",
-      "savedEyebrow": "모음"
+      "savedEyebrow": "모음",
+      "close": "닫기",
+      "dialectNeedsKey": "이 브라우저에는 방언 번역이 설정되어 있지 않습니다.",
+      "dialectServiceError": "방언 번역 엔진에 연결할 수 없습니다.",
+      "invalidDialectResponse": "방언 엔진에서 잘못된 응답을 받았습니다. 다시 시도하세요.",
+      "emptyTranslation": "방언 엔진이 유효한 번역을 반환하지 않았습니다. 다시 시도하세요.",
+      "genericDialectFallback": "방언에는 일반 번역을 사용할 수 없습니다. 전용 방언 엔진을 사용하세요.",
+      "serviceUnavailable": "현재 번역 서비스를 사용할 수 없습니다.",
+      "textRequired": "먼저 번역할 텍스트를 입력하세요."
     },
     "pt": {
       "settings": "Configurações",
@@ -1167,7 +1255,15 @@ window.SEIF_INTERFACE = {
       "autoDetect": "Detetar idioma automaticamente",
       "sideNote": "Uma tradução que entende o significado, não apenas as palavras.",
       "historyEyebrow": "A SUA ATIVIDADE",
-      "savedEyebrow": "A SUA COLEÇÃO"
+      "savedEyebrow": "A SUA COLEÇÃO",
+      "close": "Fechar",
+      "dialectNeedsKey": "A tradução de dialetos não está configurada neste navegador.",
+      "dialectServiceError": "Não foi possível conectar ao mecanismo de tradução de dialetos.",
+      "invalidDialectResponse": "O mecanismo de dialetos retornou uma resposta inválida. Tente novamente.",
+      "emptyTranslation": "O mecanismo de dialetos não retornou uma tradução válida. Tente novamente.",
+      "genericDialectFallback": "A tradução genérica está desativada para dialetos; use o mecanismo dedicado.",
+      "serviceUnavailable": "O serviço de tradução está indisponível no momento.",
+      "textRequired": "Digite primeiro o texto que deseja traduzir."
     },
     "nl": {
       "settings": "Instellingen",
@@ -1255,7 +1351,15 @@ window.SEIF_INTERFACE = {
       "autoDetect": "Taal automatisch detecteren",
       "sideNote": "Een vertaling die betekenis begrijpt, niet alleen woorden.",
       "historyEyebrow": "JOUW ACTIVITEIT",
-      "savedEyebrow": "JOUW VERZAMELING"
+      "savedEyebrow": "JOUW VERZAMELING",
+      "close": "Sluiten",
+      "dialectNeedsKey": "Dialectvertaling is niet ingesteld in deze browser.",
+      "dialectServiceError": "Er kan geen verbinding worden gemaakt met de dialectvertaler.",
+      "invalidDialectResponse": "De dialectvertaler gaf een ongeldig antwoord. Probeer het opnieuw.",
+      "emptyTranslation": "De dialectvertaler leverde geen geldige vertaling. Probeer het opnieuw.",
+      "genericDialectFallback": "Algemene vertaling is uitgeschakeld voor dialecten; gebruik de speciale vertaler.",
+      "serviceUnavailable": "De vertaaldienst is momenteel niet beschikbaar.",
+      "textRequired": "Voer eerst de tekst in die je wilt vertalen."
     },
     "hi": {
       "settings": "सेटिंग्स",
@@ -1343,7 +1447,15 @@ window.SEIF_INTERFACE = {
       "autoDetect": "भाषा का अपने आप पता लगाएँ",
       "sideNote": "ऐसा अनुवाद जो केवल शब्द नहीं, अर्थ भी समझता है।",
       "historyEyebrow": "आपकी गतिविधि",
-      "savedEyebrow": "आपका संग्रह"
+      "savedEyebrow": "आपका संग्रह",
+      "close": "बंद करें",
+      "dialectNeedsKey": "इस ब्राउज़र में बोली अनुवाद सेट नहीं है।",
+      "dialectServiceError": "बोली अनुवाद इंजन से कनेक्ट नहीं हो सका।",
+      "invalidDialectResponse": "बोली इंजन ने अमान्य उत्तर दिया। फिर प्रयास करें।",
+      "emptyTranslation": "बोली इंजन ने मान्य अनुवाद नहीं दिया। फिर प्रयास करें।",
+      "genericDialectFallback": "बोलियों के लिए सामान्य अनुवाद बंद है; विशेष बोली इंजन का उपयोग करें।",
+      "serviceUnavailable": "अनुवाद सेवा अभी उपलब्ध नहीं है।",
+      "textRequired": "पहले अनुवाद के लिए पाठ लिखें।"
     },
     "ur": {
       "settings": "ترتیبات",
@@ -1431,7 +1543,15 @@ window.SEIF_INTERFACE = {
       "autoDetect": "زبان خودکار پہچانیں",
       "sideNote": "ایسا ترجمہ جو صرف الفاظ نہیں بلکہ معنی بھی سمجھے۔",
       "historyEyebrow": "آپ کی سرگرمی",
-      "savedEyebrow": "آپ کا مجموعہ"
+      "savedEyebrow": "آپ کا مجموعہ",
+      "close": "بند کریں",
+      "dialectNeedsKey": "اس براؤزر میں بولی کا ترجمہ ترتیب نہیں دیا گیا۔",
+      "dialectServiceError": "بولی کے ترجمہ انجن سے رابطہ نہیں ہوسکا۔",
+      "invalidDialectResponse": "بولی کے انجن نے غلط جواب دیا۔ دوبارہ کوشش کریں۔",
+      "emptyTranslation": "بولی کے انجن نے درست ترجمہ نہیں دیا۔ دوبارہ کوشش کریں۔",
+      "genericDialectFallback": "بولیوں کے لیے عام ترجمہ بند ہے؛ مخصوص انجن استعمال کریں۔",
+      "serviceUnavailable": "ترجمے کی خدمت فی الحال دستیاب نہیں۔",
+      "textRequired": "پہلے ترجمے کے لیے متن لکھیں۔"
     },
     "fa": {
       "settings": "تنظیمات",
@@ -1519,7 +1639,15 @@ window.SEIF_INTERFACE = {
       "autoDetect": "تشخیص خودکار زبان",
       "sideNote": "ترجمه‌ای که معنا را می‌فهمد، نه فقط واژه‌ها را.",
       "historyEyebrow": "فعالیت شما",
-      "savedEyebrow": "مجموعه شما"
+      "savedEyebrow": "مجموعه شما",
+      "close": "بستن",
+      "dialectNeedsKey": "ترجمه گویش در این مرورگر پیکربندی نشده است.",
+      "dialectServiceError": "اتصال به موتور ترجمه گویش ممکن نیست.",
+      "invalidDialectResponse": "موتور گویش پاسخ نامعتبر داد. دوباره تلاش کنید.",
+      "emptyTranslation": "موتور گویش ترجمه معتبری برنگرداند. دوباره تلاش کنید.",
+      "genericDialectFallback": "ترجمه عمومی برای گویش‌ها غیرفعال است؛ از موتور اختصاصی استفاده کنید.",
+      "serviceUnavailable": "سرویس ترجمه در حال حاضر در دسترس نیست.",
+      "textRequired": "ابتدا متن موردنظر برای ترجمه را وارد کنید."
     },
     "el": {
       "settings": "Ρυθμίσεις",
@@ -1607,7 +1735,15 @@ window.SEIF_INTERFACE = {
       "autoDetect": "Αυτόματος εντοπισμός γλώσσας",
       "sideNote": "Μετάφραση που κατανοεί το νόημα, όχι μόνο τις λέξεις.",
       "historyEyebrow": "Η ΔΡΑΣΤΗΡΙΟΤΗΤΑ ΣΑΣ",
-      "savedEyebrow": "Η ΣΥΛΛΟΓΗ ΣΑΣ"
+      "savedEyebrow": "Η ΣΥΛΛΟΓΗ ΣΑΣ",
+      "close": "Κλείσιμο",
+      "dialectNeedsKey": "Η μετάφραση διαλέκτων δεν έχει ρυθμιστεί σε αυτό το πρόγραμμα περιήγησης.",
+      "dialectServiceError": "Δεν ήταν δυνατή η σύνδεση με τη μηχανή μετάφρασης διαλέκτων.",
+      "invalidDialectResponse": "Η μηχανή διαλέκτων επέστρεψε μη έγκυρη απάντηση. Δοκιμάστε ξανά.",
+      "emptyTranslation": "Η μηχανή διαλέκτων δεν επέστρεψε έγκυρη μετάφραση. Δοκιμάστε ξανά.",
+      "genericDialectFallback": "Η γενική μετάφραση είναι απενεργοποιημένη για διαλέκτους· χρησιμοποιήστε την ειδική μηχανή.",
+      "serviceUnavailable": "Η υπηρεσία μετάφρασης δεν είναι διαθέσιμη αυτήν τη στιγμή.",
+      "textRequired": "Εισαγάγετε πρώτα το κείμενο προς μετάφραση."
     },
     "pl": {
       "settings": "Ustawienia",
@@ -1695,7 +1831,15 @@ window.SEIF_INTERFACE = {
       "autoDetect": "Automatycznie wykryj język",
       "sideNote": "Tłumaczenie, które rozumie znaczenie, a nie tylko słowa.",
       "historyEyebrow": "TWOJA AKTYWNOŚĆ",
-      "savedEyebrow": "TWOJA KOLEKCJA"
+      "savedEyebrow": "TWOJA KOLEKCJA",
+      "close": "Zamknij",
+      "dialectNeedsKey": "Tłumaczenie dialektów nie jest skonfigurowane w tej przeglądarce.",
+      "dialectServiceError": "Nie można połączyć się z silnikiem tłumaczenia dialektów.",
+      "invalidDialectResponse": "Silnik dialektów zwrócił nieprawidłową odpowiedź. Spróbuj ponownie.",
+      "emptyTranslation": "Silnik dialektów nie zwrócił poprawnego tłumaczenia. Spróbuj ponownie.",
+      "genericDialectFallback": "Zwykłe tłumaczenie jest wyłączone dla dialektów; użyj dedykowanego silnika.",
+      "serviceUnavailable": "Usługa tłumaczenia jest obecnie niedostępna.",
+      "textRequired": "Najpierw wpisz tekst do przetłumaczenia."
     },
     "sv": {
       "settings": "Inställningar",
@@ -1783,7 +1927,15 @@ window.SEIF_INTERFACE = {
       "autoDetect": "Identifiera språk automatiskt",
       "sideNote": "En översättning som förstår betydelsen, inte bara orden.",
       "historyEyebrow": "DIN AKTIVITET",
-      "savedEyebrow": "DIN SAMLING"
+      "savedEyebrow": "DIN SAMLING",
+      "close": "Stäng",
+      "dialectNeedsKey": "Dialektöversättning är inte konfigurerad i den här webbläsaren.",
+      "dialectServiceError": "Det gick inte att ansluta till dialektöversättaren.",
+      "invalidDialectResponse": "Dialektmotorn returnerade ett ogiltigt svar. Försök igen.",
+      "emptyTranslation": "Dialektmotorn returnerade ingen giltig översättning. Försök igen.",
+      "genericDialectFallback": "Vanlig översättning är avstängd för dialekter; använd den särskilda motorn.",
+      "serviceUnavailable": "Översättningstjänsten är inte tillgänglig just nu.",
+      "textRequired": "Skriv först texten som ska översättas."
     },
     "uk": {
       "settings": "Налаштування",
@@ -1871,7 +2023,15 @@ window.SEIF_INTERFACE = {
       "autoDetect": "Автоматично визначати мову",
       "sideNote": "Переклад, який розуміє зміст, а не лише слова.",
       "historyEyebrow": "ВАША АКТИВНІСТЬ",
-      "savedEyebrow": "ВАША ЗБІРКА"
+      "savedEyebrow": "ВАША ЗБІРКА",
+      "close": "Закрити",
+      "dialectNeedsKey": "Переклад діалектів не налаштовано в цьому браузері.",
+      "dialectServiceError": "Не вдалося підключитися до рушія перекладу діалектів.",
+      "invalidDialectResponse": "Рушій діалектів повернув неправильну відповідь. Спробуйте ще раз.",
+      "emptyTranslation": "Рушій діалектів не повернув коректний переклад. Спробуйте ще раз.",
+      "genericDialectFallback": "Звичайний переклад для діалектів вимкнено; використовуйте спеціальний рушій.",
+      "serviceUnavailable": "Служба перекладу зараз недоступна.",
+      "textRequired": "Спочатку введіть текст для перекладу."
     },
     "id": {
       "settings": "Pengaturan",
@@ -1959,7 +2119,15 @@ window.SEIF_INTERFACE = {
       "autoDetect": "Deteksi bahasa otomatis",
       "sideNote": "Terjemahan yang memahami makna, bukan sekadar kata.",
       "historyEyebrow": "AKTIVITAS ANDA",
-      "savedEyebrow": "KOLEKSI ANDA"
+      "savedEyebrow": "KOLEKSI ANDA",
+      "close": "Tutup",
+      "dialectNeedsKey": "Terjemahan dialek belum dikonfigurasi di browser ini.",
+      "dialectServiceError": "Tidak dapat terhubung ke mesin terjemahan dialek.",
+      "invalidDialectResponse": "Mesin dialek mengirim respons yang tidak valid. Coba lagi.",
+      "emptyTranslation": "Mesin dialek tidak menghasilkan terjemahan yang valid. Coba lagi.",
+      "genericDialectFallback": "Terjemahan umum dinonaktifkan untuk dialek; gunakan mesin khusus.",
+      "serviceUnavailable": "Layanan terjemahan sedang tidak tersedia.",
+      "textRequired": "Masukkan teks yang ingin diterjemahkan terlebih dahulu."
     },
     "sw": {
       "settings": "Mipangilio",
@@ -2047,7 +2215,15 @@ window.SEIF_INTERFACE = {
       "autoDetect": "Tambua lugha kiotomatiki",
       "sideNote": "Tafsiri inayoelewa maana, si maneno pekee.",
       "historyEyebrow": "SHUGHULI ZAKO",
-      "savedEyebrow": "MKUSANYIKO WAKO"
+      "savedEyebrow": "MKUSANYIKO WAKO",
+      "close": "Funga",
+      "dialectNeedsKey": "Tafsiri ya lahaja haijawekwa katika kivinjari hiki.",
+      "dialectServiceError": "Imeshindikana kuunganisha na injini ya tafsiri ya lahaja.",
+      "invalidDialectResponse": "Injini ya lahaja imerudisha jibu lisilo sahihi. Jaribu tena.",
+      "emptyTranslation": "Injini ya lahaja haikurudisha tafsiri sahihi. Jaribu tena.",
+      "genericDialectFallback": "Tafsiri ya kawaida imezimwa kwa lahaja; tumia injini maalum.",
+      "serviceUnavailable": "Huduma ya tafsiri haipatikani kwa sasa.",
+      "textRequired": "Andika kwanza maandishi unayotaka kutafsiri."
     }
   }
 };
