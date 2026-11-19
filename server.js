@@ -33,7 +33,7 @@ app.use(express.json({ limit: "48kb", strict: true }));
 
 const translateLimiter = rateLimit({
   windowMs: 10 * 60 * 1000,
-  limit: 24,
+  limit: 40,
   standardHeaders: "draft-8",
   legacyHeaders: false,
   message: { error: "rate_limited", message: "Too many translation requests. Please wait and try again." },
@@ -76,6 +76,7 @@ app.post("/api/translate", translateLimiter, async (req, res) => {
       body: JSON.stringify({
         model: MODEL,
         temperature: 0.15,
+        max_tokens: 5000,
         response_format: { type: "json_object" },
         messages: [
           {
@@ -91,7 +92,11 @@ app.post("/api/translate", translateLimiter, async (req, res) => {
 
     const result = await upstream.json().catch(() => ({}));
     if (!upstream.ok) {
-      const message = result?.error?.message || "The translation provider rejected the request.";
+      const message = upstream.status === 429
+        ? "The AI provider is temporarily rate-limited. Please wait and retry."
+        : upstream.status === 401 || upstream.status === 403
+          ? "The server API credential is invalid or lacks permission."
+          : "The translation provider could not complete this request.";
       return res.status(upstream.status === 429 ? 429 : 502).json({
         error: "translation_provider_error",
         message,
@@ -114,6 +119,7 @@ app.post("/api/translate", translateLimiter, async (req, res) => {
     });
   } catch (error) {
     const timedOut = error?.name === "TimeoutError" || error?.name === "AbortError";
+    console.error("OpenAI translation request failed:", error?.name || "Error");
     return res.status(timedOut ? 504 : 502).json({
       error: timedOut ? "provider_timeout" : "provider_connection_error",
       message: timedOut ? "Translation timed out. Please retry." : "Could not connect to the translation provider.",
