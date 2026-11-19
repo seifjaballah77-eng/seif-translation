@@ -22,7 +22,7 @@ app.use(helmet({ crossOriginResourcePolicy: { policy: "cross-origin" } }));
 app.use(cors({
   origin(origin, callback) {
     if (origin && allowedOrigins.has(origin)) return callback(null, true);
-    if (!origin) return callback(new Error("Origin header is required."));
+    if (!origin) return callback(null, false);
     return callback(new Error("Origin is not allowed."));
   },
   methods: ["GET", "POST", "OPTIONS"],
@@ -128,7 +128,7 @@ app.post("/api/translate", translateLimiter, async (req, res) => {
 });
 
 app.use((error, _req, res, _next) => {
-  if (error?.message === "Origin is not allowed." || error?.message === "Origin header is required.") {
+  if (error?.message === "Origin is not allowed.") {
     return res.status(403).json({ error: "origin_not_allowed" });
   }
   if (error instanceof SyntaxError && "body" in error) {
