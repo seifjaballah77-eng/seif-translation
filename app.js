@@ -27,7 +27,7 @@ $("languageSearch").addEventListener("input",e=>renderLanguageList(e.target.valu
 $("sourceLang").onclick=()=>openLanguage("source");$("targetLang").onclick=()=>openLanguage("target");
 document.querySelectorAll(".quick").forEach(b=>b.onclick=()=>setLanguage(b.closest("#sourceQuick")?"source":"target",b.dataset.code));
 $("swapBtn").onclick=()=>{if(source==="auto"){source=target;target="auto";}else{[source,target]=[target,source];}localStorage.setItem("seifSourceLang",source);localStorage.setItem("seifTargetLang",target);paintLanguages();scheduleAutoTranslate();};
-let autoTimer=null,autoRequest=0,stableTranslation="";
+let autoTimer=null,autoRequest=0,stableTranslation="",lastAutoSignature="";
 function showTranslationWaiting(){
  const output=$("translatedText");
  output.textContent=stableTranslation;
@@ -45,7 +45,7 @@ function scheduleAutoTranslate(){
  const request=++autoRequest;
  const text=$("sourceText").value.trim();
  if(!text){
-  stableTranslation="";
+  stableTranslation="";lastAutoSignature="";
   $("translatedText").textContent=ui("outputPlaceholder");
   $("translatedText").classList.add("placeholder");
   $("translatedText").removeAttribute("aria-label");
@@ -53,6 +53,9 @@ function scheduleAutoTranslate(){
   $("correctionSuggestions").hidden=true;
   return;
  }
+ const signature=translationCacheKey(text);
+ if(signature===lastAutoSignature)return;
+ lastAutoSignature=signature;
  showTranslationWaiting();
  $("translationStatus").textContent=ui("preparing");
  autoTimer=setTimeout(async()=>{
@@ -68,7 +71,7 @@ function scheduleAutoTranslate(){
    $("translatedText").removeAttribute("aria-label");
    $("translationStatus").textContent=e.message;
   }
- },450);
+ },1100);
 }
 $("sourceText").addEventListener("input",()=>{$("charCount").textContent=$("sourceText").value.length+" / 12000";updateSourceIntelligence();scheduleAutoTranslate();});
 $("clearText").onclick=()=>{$("sourceText").value="";$("charCount").textContent="0 / 12000";updateSourceIntelligence();scheduleAutoTranslate();$("sourceText").focus();};
@@ -189,11 +192,25 @@ async function basicTranslate(text){
  if(detectedIntent.kind==="intentExclamation"&&!/[!！]\s*$/.test(translated))translated=translated.replace(/[؟?،,؛:]+\s*$/,"")+"!";
  return translated;
 }
+const translationCache=new Map();
+const translationInFlight=new Map();
+function translationCacheKey(text){
+ return JSON.stringify([text,source,target,$("dialectMode").checked,!!$("developerMode")?.checked]);
+}
 async function translate(text){
  if(!text.trim())throw new Error(ui("textRequired"));
- const requiresSmartEngine=$("dialectMode").checked||getDialect(source)||getDialect(target);
- if(requiresSmartEngine)return aiTranslate(text);
- return {translation:await basicTranslate(text),corrections:[]};
+ const key=translationCacheKey(text);
+ if(translationCache.has(key))return translationCache.get(key);
+ if(translationInFlight.has(key))return translationInFlight.get(key);
+ const task=(async()=>{
+  const requiresSmartEngine=$("dialectMode").checked||getDialect(source)||getDialect(target)||!!$("developerMode")?.checked;
+  const result=requiresSmartEngine?await aiTranslate(text):{translation:await basicTranslate(text),corrections:[]};
+  translationCache.set(key,result);
+  if(translationCache.size>40)translationCache.delete(translationCache.keys().next().value);
+  return result;
+ })();
+ translationInFlight.set(key,task);
+ try{return await task;}finally{translationInFlight.delete(key);}
 }
 function showResult(result,saveToHistory=true){const text=typeof result==="string"?result:result.translation;stableTranslation=text;$("translatedText").textContent=text;$("translatedText").classList.remove("placeholder");$("translatedText").removeAttribute("aria-label");renderCorrections(typeof result==="string"?[]:result.corrections||[]);updateSourceIntelligence();$("translationStatus").textContent=ui("translationComplete");if(saveToHistory){const entry={source,target,input:$("sourceText").value,output:text,date:Date.now()};history.unshift(entry);history=history.slice(0,50);localStorage.setItem("seifHistory",JSON.stringify(history));}}
 function renderCorrections(items){const root=$("correctionSuggestions");root.innerHTML="";if(!items.length){root.hidden=true;return;}root.hidden=false;const title=document.createElement("div");title.className="correction-title";title.textContent=ui("suggestionsTitle");root.appendChild(title);items.forEach(item=>{if(!item||!item.translation)return;const b=document.createElement("button");b.type="button";b.className="correction-chip";const colored=document.createElement("span");colored.className="gemini-text";colored.textContent=item.label||"صياغة أوضح";b.appendChild(colored);b.title=item.reason||ui("correctionApplied");b.addEventListener("click",()=>{stableTranslation=item.translation;$("translatedText").textContent=item.translation;$("translationStatus").textContent=ui("correctionApplied");$("correctionSuggestions").hidden=true;});root.appendChild(b);});if(!root.querySelector(".correction-chip"))root.hidden=true;}
