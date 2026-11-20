@@ -73,7 +73,7 @@
       .replace(/[أإآٱ]/g,"ا").replace(/ى/g,"ي")
       .replace(/[؟?!.,،؛:()"“”]/g," ").replace(/\s+/g," ").trim();
   }
-  const tokenPattern = /[A-Za-z0-9']+|[\u0600-\u06FF\u0750-\u077F]+/g;
+  const tokenPattern = /[A-Za-z0-9']+|[\u0621-\u063A\u0641-\u064A\u066E-\u06D3\u06FA-\u06FC\u064B-\u065F\u0670]+/g;
   function replaceTokens(text, convert, pattern) {
     pattern.lastIndex = 0;
     return text.replace(pattern, token => convert(token));
