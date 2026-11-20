@@ -23,7 +23,7 @@
     <button class="swap-btn" id="swapBtn" title="عكس اللغتين" aria-label="عكس اللغتين">⇄</button>
     <div class="language-side target-side"><button class="lang-select" id="targetLang">العربية <span>⌄</span></button><div class="quick-langs" id="targetQuick"><button class="quick selected" data-code="ar">العربية</button><button class="quick" data-code="en">الإنجليزية</button><button class="quick" data-code="fr">الفرنسية</button><button class="quick" data-code="de">الألمانية</button></div></div>
    </div>
-   <div class="dialect-row"><label><input type="checkbox" id="dialectMode"><span class="toggle"></span> ترجمة ذكية للهجات</label><span class="dialect-hint">يفهم التعبيرات المحلية والسياق</span></div>
+   <div class="dialect-row"><label><input type="checkbox" id="dialectMode"><span class="toggle"></span> قاموس اللهجات المحلي</label><span class="dialect-hint">تحويل الكلمات والتعابير دون مفتاح أو خادم</span></div>
    <div class="intent-analysis" id="intentAnalysis" hidden aria-live="polite"><span class="intent-chip"><b data-i18n="contextTypeLabel">نوع الجملة</b><span id="intentKind"></span></span><span class="intent-chip"><b data-i18n="contextToneLabel">النبرة</b><span id="intentTone"></span></span></div>
    <div class="panes" id="textMode">
     <section class="pane input-pane"><textarea id="sourceText" maxlength="12000" placeholder="اكتب النص أو الصقه هنا..." spellcheck="true"></textarea><div class="emoji-toolbar" id="emojiToolbar" aria-label="Quick emoji insert"><button type="button" data-emoji="❤️" title="❤️">❤️</button><button type="button" data-emoji="😅" title="😅">😅</button><button type="button" data-emoji="👍" title="👍">👍</button><button type="button" data-emoji="🙂" title="🙂">🙂</button><button type="button" data-emoji="🫤" title="🫤">🫤</button><button type="button" data-emoji="😡" title="😡">😡</button><button type="button" data-emoji="☠️" title="☠️">☠️</button><button type="button" data-emoji="🤲🏻" title="🤲🏻">🤲🏻</button><button type="button" data-emoji="😭" title="😭">😭</button><button type="button" data-emoji="😂" title="😂">😂</button><button type="button" data-emoji="👋" title="👋">👋</button><button type="button" data-emoji="😉" title="😉">😉</button><button type="button" data-emoji="😔" title="😔">😔</button></div><div class="pane-footer"><span id="charCount">0 / 12000</span><div class="tools"><button class="mini-btn" id="clearText" title="مسح النص">×</button><button class="mini-btn" id="copySource" title="نسخ النص">▢</button></div></div></section>
@@ -61,6 +61,21 @@
    <div class="file-panel" id="webMode" hidden><div class="upload-box"><div class="upload-icon">◎</div><h3>ترجمة موقع ويب</h3><p>أدخل رابط الصفحة. لترجمة الصفحة مباشرة داخلها استخدم إضافة SEIF TRANSLATOR.</p><input id="websiteUrl" class="url-input" type="url" placeholder="https://example.com" dir="ltr"><button class="primary-btn" id="openWebsite">فتح تعليمات ترجمة الموقع</button><p class="small-note">ترجمة الصفحات المحمية أو التي تعتمد على تسجيل الدخول تحتاج إلى الإضافة داخل المتصفح.</p></div></div>
    <div class="translate-actions"><button class="primary-btn" id="translateBtn"><span>ترجمة</span><span>→</span></button><span class="engine-note" id="engineNote">الترجمة النصية · اكتشاف تلقائي</span></div>
   </div>
+
+  <section class="arabizi-card" id="arabiziTool" aria-label="التحويل بين العربية ولغة فيسبوك">
+   <div class="arabizi-head"><div><strong>العربية بلغة الفيسبوك</strong><small>Arabizi · Franco-Arabic</small></div><span class="arabizi-symbol">3×7</span></div>
+   <p class="arabizi-description">حوّل الكتابة العربية إلى حروف لاتينية وأرقام، أو أعدها إلى العربية. التحويل يتم على جهازك.</p>
+   <div class="arabizi-directions">
+    <button type="button" class="active" data-arabizi-direction="to">عربي ← إلى لغة الفيسبوك</button>
+    <button type="button" data-arabizi-direction="from">لغة الفيسبوك ← إلى العربية</button>
+   </div>
+   <textarea id="arabiziInput" maxlength="5000" placeholder="مثال: عمري زحف" aria-label="النص المراد تحويله"></textarea>
+   <div class="arabizi-result">
+    <div class="arabizi-result-head"><span>النص المحوّل</span><button type="button" id="arabiziCopy">نسخ</button></div>
+    <div id="arabiziOutput" class="arabizi-output is-empty" dir="ltr" aria-live="polite">ستظهر الكتابة المحوّلة هنا…</div>
+   </div>
+   <div class="arabizi-legend">أمثلة الأرقام: <b>3 = ع</b> · <b>7 = ح</b> · <b>5 = خ</b> · <b>9 = ق</b> · <b>6 = ط</b> · <b>2 = ء</b></div>
+  </section>
   <div class="feature-strip"><div><span>◉</span><b>لغات ولهجات</b><small>من الفصحى إلى اللهجات والعكس</small></div><div><span>⌁</span><b>فهم السياق</b><small>المعنى والتعبير قبل الحرفية</small></div><div><span>⌂</span><b>خصوصيتك</b><small>إعداداتك محفوظة على جهازك</small></div></div>
  </section>
  <section class="workspace secondary-panel" id="historyPanel" hidden><div class="intro"><div class="eyebrow">YOUR ACTIVITY</div><h1>سجل <span>الترجمة</span></h1><p>آخر الترجمات التي أجريتها على هذا الجهاز.</p></div><div class="records-head"><button class="clear-history-btn" id="clearHistory" type="button">حذف الكل</button></div><div id="historyList" class="records"></div></section>
@@ -83,7 +98,8 @@
 <script src="interface-i18n.js"></script>
 <script src="context-engine.js"></script>
 <script src="ocr-languages.js"></script>
-<script src="api-config.js"></script>
 <script src="dialects.js"></script>
+<script src="local-dialect-engine.js"></script>
+<script src="arabizi-tool.js"></script>
 <script src="app.js"></script><script src="pwa.js"></script>
 </body></html>
