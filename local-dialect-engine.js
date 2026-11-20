@@ -143,7 +143,7 @@
   }
 
   const prepared = rows.map(([ar, forms]) => ({ ar, forms }));
-  const wordPattern = /[A-Za-z0-9\u0600-\u06FF\u0750-\u077F]+(?:['’][A-Za-z0-9\u0600-\u06FF\u0750-\u077F]+)*/g;
+  const wordPattern = /[A-Za-z0-9\u0621-\u063A\u0641-\u064A\u066E-\u06D3\u06FA-\u06FC\u064B-\u065F\u0670]+(?:['’][A-Za-z0-9\u0621-\u063A\u0641-\u064A\u066E-\u06D3\u06FA-\u06FC\u064B-\u065F\u0670]+)*/g;
 
   function buildSourceMap(sourceCode) {
     const map = new Map();
