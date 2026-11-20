@@ -78,7 +78,7 @@ $("clearText").onclick=()=>{$("sourceText").value="";$("charCount").textContent=
 $("copySource").onclick=()=>copy($("sourceText").value);$("copyResult").onclick=()=>copy($("translatedText").textContent);
 async function copy(t){try{await navigator.clipboard.writeText(t);$("translationStatus").textContent=ui("copied");}catch{$("translationStatus").textContent=ui("copyFailed");}}
 function getDialect(code){return LANGS.find(x=>x[0]===code)?.[2]==="dialect";}
-function updateDialectHint(){const hint=document.querySelector(".dialect-hint");if(!hint)return;const selected=[source,target].filter(code=>getDialect(code)).map(label);hint.textContent=ui("dialectHint")+(selected.length?" · "+selected.join(" ↔ "):"");const status=document.querySelector(".developer-mode-hint");if(status)status.textContent=ui("technicalHint");}
+function updateDialectHint(){const hint=document.querySelector(".dialect-hint");if(!hint)return;const selected=[source,target].filter(code=>getDialect(code)).map(label);hint.textContent="قاموس محلي يعمل دون إنترنت"+(selected.length?" · "+selected.join(" ↔ "):" · اختر اللهجة من قائمة اللغات");const status=document.querySelector(".developer-mode-hint");if(status)status.textContent=ui("technicalHint");}
 function dialectProfilePrompt(code,role){
  const profile=window.SEIF_DIALECTS&&window.SEIF_DIALECTS[code];
  if(!profile)return "";
@@ -114,7 +114,7 @@ async function googleTranslatePlain(text,sourceCode=source,targetCode=target){
 const translationCache=new Map();
 const translationInFlight=new Map();
 function translationCacheKey(text){
- return JSON.stringify([text,source,target,$("dialectMode").checked,!!$("developerMode")?.checked]);
+ return JSON.stringify([text,source,target,!!$("developerMode")?.checked]);
 }
 
 function isArabicLanguage(code){return code==="ar"||String(code||"").startsWith("ar-");}
@@ -168,7 +168,7 @@ $("menuBtn").onclick=()=>{$("sidebar").classList.add("open");$("scrim").classLis
 function openSettings(){$("interfaceLanguage").value=localStorage.getItem("seifInterfaceLanguage")||"ar";$("settingsModal").hidden=false;}
 $("settingsOpen").onclick=$("settingsTop").onclick=openSettings;$("saveSettings").onclick=()=>{applyInterfaceLanguage($("interfaceLanguage").value);$("settingsModal").hidden=true;};
 document.querySelectorAll("[data-close]").forEach(b=>b.onclick=()=>$ (b.dataset.close).hidden=true);
-$("dialectMode").addEventListener("change",()=>{updateSourceIntelligence();scheduleAutoTranslate();});
+
 $("emojiToolbar").addEventListener("click",e=>{
  const button=e.target.closest("[data-emoji]");if(!button)return;
  const field=$("sourceText"),emoji=button.dataset.emoji;
