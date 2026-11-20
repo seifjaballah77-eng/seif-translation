@@ -195,3 +195,5 @@ body.light .arabizi-card{background:#ffffffaa}
 body.light #arabiziInput{background:#fafaff}
 body.light .arabizi-directions button.active{color:#6254c9}
 @media(max-width:600px){.arabizi-card{padding:12px}.arabizi-directions{display:grid;grid-template-columns:1fr 1fr}.arabizi-directions button{padding:9px 6px;font-size:10px}}
+
+.dialect-state-icon{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:#8b7bff18;color:#bcb2ff;font-size:16px;flex:0 0 auto}
