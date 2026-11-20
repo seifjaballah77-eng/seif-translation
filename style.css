@@ -168,3 +168,30 @@ html[dir="ltr"] .idiom-card{text-align:left}
  .intent-analysis{gap:5px}
  .intent-chip{font-size:10px;padding:5px 8px}
 }
+
+
+/* Offline dialect dictionary and Facebook-language (Arabizi) tool. */
+.arabizi-card{margin:17px 0 23px;padding:17px;border:1px solid var(--line);border-radius:15px;background:linear-gradient(145deg,#191b23cc,#171820cc);box-shadow:0 9px 28px #00000012}
+.arabizi-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.arabizi-head strong{display:block;font-size:14px;color:var(--text)}
+.arabizi-head small{display:block;margin-top:3px;font-size:10px;letter-spacing:.5px;color:var(--muted);direction:ltr;text-align:right}
+.arabizi-symbol{display:grid;place-items:center;min-width:43px;height:38px;padding:0 8px;border:1px solid #8b7bff55;border-radius:10px;background:#8b7bff12;color:#bcb2ff;font:700 15px/1 Arial,sans-serif;direction:ltr}
+.arabizi-description{margin:9px 0 12px;color:var(--muted);font-size:11px;line-height:1.8}
+.arabizi-directions{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:9px}
+.arabizi-directions button{border:1px solid var(--line);border-radius:9px;background:var(--panel2);color:var(--muted);padding:8px 11px;font-size:11px}
+.arabizi-directions button.active{border-color:#8b7bff88;background:#8b7bff19;color:#c9c1ff}
+#arabiziInput{display:block;width:100%;min-height:76px;resize:vertical;border:1px solid var(--line);border-radius:10px;background:#11131a88;color:var(--text);padding:12px;font:15px/1.8 'IBM Plex Sans Arabic',Arial,sans-serif;outline:none}
+#arabiziInput:focus{border-color:#8b7bff88;box-shadow:0 0 0 3px #8b7bff12}
+#arabiziInput::placeholder{color:#747b89;opacity:.66}
+.arabizi-result{margin-top:9px;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--panel2)}
+.arabizi-result-head{display:flex;align-items:center;justify-content:space-between;padding:8px 11px;border-bottom:1px solid var(--line);font-size:10px;color:var(--muted)}
+#arabiziCopy{border:1px solid var(--line);border-radius:7px;background:var(--panel);color:var(--text);padding:5px 10px;font-size:10px}
+.arabizi-output{min-height:53px;padding:12px;white-space:pre-wrap;overflow-wrap:anywhere;color:var(--text);font-size:16px;line-height:1.9}
+.arabizi-output[dir="ltr"]{text-align:left}
+.arabizi-output.is-empty{color:#7a8190;font-size:12px}
+.arabizi-legend{margin-top:9px;color:var(--muted);font-size:10px;line-height:1.8}
+.arabizi-legend b{color:#bcb2ff;font-family:Arial,sans-serif;direction:ltr;display:inline-block}
+body.light .arabizi-card{background:#ffffffaa}
+body.light #arabiziInput{background:#fafaff}
+body.light .arabizi-directions button.active{color:#6254c9}
+@media(max-width:600px){.arabizi-card{padding:12px}.arabizi-directions{display:grid;grid-template-columns:1fr 1fr}.arabizi-directions button{padding:9px 6px;font-size:10px}}
