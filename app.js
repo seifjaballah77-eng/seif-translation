@@ -118,7 +118,7 @@ function translationCacheKey(text){
 }
 
 function isArabicLanguage(code){return code==="ar"||String(code||"").startsWith("ar-");}
-function isArabicInput(text){return /[\\u0600-\\u06FF\\u0750-\\u077F]/.test(text)||!!(window.SEIF_ARABIZI&&window.SEIF_ARABIZI.isLikely(text));}
+function isArabicInput(text){return /[ء-غف-ي]/.test(text)||!!(window.SEIF_ARABIZI&&window.SEIF_ARABIZI.isLikely(text));}
 async function translate(text){
  if(!text.trim())throw new Error(ui("textRequired"));
  const key=translationCacheKey(text);
