@@ -3,7 +3,7 @@
   "use strict";
   const arabicWords = {
     "عامر":"3amer","عمري":"3omri","عمر":"3omar","زحف":"za7f","زاحف":"za7ef",
-    "شنوة":"chnowa","شنوّة":"chnowa","شنيا":"chnia","شنو":"chno","توة":"tawa","توّا":"tawa",
+    "شنوة":"chnowa","شنوّة":"chnowa","شنيا":"chnia","شنو":"chno","تحب":"t7eb","تحبي":"t7eb","تحبو":"t7ebou","عليك":"3lik","عليكم":"3likom","شنوة":"chnowa","توة":"tawa","توّا":"tawa",
     "برشة":"barsha","برشا":"barsha","ياسر":"yesser","نحب":"n7eb","نحبك":"n7ebek",
     "علاش":"3lech","وين":"win","كيفاش":"kifech","باهي":"behi","قداش":"9addech",
     "موش":"mouch","مش":"mouch","ما":"ma","إنت":"enti","انت":"enti","إنتي":"enti",
@@ -35,7 +35,7 @@
     "3amer":"عامر","3omri":"عمري","3omar":"عمر","za7f":"زحف","za7ef":"زاحف",
     "chnowa":"شنوة","chnia":"شنيا","chno":"شنو","tawa":"توا","barsha":"برشة",
     "yesser":"ياسر","n7eb":"نحب","n7ebek":"نحبك","3lech":"علاش","win":"وين",
-    "kifech":"كيفاش","behi":"باهي","9addech":"قداش","mouch":"موش","enti":"إنتي",
+    "kifech":"كيفاش","behi":"باهي","9addech":"قداش","mouch":"موش","t7eb":"تحب","t7ebou":"تحبو","3lik":"عليك","3likom":"عليكم","enti":"إنتي",
     "ena":"أنا","a7na":"إحنا","ya3tik":"يعطيك","3aslema":"عسلامة",
     "besslema":"بالسلامة","lebes":"لاباس","sbe7":"صباح","elkhir":"الخير",
     "msa":"مسا","t7eb":"تحب","7alek":"حالك","winik":"وينك","twa7achtek":"توحشتك",
