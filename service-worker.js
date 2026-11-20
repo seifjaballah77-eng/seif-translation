@@ -1,4 +1,4 @@
-const CACHE_NAME="seif-translator-shell-v2-local-dialects";
+const CACHE_NAME="seif-translator-shell-v3-expanded-lexicon";
 const APP_SHELL=["./","./index.html","./style.css","./app.js","./interface-i18n.js","./context-engine.js","./ocr-languages.js","./dialects.js","./local-dialect-engine.js","./arabizi-tool.js","./manifest.webmanifest","./seif-icon.svg","./pwa.js"];
 self.addEventListener("install",event=>{event.waitUntil(caches.open(CACHE_NAME).then(cache=>cache.addAll(APP_SHELL)).then(()=>self.skipWaiting()));});
 self.addEventListener("activate",event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key!==CACHE_NAME).map(key=>caches.delete(key)))).then(()=>self.clients.claim()));});
